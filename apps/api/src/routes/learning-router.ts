@@ -3,8 +3,8 @@ import { adminCoursesController } from "../controllers/course-controller";
 import { validate } from "../middleware/validate";
 import { courseListSchema } from "../services/course-list.dto";
 import { z } from "zod";
-import { questionPage } from "../repositories/practice-repository";
-import { pageSchema } from "../services/practice-validation";
+import { questionPage, wrongPage } from "../repositories/practice-repository";
+import { pageSchema, wrongQuerySchema } from "../services/practice-validation";
 import {
   requireCourseEntitlement,
   hasMembership,
@@ -44,38 +44,78 @@ learningRouter.get("/learning-library", requireAuth, async (req, res) => {
     ),
   );
 });
+async function lessonPracticeScope(
+  userId: string,
+  courseId: string,
+  lessonId: string,
+) {
+  const { course } = await learning(userId, courseId);
+  const openLesson = {
+    id: lessonId,
+    publishedAt: { not: null },
+    chapter: { courseId, course: { status: "PUBLISHED" as const } },
+  };
+  const lesson = await getDb().lesson.findFirst({
+    where: openLesson,
+    select: { title: true },
+  });
+  if (!lesson) throw new HttpError(404, "课时不属于该课程或尚未开放。");
+  return {
+    context: {
+      title: lesson.title,
+      courseTitle: course.title,
+      grade: course.grade,
+      subject: course.subject,
+    },
+    where: {
+      status: "PUBLISHED" as const,
+      lessonLinks: { some: { lessonId, lesson: openLesson } },
+    },
+  };
+}
+
 learningRouter.get(
   "/learning/:id/lessons/:lessonId/questions",
   requireAuth,
   async (req, res) => {
-    const courseId = String(req.params.id),
-      lessonId = String(req.params.lessonId),
-      view = await learning(authenticated(req).user.id, courseId);
-    if (
-      !view.course.chapters.some((c) =>
-        c.lessons.some((l) => l.id === lessonId),
-      )
-    )
-      throw new HttpError(404, "课时不属于该课程。");
-    if (
-      !(await getDb().lesson.findFirst({
-        where: {
-          id: lessonId,
-          publishedAt: { not: null },
-          chapter: { courseId },
-        },
-        select: { id: true },
-      }))
-    )
-      throw new HttpError(404, "课时尚未发布。");
     const { page } = parseInput(pageSchema, req.query);
-    ok(
-      res,
-      await questionPage(
-        { status: "PUBLISHED", lessonLinks: { some: { lessonId } } },
-        page,
-      ),
+    const scope = await lessonPracticeScope(
+      authenticated(req).user.id,
+      String(req.params.id),
+      String(req.params.lessonId),
     );
+    res.set("Cache-Control", "no-store");
+    ok(res, {
+      ...(await questionPage(scope.where, page)),
+      lesson: scope.context,
+    });
+  },
+);
+
+learningRouter.get(
+  "/learning/:id/lessons/:lessonId/wrong-questions",
+  requireAuth,
+  async (req, res) => {
+    const { page, state } = parseInput(
+      wrongQuerySchema.pick({ page: true, state: true }),
+      req.query,
+    );
+    const userId = authenticated(req).user.id;
+    const scope = await lessonPracticeScope(
+      userId,
+      String(req.params.id),
+      String(req.params.lessonId),
+    );
+    const result = await wrongPage(
+      userId,
+      {
+        resolvedAt: state === "active" ? null : { not: null },
+        question: scope.where,
+      },
+      page,
+    );
+    res.set("Cache-Control", "no-store");
+    ok(res, { ...result, lesson: scope.context });
   },
 );
 learningRouter.get(

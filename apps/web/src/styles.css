@@ -1492,6 +1492,15 @@ button.ant-btn.menu-button {
 .practice-page {
   padding-block: 36px 72px;
 }
+.lesson-practice-header {
+  margin: 20px 0 28px;
+}
+.lesson-practice-header h1 {
+  margin: 8px 0 16px;
+}
+.lesson-review-filter {
+  margin-bottom: 18px;
+}
 .practice-banner {
   display: grid;
   grid-template-columns: 1.2fr 1fr;

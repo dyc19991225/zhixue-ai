@@ -16,7 +16,11 @@ import { createApp } from "../app";
 import { register } from "../auth/service";
 import { getDb, disconnectDb } from "../lib/db";
 import { disconnectRedis } from "../lib/rate-limiter";
-import { validateContentPackage, contentId } from "./content-package";
+import {
+  validateContentPackage,
+  contentId,
+  importContentPackage,
+} from "./content-package";
 import { approveSyntheticCourse } from "../test-utils/course-review";
 
 process.env.RATE_LIMIT_NAMESPACE =
@@ -506,5 +510,267 @@ test(
         );
       },
     );
+  },
+);
+
+test(
+  "G8/G9 lessons connect completion, linked questions and personal wrong-answer review",
+  { skip: !process.env.DATABASE_URL },
+  async (t) => {
+    const db = getDb();
+    const app = createApp();
+    const prefix = "qa-lesson-" + randomBytes(5).toString("hex");
+    const users: string[] = [];
+    const courses: string[] = [];
+    const questions: string[] = [];
+    const origin = {
+      Origin: "http://127.0.0.1:3000",
+      "X-Zhixue-Client": "web",
+    };
+    t.after(async () => {
+      await db.user.deleteMany({ where: { id: { in: users } } });
+      await db.question.deleteMany({ where: { id: { in: questions } } });
+      await db.course.deleteMany({ where: { id: { in: courses } } });
+      await disconnectDb();
+      await disconnectRedis();
+    });
+
+    async function account(label: string, grade: "G8" | "G9") {
+      const result = await request(app)
+        .post("/api/auth/register")
+        .set(origin)
+        .send({
+          username: `${prefix}_${label}`.replaceAll("-", "_"),
+          passphrase: randomBytes(24).toString("hex"),
+          displayName: "课时练习验收",
+          grade,
+        })
+        .expect(200);
+      users.push(result.body.data.user.id);
+      return {
+        ...origin,
+        Authorization: `Bearer ${result.body.data.accessToken}`,
+      };
+    }
+
+    const student8 = await account("g8", "G8");
+    const student9 = await account("g9", "G9");
+    for (const [index, name] of [
+      "g8-open-pythagoras",
+      "g8-open-linear-function",
+      "g9-open-quadratic",
+      "g9-open-probability",
+    ].entries()) {
+      await t.test(name, async () => {
+        const pkg = validateContentPackage(
+          JSON.parse(
+            await readFile(
+              new URL(
+                `../../../../content/courses/${name}.v1.json`,
+                import.meta.url,
+              ),
+              "utf8",
+            ),
+          ),
+        );
+        pkg.id = `${prefix}-${index}`;
+        pkg.course.slug = pkg.id;
+        const courseId = contentId(pkg.id, "course");
+        const idFor = (type: string, key: string) =>
+          contentId(pkg.id, `${type}:${key}`);
+        const lessonList = pkg.course.chapters.flatMap(
+          (chapter) => chapter.lessons,
+        );
+        const questionIds = pkg.questions.map((q) => idFor("question", q.key));
+        courses.push(courseId);
+        questions.push(...questionIds);
+        await importContentPackage(pkg);
+        // Publish synthetic copies in the test database only.
+        await db.course.update({
+          where: { id: courseId },
+          data: { status: "PUBLISHED" },
+        });
+        await db.lesson.updateMany({
+          where: { chapter: { courseId } },
+          data: { publishedAt: new Date() },
+        });
+        await db.question.updateMany({
+          where: { id: { in: questionIds } },
+          data: { status: "PUBLISHED" },
+        });
+
+        const student = pkg.course.grade === "G8" ? student8 : student9;
+        const other = pkg.course.grade === "G8" ? student9 : student8;
+        const lessonPath = (key: string) =>
+          `/api/learning/${courseId}/lessons/${idFor("lesson", key)}`;
+        const firstWrongPath = `${lessonPath(lessonList[0].key)}/wrong-questions`;
+        await request(app).get(firstWrongPath).expect(401);
+        await request(app).get(firstWrongPath).set(student).expect(403);
+        await request(app)
+          .post(`/api/course/${courseId}/enroll`)
+          .set(student)
+          .send({})
+          .expect(200);
+        await request(app)
+          .post(`/api/course/${courseId}/enroll`)
+          .set(other)
+          .send({})
+          .expect(200);
+        await request(app)
+          .get(
+            `/api/learning/${courseId}/lessons/missing-lesson/wrong-questions`,
+          )
+          .set(student)
+          .expect(404);
+        await request(app)
+          .get(firstWrongPath)
+          .query({ grade: "G8" })
+          .set(student)
+          .expect(400);
+
+        // Keep a genuine error in a different lesson while checking the first.
+        const otherQuestion = pkg.questions.find(
+          (q) => q.key === lessonList[1].key + "-4",
+        )!;
+        const otherQuestionId = idFor("question", otherQuestion.key);
+        const otherList = await request(app)
+          .get(`${lessonPath(lessonList[1].key)}/questions`)
+          .set(student)
+          .expect(200);
+        const otherItem = otherList.body.data.items.find(
+          (q: { id: string }) => q.id === otherQuestionId,
+        );
+        async function submit(id: string, updatedAt: string, selected: number) {
+          const response = await request(app)
+            .post(`/api/practice/questions/${id}/attempts`)
+            .set(student)
+            .send({ selected, updatedAt, requestId: randomUUID() })
+            .expect(200);
+          return response.body.data;
+        }
+        assert.equal(
+          (
+            await submit(
+              otherQuestionId,
+              otherItem.updatedAt,
+              (otherQuestion.answer + 1) % 4,
+            )
+          ).correct,
+          false,
+        );
+
+        for (const lesson of lessonList) {
+          const path = lessonPath(lesson.key);
+          const lessonResponse = await request(app)
+            .get(path)
+            .set(student)
+            .expect(200);
+          assert.equal(lessonResponse.body.data.content, lesson.content);
+          const complete = await request(app)
+            .put(`${path}/completion`)
+            .set(student)
+            .send({})
+            .expect(200);
+          assert.ok(complete.body.data.completedAt);
+          const progress = await request(app)
+            .get(`/api/learning/${courseId}`)
+            .set(student)
+            .expect(200);
+          assert.ok(
+            progress.body.data.completedIds.includes(
+              idFor("lesson", lesson.key),
+            ),
+          );
+
+          const exercises = await request(app)
+            .get(`${path}/questions`)
+            .set(student)
+            .expect(200);
+          const data = exercises.body.data;
+          assert.equal(data.lesson.title, lesson.title);
+          assert.equal(data.lesson.grade, pkg.course.grade);
+          assert.deepEqual(
+            data.items.map((q: { id: string }) => q.id).sort(),
+            pkg.questions
+              .filter((q) => q.lessonKeys?.includes(lesson.key))
+              .map((q) => idFor("question", q.key))
+              .sort(),
+          );
+          assert.equal(data.total, 4);
+          assert.ok(
+            data.items.every(
+              (q: object) => !("answer" in q) && !("explanation" in q),
+            ),
+          );
+          const question = pkg.questions.find(
+            (q) => q.key === lesson.key + "-3",
+          )!;
+          const id = idFor("question", question.key);
+          const listed = data.items.find((q: { id: string }) => q.id === id);
+          assert.equal(
+            (await submit(id, listed.updatedAt, (question.answer + 1) % 4))
+              .correct,
+            false,
+          );
+
+          const reviewPath = `${path}/wrong-questions`;
+          const wrong = await request(app)
+            .get(reviewPath)
+            .set(student)
+            .expect(200);
+          assert.equal(wrong.headers["cache-control"], "no-store");
+          assert.deepEqual(
+            wrong.body.data.items
+              .map((row: { question: { id: string } }) => row.question.id)
+              .sort(),
+            (lesson === lessonList[1] ? [id, otherQuestionId] : [id]).sort(),
+          );
+          const retry = wrong.body.data.items.find(
+            (row: { question: { id: string } }) => row.question.id === id,
+          );
+          assert.equal("answer" in retry.question, false);
+          assert.equal("explanation" in retry.question, false);
+          const nonOwner = await request(app)
+            .get(reviewPath)
+            .set(other)
+            .expect(200);
+          assert.equal(nonOwner.body.data.total, 0);
+
+          assert.equal(
+            (await submit(id, retry.question.updatedAt, question.answer))
+              .correct,
+            true,
+          );
+          const pending = await request(app)
+            .get(reviewPath)
+            .set(student)
+            .expect(200);
+          assert.equal(
+            pending.body.data.total,
+            lesson === lessonList[1] ? 1 : 0,
+          );
+          const resolved = await request(app)
+            .get(reviewPath)
+            .query({ state: "resolved" })
+            .set(student)
+            .expect(200);
+          assert.equal(resolved.body.data.total, 1);
+          assert.equal(resolved.body.data.items[0].question.id, id);
+        }
+        await db.lesson.updateMany({
+          where: { id: idFor("lesson", lessonList[0].key) },
+          data: { publishedAt: null },
+        });
+        await request(app).get(firstWrongPath).set(student).expect(404);
+        await db.course.update({
+          where: { id: courseId },
+          data: { access: "MEMBER" },
+        });
+        await request(app)
+          .get(`${lessonPath(lessonList[1].key)}/wrong-questions`)
+          .set(student)
+          .expect(403);
+      });
+    }
   },
 );

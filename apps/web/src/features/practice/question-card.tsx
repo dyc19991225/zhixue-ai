@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { Alert, Button, Radio, Space, Tag } from "antd";
 import { Link } from "react-router-dom";
 import type { AttemptView, QuestionView } from "@zhixue/shared";
@@ -26,9 +26,11 @@ export function AttemptResult({ attempt }: { attempt: AttemptView }) {
 export function QuestionCard({
   question,
   wrongCount,
+  reviewAction,
 }: {
   question: QuestionView;
   wrongCount?: number;
+  reviewAction?: (attempt: AttemptView) => ReactNode;
 }) {
   const { user } = useAuth();
   const [selected, setSelected] = useState<number>(),
@@ -96,9 +98,7 @@ export function QuestionCard({
         <>
           <AttemptResult attempt={result} />
           {wrongCount && result.correct && (
-            <p className="muted">
-              这道题已进入“已答对”。刷新列表可查看最新分类。
-            </p>
+            <p className="muted">这道题已进入“已答对”。</p>
           )}
           <Space wrap>
             <Button
@@ -110,9 +110,13 @@ export function QuestionCard({
             >
               重新练习
             </Button>
-            <Link className="text-link" to="/practice?mode=wrong">
-              查看我的错题
-            </Link>
+            {reviewAction ? (
+              reviewAction(result)
+            ) : (
+              <Link className="text-link" to="/practice?mode=wrong">
+                查看我的错题
+              </Link>
+            )}
           </Space>
         </>
       ) : (

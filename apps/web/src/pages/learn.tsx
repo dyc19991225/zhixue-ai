@@ -1,76 +1,112 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Alert, Button, Card, Spin } from "antd";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import type { LearningView } from "@zhixue/shared";
+import { useAuth } from "@/auth/auth-provider";
 import { api } from "@/lib/api";
 import { LessonVideo } from "@/features/courses/lesson-video";
+import {
+  learnLessonPath,
+  lessonPracticePath,
+} from "@/features/practice/lesson-practice-path";
+
+type Lesson = { title: string; content: string | null; hasVideo: boolean };
+
 export default function Learn() {
   const { id, lessonId } = useParams();
-  const [view, setView] = useState<LearningView>(),
-    [lesson, setLesson] = useState<{
-      title: string;
-      content: string;
-      hasVideo: boolean;
-    }>(),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(false);
+  const { user } = useAuth();
+  if (!id || !lessonId || !user) return null;
+  return (
+    <LearnLesson
+      key={JSON.stringify([user.id, id, lessonId])}
+      courseId={id}
+      lessonId={lessonId}
+    />
+  );
+}
+
+function LearnLesson({
+  courseId,
+  lessonId,
+}: {
+  courseId: string;
+  lessonId: string;
+}) {
+  const navigate = useNavigate();
+  const [data, setData] = useState<{ view: LearningView; lesson: Lesson }>();
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState<"practice" | "complete">();
+  const live = useRef(false);
+  const apiPath = `/api/learning/${encodeURIComponent(courseId)}/lessons/${encodeURIComponent(lessonId)}`;
+  const practiceHref = lessonPracticePath(courseId, lessonId);
+
   useEffect(() => {
     let active = true;
-    setLesson(undefined);
-    setError("");
+    live.current = true;
     Promise.all([
-      api<LearningView>(`/api/learning/${id}`),
-      api<{ title: string; content: string; hasVideo: boolean }>(
-        `/api/learning/${id}/lessons/${lessonId}`,
-      ),
+      api<LearningView>(`/api/learning/${encodeURIComponent(courseId)}`),
+      api<Lesson>(apiPath),
     ])
-      .then(([v, l]) => {
-        if (active) {
-          setView(v);
-          setLesson(l);
-        }
+      .then(([view, lesson]) => {
+        if (active) setData({ view, lesson });
       })
-      .catch((e) => {
+      .catch((e: Error) => {
         if (active) setError(e.message);
       });
     return () => {
       active = false;
+      live.current = false;
     };
-  }, [id, lessonId]);
-  async function complete() {
-    setBusy(true);
+  }, [apiPath, courseId]);
+
+  async function complete(goToPractice: boolean) {
+    setBusy(goToPractice ? "practice" : "complete");
     setError("");
     try {
-      await api(
-        `/api/learning/${id}/lessons/${lessonId}/completion`,
-        "PUT",
-        {},
+      await api(`${apiPath}/completion`, "PUT", {});
+      if (!live.current) return;
+      setData((current) =>
+        current && !current.view.completedIds.includes(lessonId)
+          ? {
+              ...current,
+              view: {
+                ...current.view,
+                completedIds: [...current.view.completedIds, lessonId],
+              },
+            }
+          : current,
       );
-      setView(await api<LearningView>(`/api/learning/${id}`));
+      if (goToPractice) void navigate(practiceHref);
     } catch (e) {
-      setError((e as Error).message);
+      if (live.current) setError((e as Error).message);
     } finally {
-      setBusy(false);
+      if (live.current) setBusy(undefined);
     }
   }
+
+  const view = data?.view;
+  const lesson = data?.lesson;
   const lessons = view?.course.chapters.flatMap((c) => c.lessons) ?? [];
-  const next = lessons[lessons.findIndex((l) => l.id === lessonId) + 1];
+  const index = lessons.findIndex((l) => l.id === lessonId);
+  const next = index >= 0 ? lessons[index + 1] : undefined;
+  const completed = view?.completedIds.includes(lessonId);
+
   return (
     <section className="wrap account-page">
       <Link to="/dashboard" className="text-link">
         ← 学习中心
       </Link>
-      {error && <Alert type="error" title={error} />}
-      {!lesson ? (
+      {error && <Alert type="error" showIcon title={error} />}
+      {!lesson || !view ? (
         !error && <Spin />
       ) : (
         <div className="lesson-layout">
           <aside>
-            <h2>{view?.course.title}</h2>
+            <h2>{view.course.title}</h2>
             <p>
-              已完成 {view?.completedIds.length} / {view?.total} 课时
+              已完成 {view.completedIds.length} / {view.total} 课时
             </p>
-            {view?.course.chapters.map((c) => (
+            {view.course.chapters.map((c) => (
               <div key={c.id}>
                 <h3>{c.title}</h3>
                 {c.lessons.map((l) => (
@@ -78,7 +114,7 @@ export default function Learn() {
                     aria-current={l.id === lessonId ? "page" : undefined}
                     className="lesson-nav"
                     key={l.id}
-                    to={`/learn/${id}/${l.id}`}
+                    to={learnLessonPath(courseId, l.id)}
                   >
                     {view.completedIds.includes(l.id) ? "✓ " : ""}
                     {l.title}
@@ -91,32 +127,51 @@ export default function Learn() {
             <h1>{lesson.title}</h1>
             {lesson.hasVideo && (
               <LessonVideo
-                key={lessonId}
-                courseId={id!}
-                lessonId={lessonId!}
-                position={view?.positions[lessonId!] ?? 0}
+                courseId={courseId}
+                lessonId={lessonId}
+                position={view.positions[lessonId] ?? 0}
               />
             )}
             <article className="lesson-prose">{lesson.content}</article>
-            <Link
-              className="button primary"
-              to={`/practice?courseId=${id}&lessonId=${lessonId}`}
-            >
-              本课配套练习
-            </Link>
             <div className="lesson-actions">
-              <Button
-                type="primary"
-                loading={busy}
-                disabled={view?.completedIds.includes(lessonId!)}
-                onClick={() => void complete()}
-              >
-                {view?.completedIds.includes(lessonId!)
-                  ? "本课已完成"
-                  : "标记本课完成"}
-              </Button>
+              {completed ? (
+                <>
+                  <span className="muted" role="status">
+                    本课已完成
+                  </span>
+                  <Link className="button primary" to={practiceHref}>
+                    做本课配套练习
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Button
+                    type="primary"
+                    size="large"
+                    loading={busy === "practice"}
+                    disabled={busy === "complete"}
+                    onClick={() => void complete(true)}
+                  >
+                    完成本课并去练习
+                  </Button>
+                  <Button
+                    size="large"
+                    loading={busy === "complete"}
+                    disabled={busy === "practice"}
+                    onClick={() => void complete(false)}
+                  >
+                    仅标记完成
+                  </Button>
+                  <Link className="text-link" to={practiceHref}>
+                    先做配套练习
+                  </Link>
+                </>
+              )}
               {next ? (
-                <Link className="text-link" to={`/learn/${id}/${next.id}`}>
+                <Link
+                  className="text-link"
+                  to={learnLessonPath(courseId, next.id)}
+                >
                   下一课 →
                 </Link>
               ) : (

@@ -26,15 +26,57 @@ import { api } from "@/lib/api";
 import { useAuth } from "@/auth/auth-provider";
 import { AttemptResult, QuestionCard } from "@/features/practice/question-card";
 import { QuestionDiagram } from "@/features/practice/question-diagram";
+import { LessonPractice } from "@/features/practice/lesson-practice";
 export default function Practice() {
+  const [query] = useSearchParams();
+  const { user, loading } = useAuth();
+  const courseId = query.get("courseId");
+  const lessonId = query.get("lessonId");
+  if (
+    query.get("mode") === "history" ||
+    (!query.has("courseId") && !query.has("lessonId"))
+  )
+    return <PracticeCenter />;
+  if (!courseId || !lessonId)
+    return (
+      <section className="wrap practice-page">
+        <Alert
+          type="error"
+          showIcon
+          title="课时练习链接不完整。"
+          action={<Link to="/practice">返回练习中心</Link>}
+        />
+      </section>
+    );
+  const mode = query.get("mode") === "wrong" ? "wrong" : "questions";
+  const state = query.get("state") === "resolved" ? "resolved" : "active";
+  const requestedPage = Number(query.get("page"));
+  const page =
+    Number.isInteger(requestedPage) &&
+    requestedPage >= 1 &&
+    requestedPage <= 10000
+      ? requestedPage
+      : 1;
+  return (
+    <LessonPractice
+      key={JSON.stringify([user?.id, courseId, lessonId, mode, state, page])}
+      courseId={courseId}
+      lessonId={lessonId}
+      mode={mode}
+      state={state}
+      page={page}
+      canLoad={!!user}
+      authLoading={loading}
+    />
+  );
+}
+
+function PracticeCenter() {
   const [query, setQuery] = useSearchParams(),
     { user } = useAuth();
   const mode = ["wrong", "history"].includes(query.get("mode") ?? "")
     ? query.get("mode")!
     : "questions";
-  const courseId = query.get("courseId"),
-    lessonId = query.get("lessonId"),
-    scoped = mode === "questions" && !!courseId && !!lessonId;
   const grade =
     gradeOptions.find((item) => item.value === query.get("grade"))?.value ??
     user?.grade ??
@@ -71,17 +113,17 @@ export default function Practice() {
     let active = true;
     setLoading(true);
     setError("");
-    if ((mode !== "questions" || scoped) && !user) {
+    if (mode !== "questions" && !user) {
       setLoading(false);
       return;
     }
     const params = new URLSearchParams({ page: String(page) });
-    if (mode === "questions" && !scoped && search) params.set("q", search);
-    if (mode !== "history" && !scoped) {
+    if (mode === "questions" && search) params.set("q", search);
+    if (mode !== "history") {
       params.set("grade", grade);
       if (subject) params.set("subject", subject);
     }
-    if (mode === "questions" && difficulty && !scoped)
+    if (mode === "questions" && difficulty)
       params.set("difficulty", difficulty);
     if (mode === "wrong") params.set("state", state);
     const path =
@@ -91,9 +133,7 @@ export default function Practice() {
           ? "wrong-questions"
           : "attempts";
     api<PageData<QuestionView | WrongQuestionView | AttemptView>>(
-      scoped
-        ? `/api/learning/${encodeURIComponent(courseId!)}/lessons/${encodeURIComponent(lessonId!)}/questions?${params}`
-        : `/api/practice/${path}?${params}`,
+      `/api/practice/${path}?${params}`,
     )
       .then((data) => {
         if (!active) return;
@@ -111,20 +151,7 @@ export default function Practice() {
     return () => {
       active = false;
     };
-  }, [
-    mode,
-    user,
-    grade,
-    subject,
-    difficulty,
-    state,
-    page,
-    refresh,
-    scoped,
-    courseId,
-    lessonId,
-    search,
-  ]);
+  }, [mode, user, grade, subject, difficulty, state, page, refresh, search]);
   const count =
     mode === "questions"
       ? questions.length
@@ -158,15 +185,6 @@ export default function Practice() {
         </div>
         <img src="/images/math.jpg" alt="黑板上的数学推导" />
       </div>
-      {scoped && (
-        <Alert
-          type="info"
-          title="本课配套练习"
-          description={
-            <Link to={`/learn/${courseId}/${lessonId}`}>返回本课学习</Link>
-          }
-        />
-      )}
       <Tabs
         activeKey={mode}
         onChange={(value) => {
@@ -184,7 +202,7 @@ export default function Practice() {
         ]}
       />
       <div className="practice-toolbar">
-        {mode === "questions" && !scoped && (
+        {mode === "questions" && (
           <label className="practice-search">
             按题干查找
             <Input.Search
@@ -202,7 +220,7 @@ export default function Practice() {
           </label>
         )}
         <Space wrap>
-          {mode !== "history" && !scoped && (
+          {mode !== "history" && (
             <>
               <Select
                 aria-label="选择年级"
@@ -226,7 +244,7 @@ export default function Practice() {
               />
             </>
           )}
-          {mode === "questions" && !scoped && (
+          {mode === "questions" && (
             <Select
               aria-label="选择难度"
               placeholder="全部难度"
@@ -256,12 +274,8 @@ export default function Practice() {
         </Space>
         <Button onClick={() => setRefresh((v) => v + 1)}>刷新列表</Button>
       </div>
-      {(mode !== "questions" || scoped) && !user ? (
-        <Empty
-          description={
-            scoped ? "登录后练习本课题目" : "登录后查看自己的错题和作答记录"
-          }
-        >
+      {mode !== "questions" && !user ? (
+        <Empty description={"登录后查看自己的错题和作答记录"}>
           <Link
             className="button primary"
             to={`/login?next=${encodeURIComponent("/practice?" + query.toString())}`}
@@ -288,9 +302,7 @@ export default function Practice() {
             <Empty
               description={
                 mode === "questions"
-                  ? scoped
-                    ? "本课暂未发布配套练习，先返回课时学习。"
-                    : "这个范围还没有发布练习，换个年级或学科看看。"
+                  ? "这个范围还没有发布练习，换个年级或学科看看。"
                   : mode === "wrong"
                     ? "这个范围没有错题，答错的题会自动出现在这里。"
                     : "还没有作答记录，从一道练习开始吧。"
