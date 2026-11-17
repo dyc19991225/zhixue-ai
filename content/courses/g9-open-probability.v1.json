@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g9-open-probability-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《概率》基础概念整理与新增例题练习；固定版本/作者历史/修改说明/CC BY-SA 4.0随正文解析保留，本包文字改编同许可共享，不代表指定教材。",
+  "course": {
+    "title": "概率初步｜基础主题与练习（待审阅）",
+    "slug": "draft-g9-open-probability-v1",
+    "grade": "G9",
+    "subject": "math",
+    "description": "九年级数学通用主题补充，2章4课时8题。概率初步含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "事件与等可能模型",
+        "lessons": [
+          {
+            "key": "events",
+            "title": "随机事件与概率范围",
+            "content": "学习目标\n分清结果和事件，说明采用的试验条件。\n\n概率描述事件发生的可能性，数值在0与1之间。在本课有限等可能模型中，不可能事件的概率为0，必然事件为1，其余事件的概率在两者之间。\n例：掷一枚公平六面骰子，可能结果为1至6。事件“点数大于4”包含5和6两个结果，因此概率2/6=1/3。事件“点数为7”不可能；“点数小于7”必然。\n“可能发生”不代表“下一次一定发生”。掷出1至6共六类结果，也不说明实际前六次必须各出现一次。\n本课仅讨论有限基础情形，不将连续型概率中概率为0等复杂情况套到这里。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          },
+          {
+            "key": "equally-likely",
+            "title": "有限等可能模型",
+            "content": "学习目标\n核实各基本结果等可能后，再用有利结果数除以全部结果数。\n\n若有限个基本结果等可能，P(A)=m/n，其中n为全部结果数，m为事件A包含的结果数。不能只数“颜色种类”就认定每种颜色机会相同。\n例题1：袋中有3个红球和2个蓝球，除颜色外完全相同，充分混匀后每球等可能摸出。摸红球概率3/5，摸蓝球2/5，并非各1/2。\n例题2：抛公平硬币，正反两面等可能，所以正面概率1/2；若硬币不公平或题目未给等可能条件，就不能仅凭两种面直接下结论。\n易错：同色不同球仍是不同基本结果；不透明袋、混匀及等可能条件要写清。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "分步试验与频率",
+        "lessons": [
+          {
+            "key": "two-stage",
+            "title": "列表与分步试验",
+            "content": "学习目标\n完整列出有序结果，分清放回、不放回和独立条件。\n\n例题1：连续独立抛两次公平硬币，有序结果为正正、正反、反正、反反，各1/4。至少一次正面包括前三种，所以概率3/4。把结果只分成“两个正、一个正、没有正”三类再各算1/3是错误的。\n例题2：袋中2红1蓝，各球等可能。连续摸两球，不放回；两次都红的概率为(2/3)×(1/2)=1/3，第二次剩2球且仅1红。若摸后放回并混匀，概率才为(2/3)×(2/3)=4/9。\n易错：不能在未说明独立时直接把两个边缘概率相乘；第二步的概率要根据第一步发生后的条件计算。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          },
+          {
+            "key": "frequency",
+            "title": "对立事件与频率估计",
+            "content": "学习目标\n理解概率与一次试验结果、有限次频率的区别。\n\n事件A的对立事件为“不发生A”，两者不能同时发生且包含全部情况，所以P(非A)=1-P(A)。\n例题1：公平六面骰子掷出6的概率1/6，未掷出6为5/6。\n例题2：同样条件下独立重复摸球（每次放回并混匀），200次中120次摸到红球，红球出现频率为120/200=0.6。可以用它估计红球概率，但不能说真实概率必然等于0.6，更不能保证下次一定摸红或摸蓝。\n频率会波动，增加试验次数不保证每增加一次都更接近真实概率。连续几次同一结果不会让独立的下一次必须“补回来”。\n解释结论时交代试验次数、是否放回和条件一致性。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "events-1",
+      "title": "公平六面骰子掷一次，点数大于4的概率是？",
+      "knowledgePoint": "随机事件与概率范围",
+      "difficulty": "EASY",
+      "options": [
+        "1/3",
+        "1/6",
+        "1/2",
+        "2/3"
+      ],
+      "answer": 0,
+      "explanation": "有利结果5、6共2个，全部6个等可能，概率2/6=1/3。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "events"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "events-2",
+      "title": "下列哪一个数不能作为概率？",
+      "knowledgePoint": "随机事件与概率范围",
+      "difficulty": "EASY",
+      "options": [
+        "0",
+        "1.2",
+        "1",
+        "1/2"
+      ],
+      "answer": 1,
+      "explanation": "概率不得超过1，1.2不合法。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "events"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "equally-likely-1",
+      "title": "3红2蓝的球除颜色外相同，每球等可能摸出，摸红概率是？",
+      "knowledgePoint": "有限等可能模型",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1/2",
+        "2/5",
+        "3/5",
+        "1/5"
+      ],
+      "answer": 2,
+      "explanation": "有利球3个、全部5个，概率3/5。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "equally-likely"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "equally-likely-2",
+      "title": "抛一枚公平硬币一次，正面向上的概率是？",
+      "knowledgePoint": "有限等可能模型",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1",
+        "0",
+        "1/4",
+        "1/2"
+      ],
+      "answer": 3,
+      "explanation": "公平硬币两种面等可能。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "equally-likely"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "two-stage-1",
+      "title": "独立抛公平硬币两次，至少一次正面的概率是？",
+      "knowledgePoint": "列表与分步试验",
+      "difficulty": "MEDIUM",
+      "options": [
+        "3/4",
+        "1/2",
+        "1/4",
+        "1/3"
+      ],
+      "answer": 0,
+      "explanation": "四种等可能有序结果中，正正、正反、反正满足，共3种。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "two-stage"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "two-stage-2",
+      "title": "袋中2红1蓝，各球等可能，连续摸两球不放回，都红的概率是？",
+      "knowledgePoint": "列表与分步试验",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4/9",
+        "1/3",
+        "2/3",
+        "1/2"
+      ],
+      "answer": 1,
+      "explanation": "第一步2/3，已摸红后第二步1/2，乘得1/3。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "two-stage"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "frequency-1",
+      "title": "公平六面骰子掷一次，未掷出6的概率是？",
+      "knowledgePoint": "对立事件与频率估计",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1/6",
+        "2/3",
+        "5/6",
+        "1"
+      ],
+      "answer": 2,
+      "explanation": "对立事件概率1-1/6=5/6。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "frequency"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "frequency-2",
+      "title": "重复摸球200次，其中120次红球，红球的出现频率是？",
+      "knowledgePoint": "对立事件与频率估计",
+      "difficulty": "MEDIUM",
+      "options": [
+        "0.4",
+        "0.5",
+        "0.8",
+        "0.6"
+      ],
+      "answer": 3,
+      "explanation": "频率为120/200=0.6，是有限试验频率，不等于确定的真实概率。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "frequency"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@zhixue/web",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "node ../../scripts/prepare-ocr.mjs",
+    "prebuild": "node ../../scripts/prepare-ocr.mjs",
+    "dev": "vite --host 127.0.0.1 --port 3000 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1 --port 3000 --strictPort"
+  },
+  "dependencies": {
+    "@zhixue/shared": "*",
+    "antd": "6.7.0",
+    "dayjs": "1.11.23",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.30.6",
+    "tesseract.js": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "6.2.1",
+    "vite": "8.3.6"
+  }
+}

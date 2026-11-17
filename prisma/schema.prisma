@@ -1,0 +1,540 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../apps/api/src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Grade {
+  G7
+  G8
+  G9
+  G10
+  G11
+  G12
+}
+
+enum CourseStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum AccessLevel {
+  FREE
+  MEMBER
+}
+
+enum UserRole {
+  STUDENT
+  ADMIN
+  TEACHER
+  PARENT
+}
+
+enum UserStatus {
+  ACTIVE
+  DISABLED
+}
+
+model User {
+  id               String        @id @default(cuid())
+  feedbacks        TrialFeedback[]
+  displayName      String
+  username         String        @unique
+  passwordHash     String
+  recoveryCodeHash String?
+  role             UserRole      @default(STUDENT)
+  status           UserStatus    @default(ACTIVE)
+  grade            Grade         @default(G7)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  enrollments      Enrollment[]
+  memberships      Membership[]
+  sessions         AuthSession[]
+  attempts         QuestionAttempt[]
+  wrongQuestions   WrongQuestion[]
+  teachingCourses Course[] @relation("CourseTeacher")
+  teachingClasses SchoolClass[]
+  classMemberships ClassStudent[]
+  childLinks ParentStudent[] @relation("ParentLinks")
+  parentLinks ParentStudent[] @relation("StudentLinks")
+  authoredHomework Homework[] @relation("HomeworkTeacher")
+  assignedHomework HomeworkRecipient[]
+  homeworkSubmissions HomeworkSubmission[] @relation("HomeworkStudent")
+  gradedHomework HomeworkSubmission[] @relation("HomeworkGrader")
+  authoredExams Exam[]
+  examRecipients ExamRecipient[]
+  examAttempts ExamAttempt[]
+}
+
+model AuthSession {
+  id               String    @id
+  userId           String
+  refreshTokenHash String    @unique
+  createdAt        DateTime  @default(now())
+  lastUsedAt       DateTime  @default(now())
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@index([expiresAt])
+}
+
+model AdminAuditLog {
+  id           String   @id @default(cuid())
+  actorUserId  String
+  targetUserId String
+  action       String
+  createdAt    DateTime @default(now())
+
+  @@index([targetUserId, createdAt])
+}
+
+model Course {
+  id              String       @id @default(cuid())
+  slug            String       @unique
+  title           String
+  grade           Grade
+  subject         String
+  region          String?
+  textbookEdition String?
+  term            String?
+  description     String?
+  status          CourseStatus @default(DRAFT)
+  access          AccessLevel  @default(FREE)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  chapters        Chapter[]
+  enrollments     Enrollment[]
+  ownerTeacherId String? @map("owner_teacher_id")
+  ownerTeacher User? @relation("CourseTeacher", fields: [ownerTeacherId], references: [id], onDelete: SetNull)
+  reviews CourseReview[]
+
+  @@index([status, grade, subject])
+  @@index([ownerTeacherId, updatedAt])
+}
+
+enum CourseReviewStatus {
+  PENDING
+  APPROVED
+  RETURNED
+}
+
+model CourseReview {
+  id String @id @default(cuid())
+  courseId String @map("course_id")
+  contentHash String @map("content_hash")
+  snapshot Json
+  status CourseReviewStatus @default(PENDING)
+  submittedById String @map("submitted_by_id")
+  submittedByName String @map("submitted_by_name")
+  submittedAt DateTime @default(now()) @db.Timestamptz(3) @map("submitted_at")
+  reviewerId String? @map("reviewer_id")
+  reviewerName String? @map("reviewer_name")
+  reviewedAt DateTime? @db.Timestamptz(3) @map("reviewed_at")
+  feedback String?
+  checks Json?
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  @@index([courseId, submittedAt, id])
+  @@map("course_reviews")
+}
+
+model SchoolClass {
+  id String @id @default(cuid())
+  name String
+  grade Grade
+  teacherId String @map("teacher_id")
+  archivedAt DateTime? @map("archived_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  teacher User @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+  students ClassStudent[]
+  homework Homework[]
+  exams Exam[]
+  @@index([teacherId, archivedAt])
+  @@map("school_classes")
+}
+
+enum ExamStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+  ARCHIVED
+}
+
+model Exam {
+  id String @id @default(cuid())
+  classId String @map("class_id")
+  teacherId String @map("teacher_id")
+  title String
+  opensAt DateTime @db.Timestamptz(3) @map("opens_at")
+  closesAt DateTime @db.Timestamptz(3) @map("closes_at")
+  durationMinutes Int @map("duration_minutes")
+  status ExamStatus @default(DRAFT)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  schoolClass SchoolClass @relation(fields: [classId], references: [id], onDelete: Restrict)
+  teacher User @relation(fields: [teacherId], references: [id], onDelete: Restrict)
+  questions ExamQuestion[]
+  recipients ExamRecipient[]
+  attempts ExamAttempt[]
+  @@index([classId, status, opensAt])
+  @@map("exams")
+}
+
+model ExamQuestion {
+  id String @id @default(cuid())
+  examId String @map("exam_id")
+  position Int
+  title String
+  options String[]
+  answer Int
+  explanation String
+  points Int
+  diagram Json?
+  sourceQuestionId String? @map("source_question_id")
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  @@unique([examId, position])
+  @@map("exam_questions")
+}
+
+model ExamRecipient {
+  examId String @map("exam_id")
+  studentId String @map("student_id")
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@id([examId, studentId])
+  @@index([studentId])
+  @@map("exam_recipients")
+}
+
+model ExamAttempt {
+  id String @id @default(cuid())
+  examId String @map("exam_id")
+  studentId String @map("student_id")
+  startedAt DateTime @default(now()) @db.Timestamptz(3) @map("started_at")
+  expiresAt DateTime @db.Timestamptz(3) @map("expires_at")
+  answers Json
+  revision Int @default(0)
+  lastSaveRequestId String? @map("last_save_request_id")
+  lastSaveHash String? @map("last_save_hash")
+  submitRequestId String? @map("submit_request_id")
+  submittedAt DateTime? @db.Timestamptz(3) @map("submitted_at")
+  submissionReason String? @map("submission_reason")
+  score Int?
+  correctCount Int? @map("correct_count")
+  exam Exam @relation(fields: [examId], references: [id], onDelete: Cascade)
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@unique([examId, studentId])
+  @@unique([studentId, submitRequestId])
+  @@index([submittedAt, expiresAt])
+  @@map("exam_attempts")
+}
+
+enum HomeworkStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+model Homework {
+  id String @id @default(cuid())
+  classId String @map("class_id")
+  teacherId String @map("teacher_id")
+  title String
+  instructions String
+  maxScore Int @map("max_score")
+  dueAt DateTime @db.Timestamptz(3) @map("due_at")
+  status HomeworkStatus @default(DRAFT)
+  publishedAt DateTime? @db.Timestamptz(3) @map("published_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  schoolClass SchoolClass @relation(fields: [classId], references: [id], onDelete: Restrict)
+  teacher User @relation("HomeworkTeacher", fields: [teacherId], references: [id], onDelete: Restrict)
+  recipients HomeworkRecipient[]
+  submissions HomeworkSubmission[]
+  @@index([classId, status, createdAt])
+  @@map("homework")
+}
+
+model HomeworkRecipient {
+  homeworkId String @map("homework_id")
+  studentId String @map("student_id")
+  homework Homework @relation(fields: [homeworkId], references: [id], onDelete: Cascade)
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@id([homeworkId, studentId])
+  @@index([studentId])
+  @@map("homework_recipients")
+}
+
+model HomeworkSubmission {
+  id String @id @default(cuid())
+  homeworkId String @map("homework_id")
+  studentId String @map("student_id")
+  answerText String @map("answer_text")
+  requestId String @map("request_id")
+  submittedAt DateTime @default(now()) @db.Timestamptz(3) @map("submitted_at")
+  score Int?
+  feedback String?
+  graderId String? @map("grader_id")
+  gradeRequestId String? @map("grade_request_id")
+  gradedAt DateTime? @db.Timestamptz(3) @map("graded_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  homework Homework @relation(fields: [homeworkId], references: [id], onDelete: Cascade)
+  student User @relation("HomeworkStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  grader User? @relation("HomeworkGrader", fields: [graderId], references: [id], onDelete: SetNull)
+  @@unique([homeworkId, studentId])
+  @@unique([studentId, requestId])
+  @@unique([graderId, gradeRequestId])
+  @@map("homework_submissions")
+}
+
+model ClassStudent {
+  classId String @map("class_id")
+  studentId String @map("student_id")
+  joinedAt DateTime @default(now()) @map("joined_at")
+  revokedAt DateTime? @map("revoked_at")
+  schoolClass SchoolClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student User @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  @@id([classId, studentId])
+  @@index([studentId, revokedAt])
+  @@map("class_students")
+}
+
+model ParentStudent {
+  parentId String @map("parent_id")
+  studentId String @map("student_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  revokedAt DateTime? @map("revoked_at")
+  parent User @relation("ParentLinks", fields: [parentId], references: [id], onDelete: Cascade)
+  student User @relation("StudentLinks", fields: [studentId], references: [id], onDelete: Cascade)
+  @@id([parentId, studentId])
+  @@index([studentId, revokedAt])
+  @@map("parent_student_links")
+}
+
+model Chapter {
+  id       String   @id @default(cuid())
+  courseId String
+  title    String
+  position Int
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons  Lesson[]
+
+  @@unique([courseId, position])
+}
+
+model Lesson {
+  id          String           @id @default(cuid())
+  chapterId   String
+  title       String
+  position    Int
+  content     String?
+  publishedAt DateTime?
+  mediaId     String?
+  media       MediaAsset? @relation(fields: [mediaId], references: [id], onDelete: SetNull)
+  questionLinks LessonQuestion[]
+  playbackTickets PlaybackTicket[]
+  chapter     Chapter          @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  progress    LessonProgress[]
+
+  @@unique([chapterId, position])
+}
+
+model Enrollment {
+  id        String           @id @default(cuid())
+  userId    String
+  courseId  String
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course    Course           @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  progress  LessonProgress[]
+
+  @@unique([userId, courseId])
+  @@index([courseId])
+}
+
+model LessonProgress {
+  id           String     @id @default(cuid())
+  enrollmentId String
+  lessonId     String
+  completedAt  DateTime?
+  positionSeconds Float @default(0)
+  updatedAt    DateTime   @updatedAt
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id], onDelete: Cascade)
+  lesson       Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  // 写入服务须验证 lesson 属于 enrollment.courseId，且用户有访问权限。
+  @@unique([enrollmentId, lessonId])
+  @@index([lessonId])
+}
+
+model MembershipPlan {
+  id          String       @id @default(cuid())
+  code        String       @unique
+  name        String
+  active      Boolean      @default(false)
+  memberships Membership[]
+  // 尚未定义定价或支付渠道，不含支付配置。
+}
+
+model Membership {
+  id        String         @id @default(cuid())
+  userId    String
+  planId    String
+  startsAt  DateTime
+  expiresAt DateTime
+  revokedAt DateTime?
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan      MembershipPlan @relation(fields: [planId], references: [id], onDelete: Restrict)
+
+  @@index([userId, expiresAt])
+  @@index([planId])
+}
+
+model Question {
+  id             String       @id @default(cuid())
+  title          String
+  grade          Grade
+  subject        String
+  knowledgePoint String       @default("")
+  difficulty     String       @default("MEDIUM")
+  options        String[]
+  answer         Int
+  explanation    String
+  diagram        Json?
+  restrictToLessons Boolean @default(false)
+  lessonLinks    LessonQuestion[]
+  status         CourseStatus @default(DRAFT)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  attempts       QuestionAttempt[]
+  wrongQuestions WrongQuestion[]
+
+  @@index([status, grade, subject])
+}
+
+model LessonQuestion {
+ lessonId String
+ questionId String
+ position Int @default(0)
+ lesson Lesson @relation(fields:[lessonId],references:[id],onDelete:Cascade)
+ question Question @relation(fields:[questionId],references:[id],onDelete:Cascade)
+ @@id([lessonId,questionId])
+ @@index([questionId])
+}
+
+model QuestionAttempt {
+  id         String   @id @default(cuid())
+  userId     String
+  questionId String
+  requestId  String
+  selected   Int
+  correct    Boolean
+  snapshot   Json
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Restrict)
+
+  @@unique([userId, requestId])
+  @@index([userId, createdAt])
+}
+
+model WrongQuestion {
+  id           String   @id @default(cuid())
+  userId       String
+  questionId   String
+  wrongCount   Int      @default(1)
+  lastWrongAt  DateTime @default(now())
+  resolvedAt   DateTime?
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question     Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, questionId])
+  @@index([userId, resolvedAt, lastWrongAt])
+}
+
+model MediaAsset {
+  id String @id @default(cuid())
+  filename String
+  storageKey String @unique
+  size Int
+  createdAt DateTime @default(now())
+  lessons Lesson[]
+  tickets PlaybackTicket[]
+}
+
+model PlaybackTicket {
+  id String @id @default(cuid())
+  tokenHash String @unique
+  userId String
+  sessionId String
+  lessonId String
+  mediaId String
+  expiresAt DateTime
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  media MediaAsset @relation(fields: [mediaId], references: [id], onDelete: Cascade)
+  @@index([expiresAt])
+}
+
+model AiTurn {
+  id String @id @default(cuid())
+  userId String
+  requestId String
+  question String
+  imageDigest String?
+  answer String?
+  status String @default("PENDING")
+  createdAt DateTime @default(now())
+  @@unique([userId, requestId])
+  @@index([userId, createdAt])
+}
+
+model AiUsage {
+  id String @id @default(cuid())
+  principal String
+  day String
+  count Int @default(0)
+  @@unique([principal, day])
+}
+
+enum FeedbackStatus {
+  NEW
+  IN_PROGRESS
+  RESOLVED
+  CLOSED
+}
+
+model TrialFeedback {
+  id String @id @default(cuid())
+  userId String
+  requestId String
+  area String
+  severity String
+  detail String
+  status FeedbackStatus @default(NEW)
+  reply String @default("")
+  revision Int @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  changes FeedbackChange[]
+  @@unique([userId, requestId])
+  @@index([userId, createdAt, id])
+  @@index([status, createdAt, id])
+}
+
+model FeedbackChange {
+  id String @id @default(cuid())
+  feedbackId String
+  actorUserId String
+  status FeedbackStatus
+  reply String
+  revision Int
+  createdAt DateTime @default(now())
+  feedback TrialFeedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+  @@unique([feedbackId, revision])
+}

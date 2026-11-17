@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g8-open-pythagoras-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《勾股定理》基础概念整理与新增例题、题目；固定版本/作者历史/CC BY-SA 4.0随正文和解析保留，全部文字改编同许可共享，非指定教材同步课。",
+  "course": {
+    "title": "勾股定理｜基础主题与练习（待审阅）",
+    "slug": "draft-g8-open-pythagoras-v1",
+    "grade": "G8",
+    "subject": "math",
+    "description": "八年级数学通用主题补充，2章4课时8道关联练习，含分步例题与易错提醒。勾股定理教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "定理与边长计算",
+        "lessons": [
+          {
+            "key": "theorem",
+            "title": "识别斜边与勾股关系",
+            "content": "学习目标\n先确认直角，再识别它的对边。\n\n开放资料要点整理\n在平面直角三角形中，两直角边长a、b和斜边长c满足a^2+b^2=c^2。斜边是直角的对边，也是三角形最长边；不能把任意命名为c的边直接当斜边。\n\n例题1：两直角边为3和4，c^2=9+16=25，边长为正，所以c=5，而不是±5。\n例题2：直角边为6和8，斜边为10。把边长都扩大2倍，平方值扩大4倍，等式仍成立。\n面积理解：以三边为边长作正方形，两个小正方形面积之和等于大正方形面积；这是面积关系，不是两直角边的长度相加等于斜边。\n易错：没有给出直角条件时，不能直接套勾股定理。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "missing",
+            "title": "求斜边与未知直角边",
+            "content": "学习目标\n按已知边的位置选择加法或减法，最后取正平方根。\n\n例题1：两直角边为5、12，斜边平方=25+144=169，所以斜边13。\n例题2：斜边13、一条直角边5，另一边平方=169-25=144，所以另一边12。\n例题3：两直角边均为1，斜边平方为2，斜边为√2，不能写成2。不要求整数时保留准确的根式。\n检查：斜边必须大于任何一条直角边，求出的边要满足原平方等式。\n易错：已知斜边时，求直角边是平方相减；不能先把13-5=8再开方，也不能把平方与长度单位混淆。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "逆定理与实际应用",
+        "lessons": [
+          {
+            "key": "converse",
+            "title": "逆定理与勾股数",
+            "content": "学习目标\n把最大边放在比较等式右边，再判断。\n\n开放资料要点整理\n若三角形三边a、b、c满足a^2+b^2=c^2，则最大边c所对的角是直角。这是勾股定理的逆定理，使用前须确认边长能组成三角形。\n例题1：7、24、25均为正且7+24>25；49+576=625，所以是直角三角形。\n例题2：2、3、4能组成三角形，但4+9≠16，所以不是直角三角形。不能把图画得像直角当成证明。\n勾股数是满足平方关系的正整数三元组，如3、4、5以及它们同时乘同一正整数得到的6、8、10。\n易错：边长相加等于第三边时是退化情形，不能组成三角形。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "applications",
+            "title": "长方形对角线与梯子应用",
+            "content": "学习目标\n先画出符合题设的直角三角形，并明确单位。\n\n例题1：长方形长12cm、宽5cm，对角线把它分成直角三角形，对角线为13cm。周长是34cm，不能把周长与对角线相混。\n例题2：长10m的直梯斜靠在竖直墙上，墙与水平地面垂直，梯脚离墙6m；梯顶高度平方为100-36=64，所以高度8m。梯子是斜边，不能把8m称为梯长。\n例题3：在平面直角坐标系中，A(1,2)、B(4,6)，横向差3，纵向差4，直线距离5；沿水平再竖直走的折线路程为7，不是直线距离。\n检查：现实情境须满足所用的垂直条件；不依据示意图比例直接测答案。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "theorem-1",
+      "title": "两直角边长为3、4，斜边长是多少？",
+      "knowledgePoint": "识别斜边与勾股关系",
+      "difficulty": "EASY",
+      "options": [
+        "5",
+        "7",
+        "1",
+        "25"
+      ],
+      "answer": 0,
+      "explanation": "斜边平方为9+16=25，边长取正数5。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "theorem"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "theorem-2",
+      "title": "直角三角形中，斜边的位置是？",
+      "knowledgePoint": "识别斜边与勾股关系",
+      "difficulty": "EASY",
+      "options": [
+        "最短边",
+        "直角的对边",
+        "任意标为c的边",
+        "与直角相邻的一条边"
+      ],
+      "answer": 1,
+      "explanation": "斜边为直角的对边，且为最长边。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "theorem"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "missing-1",
+      "title": "两直角边长为5、12，斜边长是多少？",
+      "knowledgePoint": "求斜边与未知直角边",
+      "difficulty": "MEDIUM",
+      "options": [
+        "7",
+        "17",
+        "13",
+        "169"
+      ],
+      "answer": 2,
+      "explanation": "25+144=169，正平方根为13。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "missing"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "missing-2",
+      "title": "斜边长13，一条直角边长5，另一条直角边长是多少？",
+      "knowledgePoint": "求斜边与未知直角边",
+      "difficulty": "MEDIUM",
+      "options": [
+        "8",
+        "18",
+        "√194",
+        "12"
+      ],
+      "answer": 3,
+      "explanation": "未知边平方169-25=144，正平方根12。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "missing"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "converse-1",
+      "title": "三边为7、24、25的三角形是直角三角形吗？",
+      "knowledgePoint": "逆定理与勾股数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "是，因为7^2+24^2=25^2",
+        "是，因为7+24=25",
+        "不是，因为7+24≠25",
+        "无法判断"
+      ],
+      "answer": 0,
+      "explanation": "49+576=625；三边为正且满足三角形条件，逆定理成立。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "converse"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "converse-2",
+      "title": "下列哪组能作为直角三角形的三边长？",
+      "knowledgePoint": "逆定理与勾股数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "2、3、4",
+        "6、8、10",
+        "1、2、3",
+        "3、4、6"
+      ],
+      "answer": 1,
+      "explanation": "6^2+8^2=10^2；1、2、3不能组成三角形。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "converse"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "applications-1",
+      "title": "长方形长12cm、宽5cm，对角线长多少cm？",
+      "knowledgePoint": "长方形对角线与梯子应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "17",
+        "34",
+        "13",
+        "60"
+      ],
+      "answer": 2,
+      "explanation": "对角线为斜边，平方为144+25=169。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "applications-2",
+      "title": "10m梯子靠竖直墙，地面水平，梯脚离墙6m，梯顶高度多少m？",
+      "knowledgePoint": "长方形对角线与梯子应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4",
+        "6",
+        "10",
+        "8"
+      ],
+      "answer": 3,
+      "explanation": "梯子为斜边，高度平方100-36=64，所以8。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    }
+  ]
+}

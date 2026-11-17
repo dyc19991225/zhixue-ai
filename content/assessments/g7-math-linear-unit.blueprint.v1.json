@@ -1,0 +1,330 @@
+{
+  "id": "zhixue-g7-math-linear-unit-v1",
+  "status": "DRAFT_REVIEW_REQUIRED",
+  "questionPackage": "content/assessments/g7-math-linear-unit.v1.json",
+  "durationMinutes": 40,
+  "pointsPerQuestion": 5,
+  "totalPoints": 100,
+  "blueprint": [
+    {
+      "questionKey": "concept",
+      "number": 1,
+      "points": 5,
+      "topic": "方程概念",
+      "sourceLessonKeys": [
+        "what-is-equation"
+      ]
+    },
+    {
+      "questionKey": "solution-check",
+      "number": 2,
+      "points": 5,
+      "topic": "解的检验",
+      "sourceLessonKeys": [
+        "what-is-equation"
+      ]
+    },
+    {
+      "questionKey": "equality-rule",
+      "number": 3,
+      "points": 5,
+      "topic": "等式性质",
+      "sourceLessonKeys": [
+        "balance"
+      ]
+    },
+    {
+      "questionKey": "negative-coefficient",
+      "number": 4,
+      "points": 5,
+      "topic": "负系数方程",
+      "sourceLessonKeys": [
+        "balance"
+      ]
+    },
+    {
+      "questionKey": "both-sides-unit",
+      "number": 5,
+      "points": 5,
+      "topic": "移项与合并",
+      "sourceLessonKeys": [
+        "move-terms"
+      ]
+    },
+    {
+      "questionKey": "negative-denominator",
+      "number": 6,
+      "points": 5,
+      "topic": "负数除法",
+      "sourceLessonKeys": [
+        "balance"
+      ]
+    },
+    {
+      "questionKey": "distribute-unit",
+      "number": 7,
+      "points": 5,
+      "topic": "去括号",
+      "sourceLessonKeys": [
+        "brackets"
+      ]
+    },
+    {
+      "questionKey": "minus-bracket",
+      "number": 8,
+      "points": 5,
+      "topic": "负号与括号",
+      "sourceLessonKeys": [
+        "brackets"
+      ]
+    },
+    {
+      "questionKey": "two-fractions",
+      "number": 9,
+      "points": 5,
+      "topic": "去分母",
+      "sourceLessonKeys": [
+        "fractions"
+      ]
+    },
+    {
+      "questionKey": "missing-multiplier",
+      "number": 10,
+      "points": 5,
+      "topic": "解题过程辨错",
+      "sourceLessonKeys": [
+        "fractions"
+      ]
+    },
+    {
+      "questionKey": "rectangle-unit",
+      "number": 11,
+      "points": 5,
+      "topic": "几何关系建模",
+      "sourceLessonKeys": [
+        "word-problems"
+      ]
+    },
+    {
+      "questionKey": "segment",
+      "number": 12,
+      "points": 5,
+      "topic": "线段关系建模",
+      "sourceLessonKeys": [
+        "move-terms"
+      ]
+    },
+    {
+      "questionKey": "angles-unit",
+      "number": 13,
+      "points": 5,
+      "topic": "角度关系建模",
+      "sourceLessonKeys": [
+        "word-problems"
+      ]
+    },
+    {
+      "questionKey": "purchase-unit",
+      "number": 14,
+      "points": 5,
+      "topic": "购物建模",
+      "sourceLessonKeys": [
+        "shopping"
+      ]
+    },
+    {
+      "questionKey": "discount-before",
+      "number": 15,
+      "points": 5,
+      "topic": "优惠顺序",
+      "sourceLessonKeys": [
+        "shopping"
+      ]
+    },
+    {
+      "questionKey": "catch-up-minutes",
+      "number": 16,
+      "points": 5,
+      "topic": "追及与单位",
+      "sourceLessonKeys": [
+        "travel"
+      ]
+    },
+    {
+      "questionKey": "meeting-unit",
+      "number": 17,
+      "points": 5,
+      "topic": "相向行程",
+      "sourceLessonKeys": [
+        "travel"
+      ]
+    },
+    {
+      "questionKey": "joint-work",
+      "number": 18,
+      "points": 5,
+      "topic": "合作效率",
+      "sourceLessonKeys": [
+        "work-rate"
+      ]
+    },
+    {
+      "questionKey": "number-relation",
+      "number": 19,
+      "points": 5,
+      "topic": "数量关系建模",
+      "sourceLessonKeys": [
+        "word-problems"
+      ]
+    },
+    {
+      "questionKey": "mixed-fractions",
+      "number": 20,
+      "points": 5,
+      "topic": "综合变形",
+      "sourceLessonKeys": [
+        "fractions",
+        "brackets"
+      ]
+    }
+  ],
+  "writtenPractice": [
+    {
+      "key": "written-fractions",
+      "prompt": "解方程(x+3)/2-(x-1)/3=4，写出等价变形过程，并代入原方程检验。",
+      "maxScore": 10,
+      "reference": "同乘6：3(x+3)-2(x-1)=24；展开得3x+9-2x+2=24，所以x=13。检验：(13+3)/2-(13-1)/3=8-4=4。",
+      "rubric": [
+        {
+          "criterion": "同乘公分母，常数项也正确处理",
+          "points": 3
+        },
+        {
+          "criterion": "去括号与符号正确",
+          "points": 3
+        },
+        {
+          "criterion": "解得x=13",
+          "points": 2
+        },
+        {
+          "criterion": "代入原方程检验",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "key": "written-budget",
+      "prompt": "同一笔预算，买12本同价练习本还剩6元，买15本则还差9元。每本多少元？预算多少元？写清未知数和等量关系。",
+      "maxScore": 10,
+      "reference": "设每本x元，同一预算列12x+6=15x-9，解得x=5；预算12×5+6=66元，也等于15×5-9。",
+      "rubric": [
+        {
+          "criterion": "明确未知数及单位",
+          "points": 2
+        },
+        {
+          "criterion": "同一预算等量关系列式正确",
+          "points": 3
+        },
+        {
+          "criterion": "求得单价5元、预算66元",
+          "points": 3
+        },
+        {
+          "criterion": "两种购买条件均检验",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "key": "written-error",
+      "prompt": "某同学解2(x-3)=x+4，写成2x-3=x+4，得x=7。指出错误，给出正确解并检验。",
+      "maxScore": 10,
+      "reference": "分配律须作用于括号内每项，应为2x-6=x+4；解得x=10，原式两边都是14。错误结果7代入两边为8和11，不相等。",
+      "rubric": [
+        {
+          "criterion": "指出括号内-3也应乘2",
+          "points": 3
+        },
+        {
+          "criterion": "正确去括号及移项",
+          "points": 3
+        },
+        {
+          "criterion": "正确求解x=10",
+          "points": 2
+        },
+        {
+          "criterion": "代入检验或驳斥原结果",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "key": "written-round-trip",
+      "prompt": "从家到图书馆，去程速度4千米/时，原路返回速度3千米/时，两段均匀速且途中无停留，共用7/3小时。求单程路程，写出等量关系并检验。",
+      "maxScore": 10,
+      "reference": "设单程路程x千米，去程用x/4小时，返回用x/3小时。列x/4+x/3=7/3，同乘12，得3x+4x=28，所以x=4。检验：4/4+4/3=1+4/3=7/3小时。单程4千米为正，去、返两段路程相同但时间不同。",
+      "rubric": [
+        {
+          "criterion": "设单程路程为未知数并注明千米",
+          "points": 2
+        },
+        {
+          "criterion": "分别写出x/4与x/3小时",
+          "points": 2
+        },
+        {
+          "criterion": "列总时间方程并正确去分母",
+          "points": 3
+        },
+        {
+          "criterion": "求得单程4千米",
+          "points": 1
+        },
+        {
+          "criterion": "检验总时间及路程为正",
+          "points": 2
+        }
+      ]
+    },
+    {
+      "key": "written-phased-work",
+      "prompt": "同一任务，甲单独10天完成，乙单独15天完成。甲先做2天，再与乙合作，效率恒定且合作互不影响。之后还需合作多少天？从甲最初开工到完成共多少天？写出方程并检验。",
+      "maxScore": 10,
+      "reference": "设之后合作x天，把总任务看作1。甲先完成2/10=1/5，合作效率为1/10+1/15=1/6。列1/5+x/6=1，同乘30得6+5x=30，x=24/5天。总时间2+24/5=34/5天。检验：1/5+(24/5)×(1/6)=1。答案分别为还需24/5天、总共34/5天；未给定工作日时长，不擅自换算为工时。",
+      "rubric": [
+        {
+          "criterion": "明确未知数是之后合作时间，任务总量设为1",
+          "points": 2
+        },
+        {
+          "criterion": "正确计算已完成量1/5与合作效率1/6",
+          "points": 2
+        },
+        {
+          "criterion": "列方程1/5+x/6=1或等价式",
+          "points": 2
+        },
+        {
+          "criterion": "求得还需24/5天、总共34/5天",
+          "points": 2
+        },
+        {
+          "criterion": "代入检验并区分两个时间量",
+          "points": 2
+        }
+      ]
+    }
+  ],
+  "writtenPracticePolicy": "5题各10分，共50分，教师人工批阅；与20道单选100分分开，不自动评分。",
+  "notCovered": [
+    "全册其他章节",
+    "章末开放探究的完整实施",
+    "知识点能力评级",
+    "所有应用问题类型",
+    "主观题自动评分"
+  ],
+  "publicationPolicy": "不指定真实班级、教师或考试时间，不写入Exam或自动发布。"
+}

@@ -1,0 +1,318 @@
+{
+  "id": "zhixue-g7-wikibooks-rational-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基教科书《有理數》贡献者，oldid=182475，CC BY-SA 4.0。6课时各保留原文节选，补充讲解、步骤和12道选择练习；本包文字及改编按同许可共享。不含图片；非指定出版社教材同步课。",
+  "course": {
+    "title": "有理数｜开放教材节选与练习（待审阅）",
+    "slug": "draft-g7-wikibooks-rational-v1",
+    "grade": "G7",
+    "subject": "math",
+    "description": "3章6课时：有理数与约分、小数互化、数轴比较、加减、乘除、乘方及混合运算。节选开放教材并补充例题与12道关联练习，按CC BY-SA 4.0共享；未指定地区、教材版本或学期，待人工审核。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "数的认识与表示",
+        "lessons": [
+          {
+            "key": "definition",
+            "title": "认识有理数与约分",
+            "content": "开放教材原文节选\n有理数是可以写成两个整数之比（分母不为零）的数。\n\n知学整理与补充\n学习目标\n会把整数、小数和分数写成分母不为0的分数，并约成最简形式。\n\n例题1：18/24。分子分母同除以6，得到3/4。只允许约去共同因数，不能随意约掉加数。\n例题2：(-14)/(-21)。先处理符号，同号相除为正，再除以7，得到2/3。\n例题3：35/(-49)=-5/7。通常把负号写在分数前，分母保持正数。\n\n整数-3=(-3)/1，有限小数0.25=1/4，所以它们都是有理数。0=0/1也是有理数，但1/0没有意义。\n自查：能否解释约分前后数值为什么不变？\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          },
+          {
+            "key": "decimal",
+            "title": "分数与小数的互化",
+            "content": "开放教材原文节选\n计算分子 ÷ 分母，得到有限小数或无限循环小数。\n\n知学整理与补充\n学习目标\n会把有限小数写成分数，理解循环小数的表示。\n\n例题：0.125=125/1000=1/8。先看小数位数，再约分。\n7/40=175/1000=0.175；9/30=3/10=0.3。\n最简分数的分母只含质因数2和5时，能化成有限小数，例如1/8；若还含其他质因数，则为无限循环小数，例如1/3。\n拓展：设x=0.272727…，则100x=27.272727…；相减得99x=27，所以x=3/11。\n易错：0.333不是1/3，它只是保留三位小数后的近似值。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "比较与加减",
+        "lessons": [
+          {
+            "key": "compare",
+            "title": "数轴、大小与绝对值",
+            "content": "开放教材原文节选\n同分母比较分子；异分母通分或交叉相乘比较。\n\n知学整理与补充\n学习目标\n能用数轴和通分比较数的大小。交叉相乘前应把分母化为正数。\n\n例题：11/15=22/30，7/10=21/30，所以11/15>7/10。\n负数比较：-5/6=-10/12，-3/4=-9/12，所以-5/6<-3/4。数轴上越靠右的数越大。\n绝对值表示数到0的距离，因此|-3/4|=3/4，|3/4|也等于3/4。负数绝对值越大，数本身越小。\n自查：-1.2与-6/5相等，因为-6÷5=-1.2。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          },
+          {
+            "key": "add",
+            "title": "有理数的加减法",
+            "content": "开放教材原文节选\n右移表示加正数，左移表示加负数（或做减法）。\n\n知学整理与补充\n学习目标\n掌握通分和减去一个数等于加上它的相反数。上面的数轴描述中，做减法时要看减数的符号：减去负数是向右移。\n\n同分母相加，分母不变，分子相加；异分母先通分。\n例题：-7/12+5/18=-21/36+10/36=-11/36。\n例题：-2.5-(-1.4)=-2.5+1.4=-1.1。两次负号不能直接忽略，要先把减法改成加法。\n易错订正：1/3+1/4不能把分母相加，正确计算是4/12+3/12=7/12。\n自查：减去正数向左移，减去负数向右移。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-3",
+        "title": "乘除与混合运算",
+        "lessons": [
+          {
+            "key": "multiply",
+            "title": "有理数的乘除法",
+            "content": "开放教材原文节选\n先约后乘可简化计算量。\n\n知学整理与补充\n学习目标\n掌握符号法则和除以非零分数的计算。\n\n分数相乘，分子相乘、分母相乘；同号得正，异号得负。\n例题：(-9/10)×(15/(-18))。两个负数相乘为正，9与18约为1与2，15与10约为3与2，结果3/4。\n除以一个非零数等于乘它的倒数：7/12÷(-14/9)=7/12×(-9/14)=-3/8。\n易错：倒数只作用于除数；0不能作除数，也没有倒数。\n自查：2/3×3/5=2/5，可以先约去分子分母的公因数3。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          },
+          {
+            "key": "order",
+            "title": "乘方与混合运算",
+            "content": "开放教材原文节选\n先括号 → 次幂 → 乘除（自左向右）→ 加减（自左向右）。\n\n知学整理与补充\n学习目标\n能分清底数的范围，按顺序进行混合运算。\n\n例题：(-3/4)^2=9/16，(-3/4)^3=-27/64。负数的偶次幂为正，奇次幂为负。\n注意：(-2)^2=4，而-2^2=-(2×2)=-4；括号决定负号是否属于底数。\n例题：1-3/4×(2-5/6)。先算括号2-5/6=7/6，再乘3/4得7/8，最后1-7/8=1/8。\n同级运算从左往右，例如12÷3×2=4×2=8，不能先把3×2算成除数。\n自查：给每一步写出先算的理由，比只写结果更容易发现错误。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "rational-01",
+      "title": "18/24约成最简分数是？",
+      "knowledgePoint": "认识有理数与约分",
+      "difficulty": "EASY",
+      "options": [
+        "3/4",
+        "6/8",
+        "9/12",
+        "2/3"
+      ],
+      "answer": 0,
+      "explanation": "分子分母同除以最大公因数6，得3/4。6/8与9/12虽等值，但不是最简分数。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-02",
+      "title": "35/(-49)化成分母为正的最简分数是？",
+      "knowledgePoint": "认识有理数与约分",
+      "difficulty": "EASY",
+      "options": [
+        "5/7",
+        "-7/5",
+        "-5/7",
+        "-35/49"
+      ],
+      "answer": 2,
+      "explanation": "异号相除为负，35与49同除以7，得到-5/7。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-03",
+      "title": "0.125化成最简分数是？",
+      "knowledgePoint": "分数与小数的互化",
+      "difficulty": "EASY",
+      "options": [
+        "1/4",
+        "1/8",
+        "125/100",
+        "3/8"
+      ],
+      "answer": 1,
+      "explanation": "0.125=125/1000=1/8。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "decimal"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-04",
+      "title": "7/40化成小数是？",
+      "knowledgePoint": "分数与小数的互化",
+      "difficulty": "EASY",
+      "options": [
+        "0.175",
+        "0.17",
+        "0.75",
+        "1.75"
+      ],
+      "answer": 0,
+      "explanation": "7/40=175/1000=0.175。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "decimal"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-05",
+      "title": "比较11/15与7/10，正确的是？",
+      "knowledgePoint": "数轴、大小与绝对值",
+      "difficulty": "EASY",
+      "options": [
+        "11/15<7/10",
+        "11/15=7/10",
+        "无法比较",
+        "11/15>7/10"
+      ],
+      "answer": 3,
+      "explanation": "通分为22/30与21/30，前者大。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "compare"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-06",
+      "title": "|-3/4|的值是？",
+      "knowledgePoint": "数轴、大小与绝对值",
+      "difficulty": "EASY",
+      "options": [
+        "-3/4",
+        "4/3",
+        "3/4",
+        "-4/3"
+      ],
+      "answer": 2,
+      "explanation": "绝对值是到0的距离，不能为负，|-3/4|=3/4。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "compare"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-07",
+      "title": "-7/12+5/18等于多少？",
+      "knowledgePoint": "有理数的加减法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-2/30",
+        "-11/36",
+        "-12/36",
+        "11/36"
+      ],
+      "answer": 1,
+      "explanation": "通分至36，-21/36+10/36=-11/36。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "add"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-08",
+      "title": "-2.5-(-1.4)等于多少？",
+      "knowledgePoint": "有理数的加减法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-3.9",
+        "3.9",
+        "1.1",
+        "-1.1"
+      ],
+      "answer": 3,
+      "explanation": "减去负数等于加正数，-2.5+1.4=-1.1。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "add"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-09",
+      "title": "(-9/10)×(15/(-18))等于多少？",
+      "knowledgePoint": "有理数的乘除法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "3/4",
+        "-3/4",
+        "4/3",
+        "-4/3"
+      ],
+      "answer": 0,
+      "explanation": "两个负数相乘为正，约分后为3/4。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "multiply"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-10",
+      "title": "7/12÷(-14/9)等于多少？",
+      "knowledgePoint": "有理数的乘除法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-3/8",
+        "3/8",
+        "-8/3",
+        "-49/54"
+      ],
+      "answer": 0,
+      "explanation": "改为7/12×(-9/14)，约分得到-3/8。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "multiply"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-11",
+      "title": "1-3/4×(2-5/6)等于多少？",
+      "knowledgePoint": "乘方与混合运算",
+      "difficulty": "MEDIUM",
+      "options": [
+        "7/8",
+        "1/8",
+        "5/24",
+        "-1/8"
+      ],
+      "answer": 1,
+      "explanation": "先括号得7/6，再乘得7/8，最后相减得1/8。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "order"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    },
+    {
+      "key": "rational-12",
+      "title": "下列计算正确的是？",
+      "knowledgePoint": "乘方与混合运算",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(-2)^2=-4",
+        "-2^2=4",
+        "12÷3×2=2",
+        "12÷3×2=8"
+      ],
+      "answer": 3,
+      "explanation": "乘除同级从左往右，12÷3×2=8。另有(-2)^2=4，-2^2=-4。\n\n来源与许可\n维基教科书《有理數》，作者：该页贡献者（历史记录：https://zh.wikibooks.org/w/index.php?title=有理數&action=history）。\n固定版本：https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475\n原文及本课整理、例题补充均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：节选、简体整理、公式改为纯文本，补充计算步骤与易错提醒；未复制图片，不代表原作者或平台认可。允许按该许可复制和改编，须署名、标明修改并以相同许可分享。",
+      "lessonKeys": [
+        "order"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "有理数算术题，不伪装为方程校验；已逐步核算，仍待人工教研审核题干和干扰项。"
+      }
+    }
+  ]
+}

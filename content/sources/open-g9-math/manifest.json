@@ -1,0 +1,28 @@
+{
+  "downloadedAt": "2026-11-07",
+  "sources": {
+    "quadratic": {
+      "title": "一元二次方程",
+      "revision": 95293607,
+      "source": "https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607",
+      "history": "https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "de61a32f8db6aafd1283057d0a2e130067398e949f04cf015b54e23220e8a7db"
+    },
+    "probability": {
+      "title": "概率",
+      "revision": 94334044,
+      "source": "https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044",
+      "history": "https://zh.wikipedia.org/w/index.php?title=概率&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "9a001b9885289e625625dfe11a654839f4a9de3e06808d0b1a79d4b1adaee1ab"
+    }
+  },
+  "modifications": "基础概念整理、新增例题与选择题，未复制图片；二次方程限定实数域及a非零，概率限定有限模型、等可能与独立/放回条件。",
+  "packages": [
+    "content/courses/g9-open-quadratic.v1.json",
+    "content/courses/g9-open-probability.v1.json"
+  ]
+}

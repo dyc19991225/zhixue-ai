@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g7-open-inequalities-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《不等》基础概念整理改编，固定版本、作者历史和CC BY-SA 4.0随每课及每题解析保留；新增例题和练习按同许可共享。非指定出版社同步课。",
+  "course": {
+    "title": "一元一次不等式｜开放资料整理与练习（待审阅）",
+    "slug": "draft-g7-open-inequalities-v1",
+    "grade": "G7",
+    "subject": "math",
+    "description": "2章4课时8道关联练习。一元一次不等式通用主题，含分步例题、易错提醒与解析。CC BY-SA 4.0，未指定出版社、地区和学期，教学顺序待教师确认。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "认识解集与性质",
+        "lessons": [
+          {
+            "key": "meaning",
+            "title": "认识不等式与解集",
+            "content": "学习目标\n分清一个解与全部解组成的解集，理解严格和非严格不等号。\n\n开放资料要点整理\n不等式用大小关系连接两个式子。x>3表示严格大于3，不包含3；x≥3包含3。“至少”为≥，“不超过”为≤，“不足”为<。\n\n例题1：x+2>5。两边减去2，得到x>3。x=4是一个解，但答案不是只有4；所有大于3的数都是解。\n例题2：2x≤6，得x≤3。端点3可代入检验，2×3=6满足≤。\n数轴表示：大于向右，小于向左；>或<用空心点，不含端点；≥或≤用实心点。\n易错：不等式的解通常不止一个；数轴上不允许因图形有限就把解集误认为有限。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "negative",
+            "title": "性质与乘除负数",
+            "content": "学习目标\n在每一步判断不等号是否改变。\n\n开放资料要点整理\n两边加减同一个数，方向不变；同乘除正数，方向不变；同乘除负数，方向必须改变。不能除以0，乘以0会失去原来的大小信息。\n\n例题1：-2x<6。两边同除以-2，得到x>-3。取x=0验证：0<6成立；x=-4不成立。\n例题2：5-3x≥11。先减5，得-3x≥6；再除以-3，得x≤-2。\n比较：若a<b，则-2a>-2b；但若乘数k的符号未知，不能直接确定ka与kb的关系。\n易错：移项只改变该项的符号；不等号变向发生在两边同乘除负数时。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "求解与实际应用",
+        "lessons": [
+          {
+            "key": "steps",
+            "title": "去括号、去分母与求解",
+            "content": "学习目标\n有顺序地化简，明确去分母所乘数的正负。\n\n例题1：3(x-1)≤2x+4。去括号得3x-3≤2x+4；移项得x≤7。\n例题2：(x-1)/2>(x+2)/3。两边同乘正数6，方向不变，3x-3>2x+4，所以x>7。\n例题3：-(x+2)≥4。去括号得-x-2≥4，得到-x≥6；两边除以-1，得x≤-6。\n检查：把边界值代回，区分严格与非严格关系；不要漏乘常数项。一个取值的检验只能查错，不能代替完整推导。\n本课只处理常数分母的一元一次不等式，不将未知符号的含字母分母直接约去。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "context",
+            "title": "整数解与预算应用",
+            "content": "学习目标\n把情境中的“至少、不超过”转成符号，最后检查整数范围。\n\n例题1：固定费用8元，每本练习本3元，预算不超过23元。设买n本，则8+3n≤23，得n≤5；n为非负整数，最多5本。代回费用23元恰好不超预算。\n例题2：容量至少需要31升，每桶可装6升，设需n桶，则6n≥31，n≥31/6，桶数为正整数，最少6桶，不能四舍五入成5桶。\n例题3：若要求x是正整数且x<4，解为1、2、3，不含0和4。\n易错：先解不等式，再结合整数与非负条件；费用、长度、数量的单位要一致。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "meaning-1",
+      "title": "x+2>5的解集是？",
+      "knowledgePoint": "认识不等式与解集",
+      "difficulty": "EASY",
+      "options": [
+        "x>3",
+        "x≥3",
+        "x<3",
+        "x>7"
+      ],
+      "answer": 0,
+      "explanation": "两边减2，严格不等号保持。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "meaning"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "meaning-2",
+      "title": "2x≤6的解集是？",
+      "knowledgePoint": "认识不等式与解集",
+      "difficulty": "EASY",
+      "options": [
+        "x<3",
+        "x≤3",
+        "x≥3",
+        "x≤12"
+      ],
+      "answer": 1,
+      "explanation": "除以正数2，方向不变且包含端点。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "meaning"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "negative-1",
+      "title": "-2x<6的解集是？",
+      "knowledgePoint": "性质与乘除负数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "x<-3",
+        "x≤-3",
+        "x>-3",
+        "x>3"
+      ],
+      "answer": 2,
+      "explanation": "同除以-2，需要变向。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "negative"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "negative-2",
+      "title": "5-3x≥11的解集是？",
+      "knowledgePoint": "性质与乘除负数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "x≥-2",
+        "x≤2",
+        "x≥2",
+        "x≤-2"
+      ],
+      "answer": 3,
+      "explanation": "-3x≥6，同除以负数得x≤-2。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "negative"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "steps-1",
+      "title": "3(x-1)≤2x+4的解集是？",
+      "knowledgePoint": "去括号、去分母与求解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "x≤7",
+        "x<7",
+        "x≥7",
+        "x≤1"
+      ],
+      "answer": 0,
+      "explanation": "去括号移项得x≤7。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "steps"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "steps-2",
+      "title": "(x-1)/2>(x+2)/3的解集是？",
+      "knowledgePoint": "去括号、去分母与求解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "x<7",
+        "x>7",
+        "x≥7",
+        "x>1"
+      ],
+      "answer": 1,
+      "explanation": "同乘正数6，得到3x-3>2x+4，故x>7。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "steps"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "context-1",
+      "title": "固定费用8元，每本3元，预算不超过23元，最多买几本？",
+      "knowledgePoint": "整数解与预算应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4",
+        "6",
+        "5",
+        "7"
+      ],
+      "answer": 2,
+      "explanation": "8+3n≤23，非负整数n≤5，最多5本。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "context"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "context-2",
+      "title": "每桶可装6升，要装完31升水，最少需要几个同样的桶？",
+      "knowledgePoint": "整数解与预算应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4",
+        "5",
+        "7",
+        "6"
+      ],
+      "answer": 3,
+      "explanation": "6n≥31，n为正整数，向上取整为6。\n\n来源与许可\n维基百科《不等》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409\n作者历史：https://zh.wikipedia.org/w/index.php?title=不等&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "context"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    }
+  ]
+}

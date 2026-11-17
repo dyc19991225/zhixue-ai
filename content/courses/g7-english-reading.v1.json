@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g7-english-reading-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "4篇知学项目新增原创示范短文、词汇提示和练习解析，非转载教材，人物为虚构；CC BY-SA 4.0共享，待英语教师审阅。",
+  "course": {
+    "title": "短文阅读｜七年级英语（待审阅）",
+    "slug": "draft-g7-english-reading-v1",
+    "grade": "G7",
+    "subject": "english",
+    "description": "七年级英语通用基础补充，2章4课时8道关联练习，附中文提示与解析；未指定教材版本、地区或学期。词汇、难度和语言自然度待教师审阅。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "日常生活阅读",
+        "lessons": [
+          {
+            "key": "school",
+            "title": "A School Morning",
+            "content": "学习目标\n定位文中细节，划出支持答案的原句。\n\n原创短文\nMia gets up at seven on school days. She has bread and milk for breakfast. Her school is near her home, so she walks there with her brother. Classes start at eight. Mia likes English because she enjoys stories. At lunchtime, she talks with her friends. After school, she reads for twenty minutes before dinner.\n\n词汇提示\nnear：在附近；walk：步行；before：在……之前。\n\n阅读方法\n定位人物、时间和地点。so提示因果，不能用自己的通学方式代替短文事实。\n\n自查\n先找到答案依据，再用自己的话复述，不要求逐词翻译。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。"
+          },
+          {
+            "key": "library",
+            "title": "Our Class Library",
+            "content": "学习目标\n定位文中细节，划出支持答案的原句。\n\n原创短文\nOur class has a small library next to the window. There are picture books, science books and storybooks. On Tuesday afternoons, students can borrow one book each. They must return it the next Tuesday. Ben likes science books, but this week he borrows a storybook for his little sister. He plans to read it with her at home.\n\n词汇提示\nborrow：借入；return：归还；plan：计划。\n\n阅读方法\nbut提示通常偏好和本周选择的区别。要以本周实际借书信息作答。\n\n自查\n先找到答案依据，再用自己的话复述，不要求逐词翻译。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "活动与观察阅读",
+        "lessons": [
+          {
+            "key": "picnic",
+            "title": "A Picnic Plan",
+            "content": "学习目标\n定位文中细节，划出支持答案的原句。\n\n原创短文\nLeo and his friends plan a picnic for Saturday. They check the weather on Friday evening. It may rain, so they choose a place with a small shelter. Leo brings sandwiches, and Kim brings apples. Everyone brings water. They agree to meet at the park gate at nine. After lunch, they take their rubbish away. They want to leave the park clean.\n\n词汇提示\npicnic：野餐；shelter：遮蔽处；gate：大门；rubbish：垃圾。\n\n阅读方法\nplan表示计划，may表示可能，不能据此说星期六一定下雨。找出行动及目的。\n\n自查\n先找到答案依据，再用自己的话复述，不要求逐词翻译。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。"
+          },
+          {
+            "key": "garden",
+            "title": "The Bean Plants",
+            "content": "学习目标\n定位文中细节，划出支持答案的原句。\n\n原创短文\nIn science class, Ana and Tom put bean seeds in two cups. They use the same kind of soil and give both cups the same amount of water. Cup A stays by a sunny window. Cup B stays in a dark cupboard. They write down what they see every two days. Their teacher asks them to compare the plants after two weeks.\n\n词汇提示\nseed：种子；soil：土壤；amount：数量；compare：比较。\n\n阅读方法\n寻找相同和不同条件。本段没有两周后的观察结果，不要用自己的猜测代替文中事实。\n\n自查\n先找到答案依据，再用自己的话复述，不要求逐词翻译。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "school-1",
+      "title": "Mia gets up at seven on school days. She has bread and milk for breakfast. Her school is near her home, so she walks there with her brother. Classes start at eight. Mia likes English because she enjoys stories. At lunchtime, she talks with her friends. After school, she reads for twenty minutes before dinner.\n\nHow does Mia go to school?",
+      "knowledgePoint": "school",
+      "difficulty": "EASY",
+      "options": [
+        "She walks.",
+        "She takes a bus.",
+        "She rides a bike.",
+        "She takes a train."
+      ],
+      "answer": 0,
+      "explanation": "文中依据：“she walks there”。对应选项：She walks.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "school"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "school-2",
+      "title": "Mia gets up at seven on school days. She has bread and milk for breakfast. Her school is near her home, so she walks there with her brother. Classes start at eight. Mia likes English because she enjoys stories. At lunchtime, she talks with her friends. After school, she reads for twenty minutes before dinner.\n\nHow long does Mia read before dinner?",
+      "knowledgePoint": "school",
+      "difficulty": "EASY",
+      "options": [
+        "Ten minutes.",
+        "Twenty minutes.",
+        "Thirty minutes.",
+        "An hour."
+      ],
+      "answer": 1,
+      "explanation": "文中依据：“reads for twenty minutes”。对应选项：Twenty minutes.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "school"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "library-1",
+      "title": "Our class has a small library next to the window. There are picture books, science books and storybooks. On Tuesday afternoons, students can borrow one book each. They must return it the next Tuesday. Ben likes science books, but this week he borrows a storybook for his little sister. He plans to read it with her at home.\n\nWhen can students borrow books?",
+      "knowledgePoint": "library",
+      "difficulty": "EASY",
+      "options": [
+        "On Monday mornings.",
+        "On Friday evenings.",
+        "On Tuesday afternoons.",
+        "Every morning."
+      ],
+      "answer": 2,
+      "explanation": "文中依据：“On Tuesday afternoons”。对应选项：On Tuesday afternoons.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "library"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "library-2",
+      "title": "Our class has a small library next to the window. There are picture books, science books and storybooks. On Tuesday afternoons, students can borrow one book each. They must return it the next Tuesday. Ben likes science books, but this week he borrows a storybook for his little sister. He plans to read it with her at home.\n\nWhat does Ben borrow this week?",
+      "knowledgePoint": "library",
+      "difficulty": "EASY",
+      "options": [
+        "A science book.",
+        "Two picture books.",
+        "A notebook.",
+        "A storybook."
+      ],
+      "answer": 3,
+      "explanation": "文中依据：“this week he borrows a storybook”。对应选项：A storybook.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "library"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "picnic-1",
+      "title": "Leo and his friends plan a picnic for Saturday. They check the weather on Friday evening. It may rain, so they choose a place with a small shelter. Leo brings sandwiches, and Kim brings apples. Everyone brings water. They agree to meet at the park gate at nine. After lunch, they take their rubbish away. They want to leave the park clean.\n\nWhere do they agree to meet?",
+      "knowledgePoint": "picnic",
+      "difficulty": "EASY",
+      "options": [
+        "At the park gate.",
+        "At the school library.",
+        "At a bus stop.",
+        "At Leo’s home."
+      ],
+      "answer": 0,
+      "explanation": "文中依据：“meet at the park gate”。对应选项：At the park gate.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "picnic"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "picnic-2",
+      "title": "Leo and his friends plan a picnic for Saturday. They check the weather on Friday evening. It may rain, so they choose a place with a small shelter. Leo brings sandwiches, and Kim brings apples. Everyone brings water. They agree to meet at the park gate at nine. After lunch, they take their rubbish away. They want to leave the park clean.\n\nWhy do they take the rubbish away?",
+      "knowledgePoint": "picnic",
+      "difficulty": "EASY",
+      "options": [
+        "To feed animals.",
+        "To leave the park clean.",
+        "To make a shelter.",
+        "To check the weather."
+      ],
+      "answer": 1,
+      "explanation": "文中依据：“They want to leave the park clean”。对应选项：To leave the park clean.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "picnic"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "garden-1",
+      "title": "In science class, Ana and Tom put bean seeds in two cups. They use the same kind of soil and give both cups the same amount of water. Cup A stays by a sunny window. Cup B stays in a dark cupboard. They write down what they see every two days. Their teacher asks them to compare the plants after two weeks.\n\nWhat is different for the two cups?",
+      "knowledgePoint": "garden",
+      "difficulty": "EASY",
+      "options": [
+        "The kind of seeds.",
+        "The amount of water.",
+        "The light they receive.",
+        "The kind of soil."
+      ],
+      "answer": 2,
+      "explanation": "文中依据：“sunny window”。对应选项：The light they receive.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "garden"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "garden-2",
+      "title": "In science class, Ana and Tom put bean seeds in two cups. They use the same kind of soil and give both cups the same amount of water. Cup A stays by a sunny window. Cup B stays in a dark cupboard. They write down what they see every two days. Their teacher asks them to compare the plants after two weeks.\n\nHow often do they write down their observations?",
+      "knowledgePoint": "garden",
+      "difficulty": "EASY",
+      "options": [
+        "Every hour.",
+        "Once a month.",
+        "Only after two weeks.",
+        "Every two days."
+      ],
+      "answer": 3,
+      "explanation": "文中依据：“every two days”。对应选项：Every two days.。其余选项不符合短文所述。\n\n原创与许可\n短文、词汇提示、练习和解析为知学项目新增原创示范，非转载教材或商业题库，人物为虚构。按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n复用须注明“知学项目原创示范内容”、标明修改并同许可共享。仍待英语教师审阅。",
+      "lessonKeys": [
+        "garden"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g7-english-grammar-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "基础概念参考维基百科《英語文法》贡献者，固定版本、作者历史及CC BY-SA 4.0随每课和解析保留。新增例句练习同许可共享，非指定教材同步课。",
+  "course": {
+    "title": "基础词句｜七年级英语（待审阅）",
+    "slug": "draft-g7-english-grammar-v1",
+    "grade": "G7",
+    "subject": "english",
+    "description": "七年级英语通用基础补充，2章4课时8道关联练习，附中文提示与解析；未指定教材版本、地区或学期。词汇、难度和语言自然度待教师审阅。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "基础表达",
+        "lessons": [
+          {
+            "key": "be",
+            "title": "人称代词与be动词",
+            "content": "学习目标\n掌握本节基本句式，先理解主语和语境，再选择词形。\n\nI搭配am；he、she、it或一个人名搭配is；you、we、they搭配are。\n例句：I am a student. She is my friend. They are in the classroom.\n否定：She is not late. 将not放在be后。疑问：Is she late? 将is移到主语前；答Yes, she is.或No, she is not.\n易错：不要写She are，也不要在She is a student.中再加am。先圈出主语，再判断人称与单复数。本课只处理一般现在时的be。\n\n自查\n用本节句式写一句自己的例句，再核对人称、单复数和标点。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。"
+          },
+          {
+            "key": "nouns",
+            "title": "冠词与可数名词",
+            "content": "学习目标\n掌握本节基本句式，先理解主语和语境，再选择词形。\n\na与an的选择看后面单词起始音，而不只看首字母：a book、an orange、an hour、a university。hour的h不发音，university以辅音/j/开头。\n规则名词常加-s：book→books；bus→buses。其他不规则变化需逐词学习。\n例句：This is an orange. There are two books on the desk.\n易错：three book应为three books；a后不接复数名词。不可数名词也不能机械套用a，例如water通常不能直接用a water表示水，本课不展开特殊语境。\n\n自查\n用本节句式写一句自己的例句，再核对人称、单复数和标点。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "日常句式",
+        "lessons": [
+          {
+            "key": "present",
+            "title": "一般现在时与日常活动",
+            "content": "学习目标\n掌握本节基本句式，先理解主语和语境，再选择词形。\n\n用一般现在时描述日常习惯。I/you/we/they通常用动词原形：I play football after school. He/she/it通常需要动词第三人称单数：He plays football after school.\n常见变化：play→plays；go→goes；study→studies（辅音字母+y变ies）。\n例句：We go to school at eight. She studies English every day.\n易错：She study应为She studies；I goes应为I go。every day有助于理解习惯，但时态仍要结合完整语境，不仅凭一个词猜。\n\n自查\n用本节句式写一句自己的例句，再核对人称、单复数和标点。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。"
+          },
+          {
+            "key": "questions",
+            "title": "do/does与否定疑问句",
+            "content": "学习目标\n掌握本节基本句式，先理解主语和语境，再选择词形。\n\n肯定：He plays football. 否定：He does not play football. 疑问：Does he play football? 简答：Yes, he does.或No, he does not.\nI、you、we、they使用do：Do they read after school? They do not read after school.\ndoes已表示第三人称单数，后面实义动词必须用原形，不要写Does he plays...?或He does not plays。\nbe动词句按be规则处理：Is she ready?而非Does she is ready? 本课不讨论情态动词和完成时。\n\n自查\n用本节句式写一句自己的例句，再核对人称、单复数和标点。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "be-1",
+      "title": "She ___ my friend.",
+      "knowledgePoint": "be",
+      "difficulty": "EASY",
+      "options": [
+        "is",
+        "am",
+        "are",
+        "be"
+      ],
+      "answer": 0,
+      "explanation": "She为第三人称单数，用is。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "be"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "be-2",
+      "title": "They ___ in the classroom.",
+      "knowledgePoint": "be",
+      "difficulty": "EASY",
+      "options": [
+        "is",
+        "are",
+        "am",
+        "be"
+      ],
+      "answer": 1,
+      "explanation": "They为复数，用are。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "be"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "nouns-1",
+      "title": "This is ___ orange.（表示一个橙子）",
+      "knowledgePoint": "nouns",
+      "difficulty": "EASY",
+      "options": [
+        "a",
+        "the a",
+        "an",
+        "two"
+      ],
+      "answer": 2,
+      "explanation": "orange以元音音素开头，用an。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "nouns"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "nouns-2",
+      "title": "There are three ___ on the desk.（用book的正确形式）",
+      "knowledgePoint": "nouns",
+      "difficulty": "EASY",
+      "options": [
+        "book",
+        "a book",
+        "bookes",
+        "books"
+      ],
+      "answer": 3,
+      "explanation": "three后用复数，book的复数为books。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "nouns"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "present-1",
+      "title": "He ___ football after school every day.",
+      "knowledgePoint": "present",
+      "difficulty": "EASY",
+      "options": [
+        "plays",
+        "play",
+        "playing",
+        "are play"
+      ],
+      "answer": 0,
+      "explanation": "一般现在时，He后使用plays。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "present"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "present-2",
+      "title": "I ___ to school at eight every day.",
+      "knowledgePoint": "present",
+      "difficulty": "EASY",
+      "options": [
+        "goes",
+        "go",
+        "going",
+        "is go"
+      ],
+      "answer": 1,
+      "explanation": "I后用动词原形go。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "present"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "questions-1",
+      "title": "选择正确的一般现在时否定句。",
+      "knowledgePoint": "questions",
+      "difficulty": "EASY",
+      "options": [
+        "He does not plays football.",
+        "He do not play football.",
+        "He does not play football.",
+        "He not play football."
+      ],
+      "answer": 2,
+      "explanation": "does not后接原形play。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "questions"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    },
+    {
+      "key": "questions-2",
+      "title": "Does she ___ English every day?",
+      "knowledgePoint": "questions",
+      "difficulty": "EASY",
+      "options": [
+        "studies",
+        "studying",
+        "is study",
+        "study"
+      ],
+      "answer": 3,
+      "explanation": "does后用原形study。\n\n来源与许可\n基础概念参考维基百科《英語文法》贡献者：https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436\n作者历史：https://zh.wikipedia.org/w/index.php?title=英語文法&action=history\n规则重编、简体讲解、新增例句、练习和解析，按CC BY-SA 4.0同许可共享：https://creativecommons.org/licenses/by-sa/4.0/\n未复制原图，不代表原作者认可，复用须署名、标明修改并同许可共享。",
+      "lessonKeys": [
+        "questions"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "逐项核对语法/短文证据和唯一答案，仍待英语教师审阅适龄性和语言自然度。"
+      }
+    }
+  ]
+}

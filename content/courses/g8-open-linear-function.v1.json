@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g8-open-linear-function-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《線性函數》基础概念整理与新增例题、题目；固定版本/作者历史/CC BY-SA 4.0随正文和解析保留，全部文字改编同许可共享，非指定教材同步课。",
+  "course": {
+    "title": "一次函数｜基础主题与练习（待审阅）",
+    "slug": "draft-g8-open-linear-function-v1",
+    "grade": "G8",
+    "subject": "math",
+    "description": "八年级数学通用主题补充，2章4课时8道关联练习，含分步例题与易错提醒。一次函数教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "函数与图像",
+        "lessons": [
+          {
+            "key": "definition",
+            "title": "函数关系与一次函数",
+            "content": "学习目标\n理解给定x后，y由规则确定；区分一次函数与正比例函数。\n\n本课程采用初中口径：一次函数写成y=kx+b，其中k、b为常数且k≠0；b=0时是正比例函数。原资料对“线性函数”的用语更宽，本课不采用含常值函数的宽泛定义，也不涉及线性代数中的线性映射。\n例题1：y=2x-1中k=2、b=-1；x=3时y=5。\n例题2：y=-3x是正比例函数；y=5是常值函数，不算本课的一次函数；y=1/x与y=x^2也不是一次函数。\n易错：式子里有x并不保证是一次函数；化简后x项抵消时，也不能按一次函数处理。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "graph",
+            "title": "描点与坐标轴交点",
+            "content": "学习目标\n用两个不同点确定直线，检查横纵坐标的顺序。\n\n一次函数图像是一条直线。作图可先列表，再描出两个不同点并连成直线，必要时取第三点检查。\n例题：y=2x-4。当x=0时y=-4，得到与y轴的交点(0,-4)；当y=0时x=2，得到与x轴交点(2,0)。x=3时y=2，点(3,2)应在同一直线上。\n两个点不可重复，也不要误把坐标写成(y,x)。b是y轴截距，但x轴交点一般不是(b,0)，须令y=0求出。\n实际问题若只允许x≥0，图像只取相应部分；连续模型与只取整数的计数模型要分清。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "参数与模型应用",
+        "lessons": [
+          {
+            "key": "parameters",
+            "title": "变化趋势与待定系数",
+            "content": "学习目标\n根据k的符号看增减，用两个横坐标不同的点求k、b。\n\nk>0时，y随x增大而增大；k<0时，y随x增大而减小。若x增加Δx，y增加kΔx，b不影响变化量。\n例题1：y=-2x+3，x从1变为4，y从1变为-5，变化量-6。\n例题2：直线经过(1,3)和(3,7)，有k+b=3、3k+b=7；相减得2k=4，k=2，b=1，所以y=2x+1。两点横坐标不能相同，否则不能这样确定一次函数。\n易错：负斜率表示随x增加而下降，不表示每一个y值都为负。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "models",
+            "title": "费用模型与方案比较",
+            "content": "学习目标\n把固定费用与按量费用分开，并限制自变量范围。\n\n例题1：某服务固定费用10元，每单位使用量收费2元，无其他折扣。设使用量x≥0，总费用y=2x+10。使用6单位，费用22元。该规则只在题目给定范围内适用，不是现实商家的报价。\n例题2：方案A费用y=2x+10，方案B费用y=3x+4，x≥0。令两费用相等，2x+10=3x+4，x=6。x>6时A较便宜，0≤x<6时B较便宜；不能只看固定费用就选方案。\n例题3：y=2x-4的零点为x=2，且当x>2时y>0，建立函数与方程、不等式的联系。\n检查：金额单位和计量单位一致，不把不适用的负使用量代入实际解释。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "definition-1",
+      "title": "一次函数y=2x-1，当x=3时y是多少？",
+      "knowledgePoint": "函数关系与一次函数",
+      "difficulty": "EASY",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "-5"
+      ],
+      "answer": 0,
+      "explanation": "2×3-1=5。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "definition-2",
+      "title": "按本课k≠0的口径，下列哪一个是一次函数？",
+      "knowledgePoint": "函数关系与一次函数",
+      "difficulty": "EASY",
+      "options": [
+        "y=5",
+        "y=-3x",
+        "y=x^2",
+        "y=1/x"
+      ],
+      "answer": 1,
+      "explanation": "y=-3x符合k=-3≠0，且也是正比例函数。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "graph-1",
+      "title": "y=2x-4与y轴的交点是？",
+      "knowledgePoint": "描点与坐标轴交点",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(-4,0)",
+        "(2,0)",
+        "(0,-4)",
+        "(0,2)"
+      ],
+      "answer": 2,
+      "explanation": "令x=0，得y=-4。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "graph"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "graph-2",
+      "title": "y=2x-4与x轴的交点是？",
+      "knowledgePoint": "描点与坐标轴交点",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(0,2)",
+        "(-2,0)",
+        "(0,-4)",
+        "(2,0)"
+      ],
+      "answer": 3,
+      "explanation": "令y=0，得x=2。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "graph"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "parameters-1",
+      "title": "y=-2x+3中，x从1增加到4，y的变化量为？",
+      "knowledgePoint": "变化趋势与待定系数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-6",
+        "6",
+        "-2",
+        "3"
+      ],
+      "answer": 0,
+      "explanation": "Δy=kΔx=-2×3=-6。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "parameters"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "parameters-2",
+      "title": "一次函数经过(1,3)、(3,7)，其表达式是？",
+      "knowledgePoint": "变化趋势与待定系数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "y=3x",
+        "y=2x+1",
+        "y=2x-1",
+        "y=x+2"
+      ],
+      "answer": 1,
+      "explanation": "两点确定k=(7-3)/(3-1)=2，b=1。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "parameters"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "models-1",
+      "title": "固定费用10元、每单位2元，使用6单位，总费用多少元？",
+      "knowledgePoint": "费用模型与方案比较",
+      "difficulty": "MEDIUM",
+      "options": [
+        "12",
+        "16",
+        "22",
+        "26"
+      ],
+      "answer": 2,
+      "explanation": "y=2×6+10=22。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "models-2",
+      "title": "两方案费用分别2x+10与3x+4，使用量x≥0，费用相等时x为？",
+      "knowledgePoint": "费用模型与方案比较",
+      "difficulty": "MEDIUM",
+      "options": [
+        "2",
+        "4",
+        "10",
+        "6"
+      ],
+      "answer": 3,
+      "explanation": "2x+10=3x+4，解得x=6。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    }
+  ]
+}

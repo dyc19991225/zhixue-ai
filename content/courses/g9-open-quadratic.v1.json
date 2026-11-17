@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g9-open-quadratic-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《一元二次方程》基础概念整理与新增例题练习；固定版本/作者历史/修改说明/CC BY-SA 4.0随正文解析保留，本包文字改编同许可共享，不代表指定教材。",
+  "course": {
+    "title": "一元二次方程｜基础主题与练习（待审阅）",
+    "slug": "draft-g9-open-quadratic-v1",
+    "grade": "G9",
+    "subject": "math",
+    "description": "九年级数学通用主题补充，2章4课时8题。一元二次方程含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "认识与分解求根",
+        "lessons": [
+          {
+            "key": "standard",
+            "title": "一般形式与系数",
+            "content": "学习目标\n先整理成一般形式，再识别未知数的最高次数与系数。\n\n一元二次方程的一般形式为ax^2+bx+c=0，其中a、b、c是常数，a≠0。本课只讨论实系数和实数范围内求解。\n例题1：x^2=5x-6，移项后x^2-5x+6=0，所以a=1、b=-5、c=6。系数包含符号，不能把b写成5。\n例题2：2x^2-3x+1=0是一元二次方程；x^2+2x=x^2+3化简为2x-3=0，不是。xy=2有两个未知数，也不是一元二次方程。\n参数提醒：(m-1)x^2+x=0仅在m≠1时是二次方程；m=1时变为一次方程。\n易错：观察未化简的式子可能误判次数；缺少一次项时b=0，不代表方程不能求解。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          },
+          {
+            "key": "factor",
+            "title": "直接开平方法与因式分解",
+            "content": "学习目标\n不漏掉负根或零根，并将答案代回原方程。\n\n例题1：x^2=9，解为x=3或x=-3；与求正的边长不同，方程在实数中通常要保留两根。\n例题2：x^2-5x+6=(x-2)(x-3)=0。两个因式的积为0，至少一个因式为0，所以x=2或x=3。\n例题3：x(x-4)=0，根为0、4。若直接两边除以x，会把x=0这个解丢掉。\n例题4：(x-1)^2=4，先得x-1=2或-2，再得x=3或-1。\n检查：逐个代回原式，同时考虑解法是否遗漏其他根；某两个数的积等于0才能用零积法则，积等于6时不能直接令一个因式等于0。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "公式与实际应用",
+        "lessons": [
+          {
+            "key": "formula",
+            "title": "配方、求根公式与判别式",
+            "content": "学习目标\n正确代入含负号的系数，先判断实根情况。\n\n配方例题：x^2-4x+1=0，整理成x^2-4x=-1；两边加4，得(x-2)^2=3，所以x=2±√3。\n一般公式：Δ=b^2-4ac；若Δ≥0，则x=(-b±√Δ)/(2a)。分母是整个2a，平方根内是整个Δ。\nΔ>0有两个不相等的实根；Δ=0有两个相等的实根（一个不同的实数解）；Δ<0在实数范围无解。\n例题：2x^2-3x-2=0，a=2、b=-3、c=-2，Δ=9+16=25，x=(3±5)/4，得2、-1/2。\nx^2-6x+9=0的Δ=0，根为3；x^2+1=0的Δ=-4，没有实数根。本课不展开复数。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          },
+          {
+            "key": "applications",
+            "title": "面积与增长率建模",
+            "content": "学习目标\n把数学解与实际可用解分开，写清单位和范围。\n\n例题1：长方形宽x米、长(x+2)米，面积15平方米。x(x+2)=15，得x^2+2x-15=0，即(x+5)(x-3)=0，数学解x=-5或3。宽必须为正，所以宽3米、长5米。负根舍去的依据是题意，而不是“方程只要正根”。\n例题2：某数量初始为100，连续两次按相同增长率r增长到121，且r≥0。100(1+r)^2=121，得到1+r=±1.1；数学解r=0.1或-2.1，按r≥0取0.1，即10%。\n易错：两次增长应乘两次(1+r)，不是直接加2r；题目若说增长10%，r代入0.1而不是10。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "standard-1",
+      "title": "下列是一元二次方程的是？",
+      "knowledgePoint": "一般形式与系数",
+      "difficulty": "EASY",
+      "options": [
+        "2x^2-3x+1=0",
+        "x^2+2x=x^2+3",
+        "xy=2",
+        "x+1=0"
+      ],
+      "answer": 0,
+      "explanation": "第一式a=2≠0且只有未知数x；第二式化简后为一次方程。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "standard"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "standard-2",
+      "title": "x^2=5x-6整理后，(a,b,c)分别是？",
+      "knowledgePoint": "一般形式与系数",
+      "difficulty": "EASY",
+      "options": [
+        "(1,5,-6)",
+        "(1,-5,6)",
+        "(1,5,6)",
+        "(1,-5,-6)"
+      ],
+      "answer": 1,
+      "explanation": "移项得x^2-5x+6=0。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "standard"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "factor-1",
+      "title": "x^2-5x+6=0的全部实数解是？",
+      "knowledgePoint": "直接开平方法与因式分解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "{1,6}",
+        "{-2,-3}",
+        "{2,3}",
+        "{0,5}"
+      ],
+      "answer": 2,
+      "explanation": "(x-2)(x-3)=0，得到2和3。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "factor"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "factor-2",
+      "title": "x(x-4)=0的全部实数解是？",
+      "knowledgePoint": "直接开平方法与因式分解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "{4}",
+        "{0}",
+        "{-4,0}",
+        "{0,4}"
+      ],
+      "answer": 3,
+      "explanation": "积为0，x=0或x-4=0，不能除以x漏掉零根。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "factor"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "formula-1",
+      "title": "x^2-6x+9=0的判别式Δ为？",
+      "knowledgePoint": "配方、求根公式与判别式",
+      "difficulty": "MEDIUM",
+      "options": [
+        "0",
+        "36",
+        "9",
+        "-36"
+      ],
+      "answer": 0,
+      "explanation": "Δ=(-6)^2-4×1×9=0。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "formula"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "formula-2",
+      "title": "2x^2-3x-2=0的全部实数解是？",
+      "knowledgePoint": "配方、求根公式与判别式",
+      "difficulty": "MEDIUM",
+      "options": [
+        "{-2,1/2}",
+        "{2,-1/2}",
+        "{1,-2}",
+        "{2,1/2}"
+      ],
+      "answer": 1,
+      "explanation": "Δ=25，x=(3±5)/4，所以2、-1/2。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "formula"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "applications-1",
+      "title": "长方形宽x米、长(x+2)米，面积15平方米，宽为多少米？",
+      "knowledgePoint": "面积与增长率建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "5",
+        "-5",
+        "3",
+        "15"
+      ],
+      "answer": 2,
+      "explanation": "方程根为-5、3，实际宽度必须正，取3。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "applications-2",
+      "title": "初始数量100，连续两次按同一增长率r≥0增长到121，r是多少？",
+      "knowledgePoint": "面积与增长率建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "21%",
+        "20%",
+        "1%",
+        "10%"
+      ],
+      "answer": 3,
+      "explanation": "100(1+r)^2=121，按r≥0，r=0.1=10%。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "title": "算术平均数",
+      "revision": 94776583,
+      "source": "https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583",
+      "history": "https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history",
+      "sha256": "3ddc0059a1451c2cade26d42876dcb061920b31da64627923da152cfe71fc8c9"
+    },
+    {
+      "title": "中位數",
+      "revision": 94466482,
+      "source": "https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482",
+      "history": "https://zh.wikipedia.org/w/index.php?title=中位數&action=history",
+      "sha256": "9eff26ce9b1292967023900ba5ce0f74039a6d17430377ef20a8ac8e65dc8dcc"
+    },
+    {
+      "title": "众数_(数学)",
+      "revision": 94959596,
+      "source": "https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596",
+      "history": "https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history",
+      "sha256": "8221f54f8fde54048a63af5ead8534150135d395615a9f0df06ffe1724c3af42"
+    }
+  ],
+  "license": "CC BY-SA 4.0",
+  "downloadedAt": "2026-11-07",
+  "modifications": "基础概念整理、补充数据情境及题目解析；不复制图片。"
+}

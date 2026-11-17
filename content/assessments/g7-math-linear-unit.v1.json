@@ -1,0 +1,583 @@
+{
+  "id": "zhixue-g7-math-linear-unit-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "AI辅助原创单元测评审阅稿，未摘录教材例题或商业题库。对应七年级一元一次方程主题，教材版次及教研适配仍待人工审核；不是官方试卷、标准化能力测验或保密考试。",
+  "course": {
+    "title": "一元一次方程｜单元测评审阅稿（20题）",
+    "slug": "review-g7-math-linear-unit-v1",
+    "grade": "G7",
+    "subject": "math",
+    "access": "FREE",
+    "description": "20道原创单选题，含3道受控题图；拟每题5分、总分100分、40分钟，时间与难度待教师校准。仅本地审阅，未分配班级或创建正式考试。",
+    "chapters": [
+      {
+        "key": "unit-assessment",
+        "title": "单元测评与覆盖检查",
+        "lessons": [
+          {
+            "key": "unit-review",
+            "title": "作答与审阅说明",
+            "content": "建议先完成基础6课时和应用补充3课时。\n\n本卷20道单选题，拟每题5分、总分100分、40分钟，供教师审阅和小范围试测后校准。题图不按比例，只依据给定条件列方程。演算请另记在纸上，特别写清单位、未知数含义和计时起点。\n\n本页是本地审阅稿，可展开答案；不具备正式考试的服务端计时、保存和成绩保密功能。正式班级考试须通过已有考试模块，由教师指定班级、时间窗口并发布。\n\n另附5道书面任务，每题10分，共50分，独立作为教师人工批阅练习，不计入本卷100分。单选答对不能等同于完整掌握解题过程。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "concept",
+      "title": "下列哪一个是一元一次方程？",
+      "knowledgePoint": "方程概念",
+      "difficulty": "EASY",
+      "options": [
+        "x²=4",
+        "3x-2=7",
+        "2x+y=3",
+        "1/x=2（x≠0）"
+      ],
+      "answer": 1,
+      "explanation": "3x-2=7只含一个未知数，未知数次数为1。x²=4的次数为2；2x+y=3含两个未知数；1/x=2是分式方程。它虽然可在定义域内化为x=1/2，但原方程不属于一元一次方程。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "概念或过程判断题；自动测试逐项复核选项含义，仍须教研审阅。"
+      }
+    },
+    {
+      "key": "solution-check",
+      "title": "把x=3代入，下列哪个方程成立？",
+      "knowledgePoint": "解的检验",
+      "difficulty": "EASY",
+      "options": [
+        "x+2=7",
+        "3x=6",
+        "4x-1=7",
+        "2x+1=7"
+      ],
+      "answer": 3,
+      "explanation": "代入x=3，2x+1=7成立；其余三式的左右两边分别为5与7、9与6、11与7，均不相等。判断解时应代入原方程。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "概念或过程判断题；自动测试逐项复核选项含义，仍须教研审阅。"
+      }
+    },
+    {
+      "key": "equality-rule",
+      "title": "已知实数a=b。下列哪一种变形对任意实数c都成立？",
+      "knowledgePoint": "等式性质",
+      "difficulty": "EASY",
+      "options": [
+        "a×c=b×c",
+        "a+2=b-2",
+        "a/0=b/0",
+        "a+c=b-c"
+      ],
+      "answer": 0,
+      "explanation": "等式两边同乘同一个实数仍相等，包括c=0。除法不能以0为除数。两边加减不同的数，不能保证等式成立。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "概念或过程判断题；自动测试逐项复核选项含义，仍须教研审阅。"
+      }
+    },
+    {
+      "key": "negative-coefficient",
+      "title": "解方程-3x=15，x等于多少？",
+      "knowledgePoint": "负系数方程",
+      "difficulty": "EASY",
+      "options": [
+        "5",
+        "-3",
+        "-5",
+        "3"
+      ],
+      "answer": 2,
+      "explanation": "两边同除以-3，x=-5；代入(-3)×(-5)=15。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": -3,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 15
+        }
+      }
+    },
+    {
+      "key": "both-sides-unit",
+      "title": "解方程7x-4=3x+12，x等于多少？",
+      "knowledgePoint": "移项与合并",
+      "difficulty": "MEDIUM",
+      "options": [
+        "2",
+        "4",
+        "8",
+        "16"
+      ],
+      "answer": 1,
+      "explanation": "两边减3x、加4，得到4x=16，所以x=4。检验：两边均为24。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 7,
+          "b": -4
+        },
+        "right": {
+          "a": 3,
+          "b": 12
+        }
+      }
+    },
+    {
+      "key": "negative-denominator",
+      "title": "解方程x/(-4)=3，x等于多少？",
+      "knowledgePoint": "负数除法",
+      "difficulty": "EASY",
+      "options": [
+        "-12",
+        "-7",
+        "7",
+        "12"
+      ],
+      "answer": 0,
+      "explanation": "两边同乘-4，得x=-12；(-12)/(-4)=3。归一化校验式为-x=12。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": -1,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 12
+        }
+      }
+    },
+    {
+      "key": "distribute-unit",
+      "title": "解方程2(3x-4)=16，x等于多少？",
+      "knowledgePoint": "去括号",
+      "difficulty": "MEDIUM",
+      "options": [
+        "2",
+        "3",
+        "6",
+        "4"
+      ],
+      "answer": 3,
+      "explanation": "去括号得6x-8=16，所以6x=24，x=4。检验：2×(12-4)=16。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 6,
+          "b": -8
+        },
+        "right": {
+          "a": 0,
+          "b": 16
+        }
+      }
+    },
+    {
+      "key": "minus-bracket",
+      "title": "解方程9-(2x-3)=4x，x等于多少？",
+      "knowledgePoint": "负号与括号",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-2",
+        "0",
+        "2",
+        "1"
+      ],
+      "answer": 2,
+      "explanation": "负号分配到括号内每一项，9-2x+3=4x，得到12=6x，所以x=2；原式两边均为8。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": -2,
+          "b": 12
+        },
+        "right": {
+          "a": 4,
+          "b": 0
+        }
+      }
+    },
+    {
+      "key": "two-fractions",
+      "title": "解方程(x-2)/3+(x+1)/2=4，x等于多少？",
+      "knowledgePoint": "去分母",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4",
+        "6",
+        "5",
+        "7"
+      ],
+      "answer": 2,
+      "explanation": "两边同乘6，2(x-2)+3(x+1)=24，得5x-1=24，x=5。代入：1+3=4。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 5,
+          "b": -1
+        },
+        "right": {
+          "a": 0,
+          "b": 24
+        }
+      }
+    },
+    {
+      "key": "missing-multiplier",
+      "title": "解(x+1)/2-1=3时，某同学把两边同乘2，写成x+1-1=6。错误是什么？",
+      "knowledgePoint": "解题过程辨错",
+      "difficulty": "MEDIUM",
+      "options": [
+        "分子x+1不应保留",
+        "常数项-1也应乘2",
+        "方程两边不能同乘2",
+        "2不是分母2的公倍数"
+      ],
+      "answer": 1,
+      "explanation": "同乘2须作用于等式两边的每一项。正确式子是x+1-2=6，解得x=7；检验：(7+1)/2-1=3。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "概念或过程判断题；自动测试逐项复核选项含义，仍须教研审阅。"
+      }
+    },
+    {
+      "key": "rectangle-unit",
+      "title": "如图，长方形宽为x厘米，长为(x+3)厘米，周长26厘米。宽是多少厘米？",
+      "knowledgePoint": "几何关系建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "3",
+        "4",
+        "6",
+        "5"
+      ],
+      "answer": 3,
+      "explanation": "2[x+(x+3)]=26，即4x+6=26，x=5。长为8厘米，两边为正，周长2×(5+8)=26。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 4,
+          "b": 6
+        },
+        "right": {
+          "a": 0,
+          "b": 26
+        }
+      },
+      "diagram": {
+        "kind": "rectangle",
+        "widthLabel": "长(x+3)厘米",
+        "heightLabel": "宽x厘米",
+        "note": "周长26厘米；示意图不按比例",
+        "alt": "长方形的长标为(x+3)厘米，宽标为x厘米，已知周长26厘米。"
+      }
+    },
+    {
+      "key": "segment",
+      "title": "如图，总长18厘米的线段被分成x厘米和5厘米两段。x是多少？",
+      "knowledgePoint": "线段关系建模",
+      "difficulty": "EASY",
+      "options": [
+        "13",
+        "11",
+        "12",
+        "14"
+      ],
+      "answer": 0,
+      "explanation": "由两段长度之和等于总长，x+5=18，得x=13。检验：13+5=18，两段均为正。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 1,
+          "b": 5
+        },
+        "right": {
+          "a": 0,
+          "b": 18
+        }
+      },
+      "diagram": {
+        "kind": "segment",
+        "leftLabel": "x厘米",
+        "rightLabel": "5厘米",
+        "totalLabel": "总长18厘米",
+        "note": "示意图不按比例",
+        "alt": "总长18厘米的线段被分为左段x厘米和右段5厘米。"
+      }
+    },
+    {
+      "key": "angles-unit",
+      "title": "如图，两个相邻角组成平角，已知其中一个角为72°，另一个角x为多少度？",
+      "knowledgePoint": "角度关系建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "72",
+        "118",
+        "108",
+        "128"
+      ],
+      "answer": 2,
+      "explanation": "平角为180°，x+72=180，所以x=108。检验：108+72=180。只依据标注计算。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 1,
+          "b": 72
+        },
+        "right": {
+          "a": 0,
+          "b": 180
+        }
+      },
+      "diagram": {
+        "kind": "adjacent-angles",
+        "knownAngle": 72,
+        "unknownLabel": "x°",
+        "note": "相邻两角组成平角，总和180°",
+        "alt": "一条直线上的平角被射线分为72度和x度两个相邻角。"
+      }
+    },
+    {
+      "key": "purchase-unit",
+      "title": "买5本同价练习本和一个9元的文具袋，共花54元。每本练习本多少元？",
+      "knowledgePoint": "购物建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "9",
+        "8",
+        "10",
+        "11"
+      ],
+      "answer": 0,
+      "explanation": "设每本x元，5x+9=54，所以x=9。检验：5×9+9=54。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 5,
+          "b": 9
+        },
+        "right": {
+          "a": 0,
+          "b": 54
+        }
+      }
+    },
+    {
+      "key": "discount-before",
+      "title": "商品先在原价基础上减10元，再按减后价格打八折，实付56元。原价多少元？",
+      "knowledgePoint": "优惠顺序",
+      "difficulty": "HARD",
+      "options": [
+        "70",
+        "80",
+        "75",
+        "90"
+      ],
+      "answer": 1,
+      "explanation": "设原价x元，0.8(x-10)=56，得到x-10=70，x=80。校验式同乘5为4x-40=280。检验：(80-10)×0.8=56，先减与先折不能交换。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 4,
+          "b": -40
+        },
+        "right": {
+          "a": 0,
+          "b": 280
+        }
+      }
+    },
+    {
+      "key": "catch-up-minutes",
+      "title": "步行者以3千米/时先走20分钟，骑行者随后从同地沿同方向以5千米/时追赶。骑行者出发后多少小时追上？",
+      "knowledgePoint": "追及与单位",
+      "difficulty": "HARD",
+      "options": [
+        "1/6",
+        "1/3",
+        "1",
+        "0.5"
+      ],
+      "answer": 3,
+      "explanation": "20分钟=1/3小时，领先距离3×(1/3)=1千米。设骑行者用x小时，5x=3x+1，x=0.5。检验：骑行者走2.5千米，步行者走3×(0.5+1/3)=2.5千米。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 5,
+          "b": 0
+        },
+        "right": {
+          "a": 3,
+          "b": 1
+        }
+      }
+    },
+    {
+      "key": "meeting-unit",
+      "title": "两人相距45千米，同时沿同一直线相向而行，速度分别为4和5千米/时。几小时后相遇？",
+      "knowledgePoint": "相向行程",
+      "difficulty": "MEDIUM",
+      "options": [
+        "4",
+        "5",
+        "3",
+        "6"
+      ],
+      "answer": 1,
+      "explanation": "设x小时后相遇，4x+5x=45，x=5；20+25=45千米。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 9,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 45
+        }
+      }
+    },
+    {
+      "key": "joint-work",
+      "title": "同一任务，甲单独8天完成、乙单独12天完成，效率恒定且合作互不影响。两人同时合作几天完成？",
+      "knowledgePoint": "合作效率",
+      "difficulty": "HARD",
+      "options": [
+        "4",
+        "6",
+        "24/5",
+        "10"
+      ],
+      "answer": 2,
+      "explanation": "设合作x天，x/8+x/12=1，同乘24，3x+2x=24，x=24/5。检验：(24/5)×(1/8+1/12)=1，比各自单独做都快。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 5,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 24
+        }
+      }
+    },
+    {
+      "key": "number-relation",
+      "title": "两个数的和为36，较大的数等于较小的数的2倍减3。较小的数是多少？",
+      "knowledgePoint": "数量关系建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "13",
+        "11",
+        "12",
+        "14"
+      ],
+      "answer": 0,
+      "explanation": "设较小的数为x，较大的数为2x-3。由x+(2x-3)=36，得3x=39，x=13。较大的数为23，23>13且13+23=36。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 3,
+          "b": -3
+        },
+        "right": {
+          "a": 0,
+          "b": 36
+        }
+      }
+    },
+    {
+      "key": "mixed-fractions",
+      "title": "解方程(2x-1)/3-(x+2)/4=1，x等于多少？",
+      "knowledgePoint": "综合变形",
+      "difficulty": "HARD",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "22/5"
+      ],
+      "answer": 3,
+      "explanation": "两边同乘12，4(2x-1)-3(x+2)=12，展开得8x-4-3x-6=12，5x=22，x=22/5。代入原式：13/5-8/5=1。",
+      "lessonKeys": [
+        "unit-review"
+      ],
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 5,
+          "b": -10
+        },
+        "right": {
+          "a": 0,
+          "b": 12
+        }
+      }
+    }
+  ]
+}

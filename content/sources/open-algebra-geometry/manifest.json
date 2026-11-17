@@ -1,0 +1,40 @@
+{
+  "downloadedAt": "2026-11-07",
+  "sources": {
+    "polynomial": {
+      "title": "多項式",
+      "revision": 91040657,
+      "source": "https://zh.wikipedia.org/w/index.php?title=多項式&oldid=91040657",
+      "history": "https://zh.wikipedia.org/w/index.php?title=多項式&action=history",
+      "author": "维基百科该条目贡献者",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "7a546dce2a66ee97147d5387fdbeeb52805c8c8a8e4b8a3f2e67bf27fd12f1bb"
+    },
+    "segment": {
+      "title": "线段",
+      "revision": 94306133,
+      "source": "https://zh.wikipedia.org/w/index.php?title=线段&oldid=94306133",
+      "history": "https://zh.wikipedia.org/w/index.php?title=线段&action=history",
+      "author": "维基百科该条目贡献者",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "33a92362c22b22a63d24f08fcd6a08c7292c8c6280f4a0003b0118d54fc3d1f7"
+    },
+    "angle": {
+      "title": "角",
+      "revision": 91940903,
+      "source": "https://zh.wikipedia.org/w/index.php?title=角&oldid=91940903",
+      "history": "https://zh.wikipedia.org/w/index.php?title=角&action=history",
+      "author": "维基百科该条目贡献者",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "465f668ab6f2f4784cd18e3b01f1904aade20ad335cdcf18125c786bbcce69df"
+    }
+  },
+  "modifications": "选取基础概念整理、新增例题/选项/解析与受控模板图；不复制外部图片。多项式原页XY^3次数示例有误，本课按各字母指数和计算次数，未照录错误。",
+  "packages": [
+    "content/courses/g7-open-algebra.v1.json",
+    "content/courses/g7-open-geometry.v1.json"
+  ]
+}

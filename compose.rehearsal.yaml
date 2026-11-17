@@ -1,0 +1,75 @@
+# Disposable local production-mode rehearsal. Run only via verify:containers.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: rehearsal
+      POSTGRES_DB: rehearsal
+      POSTGRES_PASSWORD: ${QA_DB_PASSWORD:?Use verify:containers}
+    volumes: ["database:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rehearsal -d rehearsal"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  migrate:
+    image: ${QA_PROJECT:?Use verify:containers}-api
+    pull_policy: never
+    command: ["node", "node_modules/prisma/build/index.js", "migrate", "deploy"]
+    environment:
+      DATABASE_URL: ${QA_DATABASE_URL:?Use verify:containers}
+    depends_on:
+      db: { condition: service_healthy }
+  certs:
+    image: ${QA_PROJECT:?Use verify:containers}-api
+    pull_policy: never
+    user: "0:0"
+    command: ["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-keyout", "/certs/tls.key", "-out", "/certs/tls.crt", "-days", "1", "-subj", "/CN=localhost", "-addext", "subjectAltName=DNS:localhost,IP:127.0.0.1"]
+    volumes: ["certificates:/certs"]
+  api:
+    image: ${QA_PROJECT:?Use verify:containers}-api
+    build: { context: ., target: api }
+    environment:
+      NODE_ENV: production
+      API_HOST: 0.0.0.0
+      API_PORT: "4000"
+      APP_ORIGIN: https://127.0.0.1:${QA_PORT:?Use verify:containers}
+      DATABASE_URL: ${QA_DATABASE_URL:?Use verify:containers}
+      REDIS_URL: redis://redis:6379
+      JWT_ACCESS_SECRET: ${QA_JWT_ACCESS:?Use verify:containers}
+      JWT_REFRESH_SECRET: ${QA_JWT_REFRESH:?Use verify:containers}
+      AUTH_COOKIE_SECURE: "true"
+      TRUST_PROXY: "1"
+      AI_ENABLED: "false"
+      MEDIA_DIRECTORY: /app/.local-media
+      RATE_LIMIT_NAMESPACE: ${QA_PROJECT:?Use verify:containers}
+    volumes: ["media:/app/.local-media"]
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+      redis: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
+  web:
+    image: ${QA_PROJECT:?Use verify:containers}-web
+    build: { context: ., target: web }
+    ports: ["127.0.0.1:${QA_PORT:?Use verify:containers}:443"]
+    volumes:
+      - ./infra/nginx.rehearsal.conf:/etc/nginx/conf.d/default.conf:ro
+      - certificates:/certs:ro
+    depends_on:
+      api: { condition: service_healthy }
+      certs: { condition: service_completed_successfully }
+volumes:
+  database:
+  media:
+  certificates:

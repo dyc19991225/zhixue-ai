@@ -1,0 +1,28 @@
+{
+  "downloadedAt": "2026-11-07",
+  "sources": {
+    "pythagoras": {
+      "title": "勾股定理",
+      "revision": 94653965,
+      "source": "https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965",
+      "history": "https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "5641b546f92469f4bb307ebf576ba9132436ae74c4461f85a4b6963332205d5b"
+    },
+    "linear-function": {
+      "title": "線性函數",
+      "revision": 94596761,
+      "source": "https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761",
+      "history": "https://zh.wikipedia.org/w/index.php?title=線性函數&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "742b583741b14d5fc5a0816884cb9567e4d77a8861074d44a7450c84a4d108ef"
+    }
+  },
+  "modifications": "基础概念重编、新增例题与选择题，未复制图片；一次函数采用初中k≠0口径，不沿用原线性函数页面含常值的宽定义。勾股定理明确直角和正边长条件。",
+  "packages": [
+    "content/courses/g8-open-pythagoras.v1.json",
+    "content/courses/g8-open-linear-function.v1.json"
+  ]
+}

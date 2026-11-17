@@ -1,0 +1,50 @@
+{
+  "grammarSource": "https://zh.wikipedia.org/w/index.php?title=英語文法&oldid=95069436",
+  "revision": 95069436,
+  "snapshotSha256": "e06d45e8dd9fc0b578b401e7b5c8ebfbc3e01548af8a2b1777ff0a03476fda97",
+  "license": "CC BY-SA 4.0",
+  "readingProvenance": "知学项目新增原创示范，非转载教材。",
+  "readingEvidence": [
+    {
+      "key": "school-1",
+      "quote": "she walks there",
+      "correctOption": "She walks."
+    },
+    {
+      "key": "school-2",
+      "quote": "reads for twenty minutes",
+      "correctOption": "Twenty minutes."
+    },
+    {
+      "key": "library-1",
+      "quote": "On Tuesday afternoons",
+      "correctOption": "On Tuesday afternoons."
+    },
+    {
+      "key": "library-2",
+      "quote": "this week he borrows a storybook",
+      "correctOption": "A storybook."
+    },
+    {
+      "key": "picnic-1",
+      "quote": "meet at the park gate",
+      "correctOption": "At the park gate."
+    },
+    {
+      "key": "picnic-2",
+      "quote": "They want to leave the park clean",
+      "correctOption": "To leave the park clean."
+    },
+    {
+      "key": "garden-1",
+      "quote": "sunny window",
+      "correctOption": "The light they receive."
+    },
+    {
+      "key": "garden-2",
+      "quote": "every two days",
+      "correctOption": "Every two days."
+    }
+  ],
+  "downloadedAt": "2026-11-07"
+}

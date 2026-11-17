@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g7-open-systems-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科《一次方程》基础概念整理改编，固定版本、作者历史和CC BY-SA 4.0随每课及每题解析保留；新增例题和练习按同许可共享。非指定出版社同步课。",
+  "course": {
+    "title": "二元一次方程组｜开放资料整理与练习（待审阅）",
+    "slug": "draft-g7-open-systems-v1",
+    "grade": "G7",
+    "subject": "math",
+    "description": "2章4课时8道关联练习。二元一次方程组通用主题，含分步例题、易错提醒与解析。CC BY-SA 4.0，未指定出版社、地区和学期，教学顺序待教师确认。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "公共解与代入法",
+        "lessons": [
+          {
+            "key": "solution",
+            "title": "二元一次方程组的公共解",
+            "content": "学习目标\n理解解是一对数，必须同时满足两个方程。\n\n开放资料要点整理\n二元一次方程可写为ax+by=c（a、b不同时为0）。本课把两个相关方程联立，寻找它们的公共解。xy=6与x^2+y=3都不是二元一次方程。\n\n例题：x+y=7，x-y=1。将x=4、y=3分别代入：4+3=7，4-3=1，所以(x,y)=(4,3)是解。只满足第一个方程的(5,2)不是方程组的解。\n单个方程x+y=7有多组解，联立后要找公共部分。并非所有方程组都有唯一解，例如x+y=2与x+y=3无公共解；第二式为第一式的2倍时可能有无穷多解。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "substitution",
+            "title": "代入消元法",
+            "content": "学习目标\n用一个未知数表示另一个，代入另一个方程实现消元。\n\n例题1：y=2x-1，x+y=8。把前式代入后式，x+(2x-1)=8，3x=9，x=3；再代回y=5。检验3+5=8且5=2×3-1。\n例题2：x+2y=11，x-y=2。由第二式得x=y+2；代入第一式得y+2+2y=11，3y=9，y=3，x=5。\n选择：有某个未知数系数为1或-1时，表示起来往往方便。\n易错：把含字母式子当整体加括号；消去一个未知数后还要回代求另一个，不能只报x。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "加减法与建模应用",
+        "lessons": [
+          {
+            "key": "elimination",
+            "title": "加减消元法",
+            "content": "学习目标\n把同一未知数系数凑成相同或相反，再整式相减或相加。\n\n例题1：2x+3y=13，2x-y=1。两式相减，(2x+3y)-(2x-y)=12，4y=12，y=3；代回得x=2。\n例题2：x+2y=8，3x-y=3。把第二式两边同乘2得6x-2y=6，与第一式相加得7x=14，所以x=2、y=3。\n易错：一个方程乘2时每一项和右边常数都要乘2；减去一个方程时，第二个方程各项都变号。\n检查：最终一对解必须代入原来的两个方程，而非只检验消元后的式子。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "models",
+            "title": "两类数量关系与应用",
+            "content": "学习目标\n定义两个未知数，找两条独立关系，检验数量和单位。\n\n例题1：买本子和笔共7件，本子每件5元、笔每件2元，总价26元。设本子x本、笔y支，x+y=7，5x+2y=26；第二式减去第一式的2倍，3x=12，x=4、y=3。件数和费用两条关系均成立。\n例题2：长方形周长30cm，长比宽多3cm。设长x、宽y，x+y=15，x-y=3；相加得2x=18，x=9、y=6。\n解题顺序：设元并写单位→列两式→消元→代回→检查非负、整数或大小条件→回答原问题。\n易错：周长要先除以2；物品个数通常为非负整数，价格单位保持一致。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "solution-1",
+      "title": "x+y=7且x-y=1，(x,y)是？",
+      "knowledgePoint": "二元一次方程组的公共解",
+      "difficulty": "EASY",
+      "options": [
+        "(4,3)",
+        "(5,2)",
+        "(3,4)",
+        "(2,5)"
+      ],
+      "answer": 0,
+      "explanation": "两式相加2x=8，x=4，y=3，两式均满足。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "solution"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "solution-2",
+      "title": "x+y=5且2x-y=4，(x,y)是？",
+      "knowledgePoint": "二元一次方程组的公共解",
+      "difficulty": "EASY",
+      "options": [
+        "(2,3)",
+        "(3,2)",
+        "(4,1)",
+        "(1,4)"
+      ],
+      "answer": 1,
+      "explanation": "两式相加3x=9，x=3，y=2。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "solution"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "substitution-1",
+      "title": "y=2x-1且x+y=8，(x,y)是？",
+      "knowledgePoint": "代入消元法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(2,6)",
+        "(4,4)",
+        "(3,5)",
+        "(5,3)"
+      ],
+      "answer": 2,
+      "explanation": "代入得3x-1=8，x=3，y=5。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "substitution"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "substitution-2",
+      "title": "x+2y=11且x-y=2，(x,y)是？",
+      "knowledgePoint": "代入消元法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(3,4)",
+        "(4,3)",
+        "(6,2)",
+        "(5,3)"
+      ],
+      "answer": 3,
+      "explanation": "x=y+2代入，3y+2=11，y=3、x=5。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "substitution"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "elimination-1",
+      "title": "2x+3y=13且2x-y=1，(x,y)是？",
+      "knowledgePoint": "加减消元法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(2,3)",
+        "(3,2)",
+        "(1,4)",
+        "(4,1)"
+      ],
+      "answer": 0,
+      "explanation": "相减得4y=12，y=3、x=2。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "elimination"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "elimination-2",
+      "title": "x+2y=8且3x-y=3，(x,y)是？",
+      "knowledgePoint": "加减消元法",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(3,2)",
+        "(2,3)",
+        "(1,4)",
+        "(4,2)"
+      ],
+      "answer": 1,
+      "explanation": "第二式乘2后与第一式相加，7x=14，x=2、y=3。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "elimination"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "models-1",
+      "title": "本子每本5元、笔每支2元，共7件26元，(本子数,笔数)是？",
+      "knowledgePoint": "两类数量关系与应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(3,4)",
+        "(5,2)",
+        "(4,3)",
+        "(2,5)"
+      ],
+      "answer": 2,
+      "explanation": "x+y=7、5x+2y=26，解得x=4、y=3。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    },
+    {
+      "key": "models-2",
+      "title": "长方形周长30cm，长比宽多3cm，(长,宽)单位cm，是？",
+      "knowledgePoint": "两类数量关系与应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(8,7)",
+        "(10,5)",
+        "(12,9)",
+        "(9,6)"
+      ],
+      "answer": 3,
+      "explanation": "x+y=15、x-y=3，解得x=9、y=6，边长均为正。\n\n来源与许可\n维基百科《一次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053\n作者历史：https://zh.wikipedia.org/w/index.php?title=一次方程&action=history\n概念整理及本课新增讲解、例题和练习均按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：基础概念重编、简体整理、公式转纯文本，新增例题、选项、解析。不转载原图，不代表原作者背书；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "不等式解集/二元解不套用一元方程校验；独立核对边界、变号和两方程共同满足性，仍待教师审核。"
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+import express from "express";
+import { contentReadinessRouter } from "./routes/content-readiness-router";
+import { feedbackRouter } from "./modules/feedback/feedback.routes";
+import { courseReviewRouter } from "./modules/course-review/course-review.routes";
+import { analyticsRouter } from "./modules/analytics/analytics.routes";
+import { examRouter } from "./modules/exam/exam.routes";
+import { homeworkRouter } from "./modules/homework/homework.routes";
+import { userRouter } from "./modules/user/user.routes";
+import { relationsRouter } from "./modules/relations/relations.routes";
+import { membershipRouter } from "./routes/membership-router";
+import { mediaRouter } from "./routes/media-router";
+import { aiRouter } from "./routes/ai-router";
+import { learningRouter } from "./routes/learning-router";
+import { practiceRouter } from "./routes/practice-router";
+import helmet from "helmet";
+import cookieParser from "cookie-parser";
+import { authRouter } from "./auth/router";
+import { accountRouter } from "./auth/account-router";
+import { apiRouter } from "./routes";
+import { HttpError } from "./lib/http";
+import { errorHandler } from "./middleware/error-handler";
+export function createApp() {
+  const app = express();
+  app.disable("x-powered-by");
+  if (process.env.TRUST_PROXY === "1") app.set("trust proxy", 1);
+  app.use(helmet());
+  app.use(express.json({ limit: "1mb" }));
+  app.use(cookieParser());
+  app.use("/api/auth", authRouter);
+  app.use("/api", accountRouter);
+  app.use("/api", contentReadinessRouter);
+  app.use("/api", feedbackRouter);
+  app.use("/api", userRouter);
+  app.use("/api", relationsRouter);
+  app.use("/api", homeworkRouter);
+  app.use("/api", examRouter);
+  app.use("/api", courseReviewRouter);
+  app.use("/api", analyticsRouter);
+  app.use("/api", membershipRouter);
+  app.use("/api", mediaRouter);
+  app.use("/api", aiRouter);
+  app.use("/api", learningRouter);
+  app.use("/api", practiceRouter);
+  app.use("/api", apiRouter);
+  app.use((_request, _response, next) =>
+    next(new HttpError(404, "接口不存在。")),
+  );
+  app.use(errorHandler);
+  return app;
+}

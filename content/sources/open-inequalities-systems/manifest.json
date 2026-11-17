@@ -1,0 +1,30 @@
+{
+  "downloadedAt": "2026-11-07",
+  "sources": {
+    "inequalities": {
+      "title": "不等",
+      "author": "维基百科该条目贡献者",
+      "revision": 82717409,
+      "source": "https://zh.wikipedia.org/w/index.php?title=不等&oldid=82717409",
+      "history": "https://zh.wikipedia.org/w/index.php?title=不等&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "4298e5eb05adcd22a812c14fd21306fb8635971f50821487cbc4950d5537d966"
+    },
+    "systems": {
+      "title": "一次方程",
+      "author": "维基百科该条目贡献者",
+      "revision": 95067053,
+      "source": "https://zh.wikipedia.org/w/index.php?title=一次方程&oldid=95067053",
+      "history": "https://zh.wikipedia.org/w/index.php?title=一次方程&action=history",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "8501ed2dc47d0840938120534895056c233b7192c354f685dda7738f2728e253"
+    }
+  },
+  "modifications": "基础概念重编，补充分步例题、应用情境、选择题及解析；不复制外部图像。不等式明确乘除负数变向，方程组强调公共解和取值条件。",
+  "packages": [
+    "content/courses/g7-open-inequalities.v1.json",
+    "content/courses/g7-open-systems.v1.json"
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "id": "zhixue-g7-gsm8k-applications-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "来源为OpenAI GSM8K，MIT许可，提交3101c7d5072418e28b9008a6636bde82a006892c；六题中文改编，完整来源及许可证随每题解析保留。只作方程应用补充，不代表七年级教材配套，也不等于整套题库。",
+  "course": {
+    "title": "方程应用补充｜GSM8K中文改编（待审阅）",
+    "slug": "draft-g7-gsm8k-applications-v1",
+    "grade": "G7",
+    "subject": "math",
+    "description": "6道开放数据改编应用题，含折扣、库存、购物、路程与数量关系。先完成一元一次方程基础课；美元、英里按原题保留。每题含完整MIT许可及来源，尚未发布。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "supplement",
+        "title": "方程应用补充",
+        "lessons": [
+          {
+            "key": "applications",
+            "title": "从生活数量关系列方程",
+            "content": "学习准备\n已掌握移项、合并同类项、去括号和去分母，以及百分数与折扣。\n\n做题方法\n先设未知数并写单位，再找总量、剩余量或差量关系。连续减少的题要分清“原有数量”与“此时剩余数量”。\n折扣题中，七五折是支付原价的75%，不是减去75%。\n分段路程中，已行、中间段、剩余段相加才是总路程。\n两个数量相差30时，若设较大量x，则较小量是x-30。\n\n检验\n将解放回原情境逐步检查；数量必须满足非负和整数等约束。原题中的美元和英里只表示原有计量单位，不改写成人民币或千米。\n\n题目来源\n本课六题由OpenAI GSM8K的MIT许可数据翻译改编。每题解析保留来源行号、固定版本、修改说明和完整许可证。非教材同步题，待人工教研确认后发布。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "gsm8k-test-0013",
+      "title": "一位销售员先卖出原有吸尘器的三分之一，再卖出2台，接着卖出此时剩余数量的一半，最后剩下5台。原来有多少台？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "12",
+        "15",
+        "18",
+        "20"
+      ],
+      "answer": 2,
+      "explanation": "设原来有x台。第一次卖出后剩2x/3台，再卖2台后剩2x/3-2台，最后剩其一半。因此(2x/3-2)/2=5，去括号化简得2x=36，x=18。检验：18→12→10→5，成立。\n\n来源：OpenAI GSM8K，test.jsonl，第14行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L14\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 2,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 36
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    },
+    {
+      "key": "gsm8k-test-0024",
+      "title": "一本书打七五折后售价19.50美元。它的原价是多少美元？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "24",
+        "26",
+        "28",
+        "30"
+      ],
+      "answer": 1,
+      "explanation": "设原价x美元。七五折表示支付原价的75%，所以0.75x=19.50。两边同乘4，得3x=78，x=26。检验26×0.75=19.50，原价大于折后价。\n\n来源：OpenAI GSM8K，test.jsonl，第25行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L25\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 3,
+          "b": 0
+        },
+        "right": {
+          "a": 0,
+          "b": 78
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    },
+    {
+      "key": "gsm8k-test-0025",
+      "title": "小美买一份12美元的餐食、5包每包3美元的牛奶、4个每个1.50美元的苹果，以及若干盒每盒8.50美元的披萨，共花50美元。她买了几盒披萨？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "answer": 1,
+      "explanation": "设买了x盒披萨。12+5×3+4×1.50+8.50x=50，即33+8.50x=50。两边同乘2，得66+17x=100，所以x=2。检验12+15+6+17=50，且2为正整数。\n\n来源：OpenAI GSM8K，test.jsonl，第26行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L26\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 17,
+          "b": 66
+        },
+        "right": {
+          "a": 0,
+          "b": 100
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    },
+    {
+      "key": "gsm8k-test-0028",
+      "title": "一次骑行全程60英里。第一次停车时已骑行20英里，第二次停车时距终点还有15英里。两次停车之间骑行了多少英里？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "15",
+        "25",
+        "35",
+        "45"
+      ],
+      "answer": 1,
+      "explanation": "设两次停车之间骑行x英里。路程关系为20+x+15=60，即x+35=60，x=25。检验20+25+15=60。单位保持为英里，不将其混作千米。\n\n来源：OpenAI GSM8K，test.jsonl，第29行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L29\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 1,
+          "b": 35
+        },
+        "right": {
+          "a": 0,
+          "b": 60
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    },
+    {
+      "key": "gsm8k-test-0033",
+      "title": "小雅共有110枚硬币，其中金色硬币比银色硬币多30枚。金色硬币有多少枚？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "40",
+        "55",
+        "70",
+        "80"
+      ],
+      "answer": 2,
+      "explanation": "设金色硬币x枚，则银色硬币x-30枚。列方程x+(x-30)=110，得2x-30=110，x=70。检验银色40枚，70+40=110，70-40=30，数量均为非负整数。\n\n来源：OpenAI GSM8K，test.jsonl，第34行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L34\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 2,
+          "b": -30
+        },
+        "right": {
+          "a": 0,
+          "b": 110
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    },
+    {
+      "key": "gsm8k-test-0046",
+      "title": "小文原有80张便签纸，后来又买一包。在220个杯子上各贴一张后，还剩23张。新买的一包有多少张？",
+      "knowledgePoint": "列方程解决问题",
+      "difficulty": "MEDIUM",
+      "options": [
+        "117",
+        "140",
+        "163",
+        "243"
+      ],
+      "answer": 2,
+      "explanation": "设新买的一包x张。原有+新买-使用=剩余，80+x-220=23，即x-140=23，x=163。检验80+163-220=23，且163为正整数。\n\n来源：OpenAI GSM8K，test.jsonl，第47行（从1计数），提交 3101c7d5072418e28b9008a6636bde82a006892c。\nhttps://github.com/openai/grade-school-math/blob/3101c7d5072418e28b9008a6636bde82a006892c/grade_school_math/data/test.jsonl#L47\n改编：中文翻译、部分人物名本地化、改为四选一、增加一元一次方程解法和干扰项；保留原数值和单位。非中国教材原题。\n许可全文（MIT）：\nMIT License\n\nCopyright (c) 2021 OpenAI\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.",
+      "check": {
+        "kind": "linear-equation",
+        "left": {
+          "a": 1,
+          "b": -140
+        },
+        "right": {
+          "a": 0,
+          "b": 23
+        }
+      },
+      "lessonKeys": [
+        "applications"
+      ]
+    }
+  ]
+}

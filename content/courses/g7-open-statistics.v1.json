@@ -1,0 +1,218 @@
+{
+  "id": "zhixue-g7-open-statistics-v1",
+  "version": 1,
+  "editorialStatus": "DRAFT_REVIEW_REQUIRED",
+  "provenance": "维基百科算术平均数、中位数、众数的开放概念整理与新增例题练习；固定版本、作者历史、修改说明和CC BY-SA 4.0随每课/题保留，不代表某教材同步内容。",
+  "course": {
+    "title": "数据与统计｜基础与拓展（待审阅）",
+    "slug": "draft-g7-open-statistics-v1",
+    "grade": "G7",
+    "subject": "math",
+    "description": "2章4课时8题，数据整理、频数、平均数、中位数与众数。通用主题补充及拓展，不代表全部内容均属七年级必学；未指定地区、教材或学期，待教师确认教学顺序。CC BY-SA 4.0。",
+    "access": "FREE",
+    "chapters": [
+      {
+        "key": "chapter-1",
+        "title": "数据整理与平均数",
+        "lessons": [
+          {
+            "key": "collect",
+            "title": "收集数据与频数整理",
+            "content": "学习目标\n先明确调查对象、问题和单位，再进行计数。\n\n例题：记录8天的阅读时长（分钟）：10、20、10、30、20、10、20、20。10分钟出现3次，20分钟出现4次，30分钟出现1次；频数合计8。\n相对频数=该类频数÷总次数，所以20分钟的相对频数为4/8=50%。分母必须是总次数，而非类别数3。\n条形图适合比较各类数量，折线图适合看按时间排列的变化。图表须注明标题、单位和刻度；只凭线条陡峭程度不能忽略坐标尺度判断变化大小。\n易错：频数不是数值本身；小样本只能描述该样本，不能未经调查推断所有学生。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "mean",
+            "title": "算术平均数与加权平均数",
+            "content": "学习目标\n理解平均数是总量除以个数，计算前检查单位和权重。\n\n开放资料要点整理\n算术平均数是一组数据之和除以数据个数。例：6、8、10平均数=(6+8+10)/3=8。\n若70分出现2次，90分出现3次，平均数=(70×2+90×3)/(2+3)=82，不是(70+90)/2。\n平均数不一定是原始数据中的一个值，也可能不是整数。不能把数量不同的两个组的平均数直接再平均。\n例：一组2人平均10，另一组3人平均20，总平均=(2×10+3×20)/5=16。\n易错：极端值会影响平均数；算出的“平均”不表示每个人都达到这个数。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      },
+      {
+        "key": "chapter-2",
+        "title": "中位数与众数",
+        "lessons": [
+          {
+            "key": "median",
+            "title": "中位数与排序",
+            "content": "学习目标\n先排序，再按奇偶个数确定中间位置。\n\n开放资料要点整理\n中位数用来描述数据的中间位置。奇数个取排序后的中间一个；偶数个取中间两个数的平均。\n例题1：9、2、7、4、5排序为2、4、5、7、9，中位数5。\n例题2：2、4、6、100的中位数=(4+6)/2=5，平均数28。中位数不一定出现在原数据中。\n将100换成1000，中位数仍为5，平均数变为253，说明中位数对这种极端值变化更不敏感。\n易错：不能取原始记录顺序中间的数；也不能把所有数据的平均数当成中位数。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。"
+          },
+          {
+            "key": "mode",
+            "title": "众数与指标选择",
+            "content": "学习目标\n从出现次数判断众数，并说明选用指标的理由。\n\n开放资料要点整理\n众数是出现次数最多的数据值，不是最大的数，也不是“出现次数”这个计数。\n例题1：1、2、2、3、3、3、4，众数为3（出现3次）。\n例题2：1、1、2、2、3有两个众数1和2；若所有值各出现一次，课堂上通常说没有明显众数，须说明采用的约定。\n平均数概括总量水平，中位数描述排序的中间位置，众数反映最常出现的值。鞋码等备货问题可参考众数，但还要考虑全部频数和样本范围。\n易错：不能仅凭一种指标给个人贴能力标签；解释统计结论要交代样本、单位和调查时间。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。"
+          }
+        ]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "key": "collect-1",
+      "title": "阅读时长10、20、10、30、20、10、20、20中，20出现几次？",
+      "knowledgePoint": "收集数据与频数整理",
+      "difficulty": "EASY",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "20"
+      ],
+      "answer": 1,
+      "explanation": "逐个计数为4次，频数不是数值20。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "collect"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "collect-2",
+      "title": "上述8个记录中，20分钟的相对频数是多少？",
+      "knowledgePoint": "收集数据与频数整理",
+      "difficulty": "EASY",
+      "options": [
+        "25%",
+        "40%",
+        "50%",
+        "80%"
+      ],
+      "answer": 2,
+      "explanation": "4/8=50%。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "collect"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "mean-1",
+      "title": "6、8、10的算术平均数是？",
+      "knowledgePoint": "算术平均数与加权平均数",
+      "difficulty": "EASY",
+      "options": [
+        "6",
+        "7",
+        "9",
+        "8"
+      ],
+      "answer": 3,
+      "explanation": "总和24除以3得8。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "mean"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "mean-2",
+      "title": "70分有2次、90分有3次，这5次成绩的平均数是？",
+      "knowledgePoint": "算术平均数与加权平均数",
+      "difficulty": "EASY",
+      "options": [
+        "82",
+        "80",
+        "84",
+        "86"
+      ],
+      "answer": 0,
+      "explanation": "(70×2+90×3)/5=82。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "mean"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "median-1",
+      "title": "9、2、7、4、5的中位数是？",
+      "knowledgePoint": "中位数与排序",
+      "difficulty": "EASY",
+      "options": [
+        "7",
+        "5",
+        "4",
+        "9"
+      ],
+      "answer": 1,
+      "explanation": "排序2、4、5、7、9，中间为5。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "median"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "median-2",
+      "title": "2、4、6、100的中位数是？",
+      "knowledgePoint": "中位数与排序",
+      "difficulty": "EASY",
+      "options": [
+        "4",
+        "6",
+        "5",
+        "28"
+      ],
+      "answer": 2,
+      "explanation": "中间两数4和6的平均为5。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "median"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "mode-1",
+      "title": "1、2、2、3、3、3、4的众数是？",
+      "knowledgePoint": "众数与指标选择",
+      "difficulty": "EASY",
+      "options": [
+        "1",
+        "2",
+        "4",
+        "3"
+      ],
+      "answer": 3,
+      "explanation": "3出现最多，为3次。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "mode"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    },
+    {
+      "key": "mode-2",
+      "title": "1、1、2、2、3的众数是？",
+      "knowledgePoint": "众数与指标选择",
+      "difficulty": "EASY",
+      "options": [
+        "1和2",
+        "只有1",
+        "只有2",
+        "3"
+      ],
+      "answer": 0,
+      "explanation": "1与2均出现2次，并列最多。\n\n来源与许可\n维基百科《算术平均数》贡献者：https://zh.wikipedia.org/w/index.php?title=算术平均数&oldid=94776583\n作者历史：https://zh.wikipedia.org/w/index.php?title=算术平均数&action=history\n维基百科《中位數》贡献者：https://zh.wikipedia.org/w/index.php?title=中位數&oldid=94466482\n作者历史：https://zh.wikipedia.org/w/index.php?title=中位數&action=history\n维基百科《众数_(数学)》贡献者：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&oldid=94959596\n作者历史：https://zh.wikipedia.org/w/index.php?title=众数_(数学)&action=history\nCC BY-SA 4.0：https://creativecommons.org/licenses/by-sa/4.0/\n本课基础概念整理及新增例题、练习和解析按同许可共享。修改：简体整理、公式纯文本、新增情境与选项，不复制原图；不代表原作者认可，复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "mode"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "统计题已按原数据独立计算频数、平均数、中位数及并列众数；仍待教师审阅适龄性。"
+      }
+    }
+  ]
+}

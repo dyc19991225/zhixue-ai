@@ -1,0 +1,141 @@
+{
+  "id": "g7-equations-pep-bnup-v1",
+  "status": "DRAFT_MAPPING_REVIEW_REQUIRED",
+  "checkedAt": "2026-11-06",
+  "regionTarget": "湖北全省，多版本；市校实际选用未逐册确认",
+  "packageIds": [
+    "zhixue-g7-math-linear-v1",
+    "zhixue-g7-math-equation-models-v1"
+  ],
+  "textbooks": [
+    {
+      "key": "pep",
+      "publisher": "人民教育出版社",
+      "book": "数学 七年级 上册",
+      "standardLabel": "根据2022年版课程标准修订",
+      "source": "https://book.pep.com.cn/1321001101241/",
+      "readerPages": 202,
+      "printedEdition": null,
+      "isbn": null,
+      "chapterEvidence": "原站阅读器目录，已目视核对",
+      "chapter": "第五章 一元一次方程",
+      "sections": [
+        {
+          "name": "5.1 方程",
+          "printedPage": 111
+        },
+        {
+          "name": "5.2 解一元一次方程",
+          "printedPage": 120
+        },
+        {
+          "name": "5.3 实际问题与一元一次方程",
+          "printedPage": 133
+        }
+      ],
+      "semesterChapters": [
+        "有理数",
+        "有理数的运算",
+        "代数式",
+        "整式的加减",
+        "一元一次方程",
+        "几何图形初步"
+      ]
+    },
+    {
+      "key": "bnup",
+      "publisher": "北京师范大学出版社",
+      "book": "数学 七年级 上册",
+      "standardLabel": "根据2022年版课程标准修订",
+      "source": "https://basic.smartedu.cn/tchMaterial/detail?contentType=assets_document&contentId=8376191d-2d32-4c68-aba9-2f6c9dbfdf4a&catalogType=tchMaterial&subCatalog=tchMaterial",
+      "readerPages": null,
+      "printedEdition": null,
+      "isbn": null,
+      "chapterEvidence": "正文需要登录，仅目录元数据已确认；官方精品课检索索引仅作线索",
+      "chapterCandidate": "第五章 一元一次方程",
+      "chapterVerifiedAgainstCurrentBook": false,
+      "semesterChapters": null
+    }
+  ],
+  "lessonMappings": [
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "what-is-equation",
+      "pepSection": "5.1 方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "认识方程主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "balance",
+      "pepSection": "5.1 方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "等式性质位置待核验",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "move-terms",
+      "pepSection": "5.2 解一元一次方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "解法主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "brackets",
+      "pepSection": "5.2 解一元一次方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "解法主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "fractions",
+      "pepSection": "5.2 解一元一次方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "解法主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-linear-v1",
+      "lessonKey": "word-problems",
+      "pepSection": "5.3 实际问题与一元一次方程",
+      "pepAlignment": "主题匹配，教研待审核",
+      "bnupCandidate": "应用主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-equation-models-v1",
+      "lessonKey": "shopping",
+      "pepSection": "5.3 实际问题与一元一次方程",
+      "pepAlignment": "原创应用补充，不等于教材例题或完整小节覆盖",
+      "bnupCandidate": "应用主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-equation-models-v1",
+      "lessonKey": "travel",
+      "pepSection": "5.3 实际问题与一元一次方程",
+      "pepAlignment": "原创应用补充，不等于教材例题或完整小节覆盖",
+      "bnupCandidate": "应用主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    },
+    {
+      "packageId": "zhixue-g7-math-equation-models-v1",
+      "lessonKey": "work-rate",
+      "pepSection": "5.3 实际问题与一元一次方程",
+      "pepAlignment": "原创应用补充，不等于教材例题或完整小节覆盖",
+      "bnupCandidate": "应用主题候选",
+      "bnupAlignment": "PENDING_TEXTBOOK_REVIEW"
+    }
+  ],
+  "unresolved": [
+    "两版版权页完整出版版次及ISBN",
+    "湖北市州/学校实际采用与入学年",
+    "北师大当前版正文目录与页码",
+    "教师教学顺序与题目难度审核",
+    "全册其他章节尚未编写；章末综合与主观批阅尚未覆盖"
+  ]
+}

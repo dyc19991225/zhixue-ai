@@ -1,0 +1,16 @@
+{
+  "title": "有理數",
+  "author": "维基教科书该页贡献者",
+  "revision": 182475,
+  "source": "https://zh.wikibooks.org/w/index.php?title=有理數&oldid=182475",
+  "history": "https://zh.wikibooks.org/w/index.php?title=有理數&action=history",
+  "license": "CC BY-SA 4.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "downloadedAt": "2026-11-07",
+  "snapshotSha256": "c6749bea9298a683c1c3f60202bdfba079e4d8f3526bb93b2b95f49fad2fe94e",
+  "modifications": "原文短节选、简体与公式纯文本化；新增计算步骤、易错提醒、四选一练习与解析。原文数轴减法描述作显式补充，不转载图片。",
+  "package": "content/courses/g7-wikibooks-rational.v1.json",
+  "chapters": 3,
+  "lessons": 6,
+  "questions": 12
+}
