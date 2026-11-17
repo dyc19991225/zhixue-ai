@@ -12,7 +12,7 @@
 
 上线前可执行 `npm.cmd run verify:containers` 做独立容器演练：生产模式、HTTPS登录与会话、端口隔离、媒体卷持久化和临时库恢复。使用全新测试数据，结束后清理容器/卷；操作边界与报告见 [容器演练](docs/container-rehearsal.md)。本命令不部署VPS。
 
-初高中学习平台本地原型。React 18 + Ant Design + React Router v6 前端，Express + TypeScript 后端，Prisma/PostgreSQL 数据层。
+初高中学习平台本地原型。React 18 + Ant Design + React Router v7 前端，Express + TypeScript 后端，Prisma/PostgreSQL 数据层。
 
 当前主交接文档：[本地基础版本交接](docs/local-foundation-handoff.md)。已接通本地视频上传/播放与进度恢复、手动会员权益、Redis 限流，以及默认关闭的 AI 接口与记录。统一验收 `npm.cmd run verify`，备份 `npm.cmd run db:backup`。Docker/Nginx 仅构建与验证配置，未部署；真实模型、云存储与正式内容仍需配置准备。下方旧里程碑描述仅供历史参考。
 

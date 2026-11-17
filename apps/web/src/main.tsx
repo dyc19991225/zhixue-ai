@@ -25,9 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       }}
     >
       <AntApp>
-        <BrowserRouter
-          future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-        >
+        <BrowserRouter>
           <AuthProvider>
             <App />
           </AuthProvider>

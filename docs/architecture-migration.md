@@ -59,7 +59,7 @@ Ant Design 已用于全局主题、中文界面、移动菜单按钮、课程搜
 
 ## 依赖审计与兼容性
 
-按用户要求保留 React Router v6。安装时审计发现其存在两条 moderate 公告，修复版位于 v7.18.0 及以上：
+原架构迁移阶段保留了 React Router v6；项目现在已升级至 7.18.5。原审计记录的两条中危告警均自 v7.18.0 起修复：
 
 - 站外重定向：https://github.com/advisories/GHSA-wrjc-x8rr-h8h6
 - SSR hydration：https://github.com/advisories/GHSA-337j-9hxr-rhxg

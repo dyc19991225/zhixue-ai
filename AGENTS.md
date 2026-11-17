@@ -56,7 +56,7 @@
 
 - 最新运行状态：用户已自行送审并发布3份原课程，现为PUBLISHED；早期要求“保持DRAFT”指当时状态，不得据此回退用户发布结果。work/verify-audited-content.ts里的DRAFT断言已过时，不再作为当前状态检查。首页/课程目录按公开课程接口展示实际列表和学科数量，不能写死“内容筹备中”；教材及题库是否已审核发布仍分别判断。
 
-- 项目采用用户指定的前后端分离架构：React 18、TypeScript、Ant Design、React Router v6；Node.js、Express、Prisma/PostgreSQL。
+- 项目采用用户指定的前后端分离架构：React 18、TypeScript、Ant Design、React Router v7；Node.js、Express、Prisma/PostgreSQL。
 - `apps/web` 放前端页面、组件和样式；`apps/api` 按 routes/controllers/services/repositories/lib/middleware 分层；`packages/shared` 放双方共用的类型与目录元数据。
 - Prisma 模型保存在根目录 `prisma/`，生成代码仅位于后端且不提交。浏览器不得导入 Prisma 或任何服务端配置。
 - 未经用户明确要求，不部署、不购买服务、不操作域名或交易；认证基础已实现，Redis、OSS 和部署按后续里程碑实施。
