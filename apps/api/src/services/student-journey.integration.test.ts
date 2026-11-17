@@ -10,6 +10,7 @@ import type {
   ClassAnalytics,
   ExamAttemptView,
   LearningAnalytics,
+  LearningReviewQueue,
   Role,
 } from "@zhixue/shared";
 import { createApp } from "../app";
@@ -82,6 +83,10 @@ test(
       student = await account("STUDENT"),
       parent = await account("PARENT"),
       outsider = await account("PARENT");
+    await request(app)
+      .get("/api/learning-review-queue")
+      .set(parent.headers)
+      .expect(403);
     const source = validateContentPackage(
       JSON.parse(
         await readFile(
@@ -523,12 +528,14 @@ test(
     const users: string[] = [];
     const courses: string[] = [];
     const questions: string[] = [];
+    let planId: string | undefined;
     const origin = {
       Origin: "http://127.0.0.1:3000",
       "X-Zhixue-Client": "web",
     };
     t.after(async () => {
       await db.user.deleteMany({ where: { id: { in: users } } });
+      if (planId) await db.membershipPlan.delete({ where: { id: planId } });
       await db.question.deleteMany({ where: { id: { in: questions } } });
       await db.course.deleteMany({ where: { id: { in: courses } } });
       await disconnectDb();
@@ -558,6 +565,31 @@ test(
       G8: await account("G8"),
       G9: await account("G9"),
     };
+    const queuePath = "/api/learning-review-queue";
+    await request(app).get(queuePath).expect(401);
+    await request(app)
+      .get(queuePath)
+      .set(students.G7)
+      .query({ userId: users[1] })
+      .expect(400);
+    async function queue(
+      headers: typeof students.G7,
+      query: { page?: number; pageSize: number } = { pageSize: 20 },
+    ): Promise<LearningReviewQueue> {
+      const response = await request(app)
+        .get(queuePath)
+        .query(query)
+        .set(headers)
+        .expect(200);
+      assert.equal(response.headers["cache-control"], "no-store");
+      return response.body.data;
+    }
+    assert.deepEqual(await queue(students.G7), {
+      page: 1,
+      pageSize: 20,
+      total: 0,
+      items: [],
+    });
     const directory = new URL("../../../../content/courses/", import.meta.url);
     const files = (await readdir(directory))
       .filter((name) => /^g[789]-.+\.v1\.json$/.test(name))
@@ -773,6 +805,30 @@ test(
               .sort(),
             [id, ...otherPending].sort(),
           );
+          const summary = (await queue(student)).items.find(
+            (item) => item.courseId === courseId,
+          );
+          assert.deepEqual(summary, {
+            courseId,
+            title: pkg.course.title,
+            grade,
+            subject: pkg.course.subject,
+            wrongCount: unrelatedId ? 2 : 1,
+            lessons: lessonList.flatMap((entry) => {
+              const count =
+                Number(entry.key === lesson.key) +
+                Number(!!unrelatedId && entry.key === secondLesson?.key);
+              return count
+                ? [
+                    {
+                      lessonId: idFor("lesson", entry.key),
+                      title: entry.title,
+                      wrongCount: count,
+                    },
+                  ]
+                : [];
+            }),
+          });
           const retry = wrong.body.data.items.find(
             (row: { question: { id: string } }) => row.question.id === id,
           );
@@ -783,6 +839,11 @@ test(
             .set(other)
             .expect(200);
           assert.equal(nonOwner.body.data.total, 0);
+          assert.ok(
+            !(await queue(other)).items.some(
+              (item) => item.courseId === courseId,
+            ),
+          );
 
           assert.equal(
             (await submit(id, retry.question.updatedAt, question.answer))
@@ -794,6 +855,16 @@ test(
             .set(student)
             .expect(200);
           assert.equal(pending.body.data.total, otherPending.length);
+          const updated = (await queue(student)).items.find(
+            (item) => item.courseId === courseId,
+          );
+          assert.equal(updated?.wrongCount ?? 0, unrelatedId ? 1 : 0);
+          assert.equal(
+            updated?.lessons.find(
+              (item) => item.lessonId === idFor("lesson", lesson.key),
+            )?.wrongCount ?? 0,
+            pending.body.data.total,
+          );
           solved.add(id);
           const resolved = await request(app)
             .get(reviewPath)
@@ -807,11 +878,121 @@ test(
             expectedIds.filter((questionId) => solved.has(questionId)).sort(),
           );
         }
+        if (index === 0 && unrelatedId) {
+          const firstId = idFor("lesson", lessonList[0].key);
+          const secondId = idFor("lesson", secondLesson.key);
+          const sharedQuestion = await db.question.create({
+            data: {
+              title: "两课共用的合成练习",
+              options: ["A", "B", "C", "D"],
+              answer: 0,
+              explanation: "合成验收数据",
+              grade,
+              subject: pkg.course.subject,
+              status: "PUBLISHED",
+              restrictToLessons: true,
+              lessonLinks: {
+                create: [{ lessonId: firstId }, { lessonId: secondId }],
+              },
+            },
+          });
+          questions.push(sharedQuestion.id);
+          await submit(
+            sharedQuestion.id,
+            sharedQuestion.updatedAt.toISOString(),
+            1,
+          );
+          const sharedCourse = (await queue(student)).items.find(
+            (item) => item.courseId === courseId,
+          );
+          assert.equal(sharedCourse?.wrongCount, 2);
+          assert.deepEqual(
+            sharedCourse?.lessons.map((item) => [
+              item.lessonId,
+              item.wrongCount,
+            ]),
+            [
+              [firstId, 1],
+              [secondId, 2],
+            ],
+          );
+          await db.question.update({
+            where: { id: sharedQuestion.id },
+            data: { status: "ARCHIVED" },
+          });
+          const archiveCourse = (await queue(student)).items.find(
+            (item) => item.courseId === courseId,
+          );
+          assert.equal(archiveCourse?.wrongCount, 1);
+          assert.deepEqual(
+            archiveCourse?.lessons.map((item) => item.lessonId),
+            [secondId],
+          );
+
+          const closed = await db.lesson.update({
+            where: { id: secondId },
+            data: { publishedAt: null },
+          });
+          assert.ok(
+            !(await queue(student)).items.some(
+              (item) => item.courseId === courseId,
+            ),
+          );
+          await db.lesson.update({
+            where: { id: closed.id },
+            data: { publishedAt: new Date() },
+          });
+
+          await db.enrollment.delete({
+            where: { userId_courseId: { userId: users[0], courseId } },
+          });
+          assert.ok(
+            !(await queue(student)).items.some(
+              (item) => item.courseId === courseId,
+            ),
+          );
+          await request(app)
+            .post(`/api/course/${courseId}/enroll`)
+            .set(student)
+            .send({})
+            .expect(200);
+
+          const plan = await db.membershipPlan.create({
+            data: { code: prefix, name: "合成复练权益", active: true },
+          });
+          planId = plan.id;
+          const membership = await db.membership.create({
+            data: {
+              userId: users[0],
+              planId: plan.id,
+              startsAt: new Date(Date.now() - 60_000),
+              expiresAt: new Date(Date.now() + 60_000),
+            },
+          });
+          await db.course.update({
+            where: { id: courseId },
+            data: { access: "MEMBER" },
+          });
+          assert.ok(
+            (await queue(student)).items.some(
+              (item) => item.courseId === courseId,
+            ),
+          );
+          await db.membership.update({
+            where: { id: membership.id },
+            data: { expiresAt: new Date(Date.now() - 1_000) },
+          });
+        }
         await db.course.update({
           where: { id: courseId },
           data: { access: "MEMBER" },
         });
         await request(app).get(firstWrongPath).set(student).expect(403);
+        assert.ok(
+          !(await queue(student)).items.some(
+            (item) => item.courseId === courseId,
+          ),
+        );
         await db.course.update({
           where: { id: courseId },
           data: { access: "FREE" },
@@ -823,5 +1004,15 @@ test(
         await request(app).get(firstWrongPath).set(student).expect(404);
       });
     }
+    const fullQueue = await queue(students.G7);
+    assert.ok(fullQueue.total > 1);
+    for (const page of [1, 2]) {
+      const slice = await queue(students.G7, { page, pageSize: 1 });
+      assert.equal(slice.total, fullQueue.total);
+      assert.deepEqual(slice.items, fullQueue.items.slice(page - 1, page));
+    }
+    const emptyPage = await queue(students.G7, { page: 10000, pageSize: 1 });
+    assert.equal(emptyPage.total, fullQueue.total);
+    assert.deepEqual(emptyPage.items, []);
   },
 );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import {
   Alert,
   App,
@@ -16,6 +17,7 @@ import type { AuthUser, SessionView } from "@zhixue/shared";
 import { gradeOptions, roleLabels } from "@zhixue/shared";
 import { useAuth } from "@/auth/auth-provider";
 import { api, clearSession, setProfile, signOut } from "@/lib/api";
+import { LearningReviewPanel } from "@/features/courses/learning-review-panel";
 import { MyLearning } from "@/features/courses/my-learning";
 import { StudyTaskPanel } from "@/features/courses/study-tasks";
 import { TeacherTaskPanel } from "@/features/courses/teacher-tasks";
@@ -23,6 +25,22 @@ import ParentStudents from "@/pages/parent/students";
 import { CourseReviewQueuePanel } from "@/components/course-review-queue";
 export default function Dashboard() {
   const { user } = useAuth();
+  const [query, setQuery] = useSearchParams();
+  const requestedTab = query.get("tab");
+  const student = user?.role === "STUDENT";
+  const tab =
+    requestedTab === "profile" ||
+    requestedTab === "security" ||
+    (requestedTab === "review" && student)
+      ? requestedTab
+      : "learning";
+  const requestedPage = Number(query.get("reviewPage"));
+  const reviewPage =
+    Number.isInteger(requestedPage) &&
+    requestedPage >= 1 &&
+    requestedPage <= 10000
+      ? requestedPage
+      : 1;
   const { message } = App.useApp();
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
@@ -122,6 +140,16 @@ export default function Dashboard() {
         />
       )}
       <Tabs
+        activeKey={tab}
+        onChange={(value) => {
+          setQuery((current) => {
+            const next = new URLSearchParams(current);
+            if (value === "learning") next.delete("tab");
+            else next.set("tab", value);
+            next.delete("reviewPage");
+            return next;
+          });
+        }}
         items={[
           {
             key: "learning",
@@ -139,6 +167,27 @@ export default function Dashboard() {
               </>
             ),
           },
+          ...(student
+            ? [
+                {
+                  key: "review",
+                  label: "待复练",
+                  children: tab === "review" && (
+                    <LearningReviewPanel
+                      page={reviewPage}
+                      onPageChange={(page) => {
+                        setQuery((current) => {
+                          const next = new URLSearchParams(current);
+                          if (page > 1) next.set("reviewPage", String(page));
+                          else next.delete("reviewPage");
+                          return next;
+                        });
+                      }}
+                    />
+                  ),
+                },
+              ]
+            : []),
           {
             key: "profile",
             forceRender: true,

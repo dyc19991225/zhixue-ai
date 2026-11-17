@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, Empty, Pagination, Space, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import type { PageData, QuestionView, WrongQuestionView } from "@zhixue/shared";
+import { useAuth } from "@/auth/auth-provider";
 import { api } from "@/lib/api";
 import { QuestionCard } from "./question-card";
 import { learnLessonPath, lessonPracticePath } from "./lesson-practice-path";
@@ -35,6 +36,7 @@ export function LessonPractice({
   authLoading,
 }: Props) {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [data, setData] = useState<LessonPage>();
   const [error, setError] = useState("");
   const [revision, retry] = useState(0);
@@ -73,9 +75,16 @@ export function LessonPractice({
 
   return (
     <section className="wrap practice-page lesson-practice">
-      <Link className="text-link" to={learnLessonPath(courseId, lessonId)}>
-        ← 返回课时学习
-      </Link>
+      <Space wrap>
+        <Link className="text-link" to={learnLessonPath(courseId, lessonId)}>
+          ← 返回课时学习
+        </Link>
+        {review && user?.role === "STUDENT" && (
+          <Link className="text-link" to="/dashboard?tab=review">
+            返回待复练
+          </Link>
+        )}
+      </Space>
       <header className="lesson-practice-header">
         {data && (
           <p className="muted">

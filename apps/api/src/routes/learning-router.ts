@@ -15,6 +15,7 @@ import {
   authenticated,
   requireAuth,
   requireAdmin,
+  rbac,
   requireSameOrigin,
 } from "../auth/middleware";
 import { parseInput } from "../auth/validation";
@@ -33,7 +34,26 @@ import {
   publishedCatalog,
   publishedCatalogSchema,
 } from "../services/published-catalog";
+import {
+  learningReviewQueue,
+  learningReviewQueueSchema,
+} from "../services/learning-review-queue";
 export const learningRouter = Router();
+learningRouter.get(
+  "/learning-review-queue",
+  requireAuth,
+  rbac(["STUDENT"]),
+  async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    ok(
+      res,
+      await learningReviewQueue(
+        authenticated(req).user.id,
+        parseInput(learningReviewQueueSchema, req.query),
+      ),
+    );
+  },
+);
 learningRouter.get("/learning-library", requireAuth, async (req, res) => {
   res.set("Cache-Control", "no-store");
   ok(

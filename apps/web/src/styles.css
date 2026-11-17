@@ -1933,6 +1933,64 @@ button.ant-btn.menu-button {
   }
 }
 
+
+.learning-review-loading {
+  min-height: 100px;
+}
+.learning-review-courses {
+  display: grid;
+  gap: 16px;
+}
+.learning-review-courses .ant-card-body {
+  padding-block: 12px;
+}
+.learning-review-meta {
+  margin: 0;
+}
+.learning-review-course-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  padding-block: 8px;
+  white-space: normal;
+}
+.learning-review-course-heading h3 {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.learning-review-lessons {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.learning-review-lessons li + li {
+  border-top: 1px solid var(--border, #e6eaf0);
+}
+.learning-review-link {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 8px 0;
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+.learning-review-link:hover,
+.learning-review-link:focus-visible {
+  color: var(--brand-blue);
+}
+.learning-review-action {
+  flex-shrink: 0;
+  color: var(--brand-blue);
+  font-weight: 650;
+}
+.learning-review-count-note {
+  margin: 12px 0 0;
+}
+
 /* A clear, connected learning path within the existing blue visual system. */
 .study-hub-hero {
   display: grid;

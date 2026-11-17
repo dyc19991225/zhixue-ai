@@ -80,3 +80,17 @@ export type LearningLibrary = {
     canStudy: boolean;
   }[];
 };
+
+export type LearningReviewQueue = {
+  page: number;
+  pageSize: number;
+  total: number;
+  items: {
+    courseId: string;
+    title: string;
+    grade: GradeCode;
+    subject: string;
+    wrongCount: number;
+    lessons: { lessonId: string; title: string; wrongCount: number }[];
+  }[];
+};
