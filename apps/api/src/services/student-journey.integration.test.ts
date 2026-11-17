@@ -2,7 +2,7 @@ import "../config";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { randomBytes, randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import request from "supertest";
 import { z } from "zod";
 import type {
@@ -514,7 +514,7 @@ test(
 );
 
 test(
-  "G8/G9 lessons connect completion, linked questions and personal wrong-answer review",
+  "G7–G9 lessons connect completion, linked questions and personal wrong-answer review",
   { skip: !process.env.DATABASE_URL },
   async (t) => {
     const db = getDb();
@@ -535,12 +535,12 @@ test(
       await disconnectRedis();
     });
 
-    async function account(label: string, grade: "G8" | "G9") {
+    async function account(grade: "G7" | "G8" | "G9") {
       const result = await request(app)
         .post("/api/auth/register")
         .set(origin)
         .send({
-          username: `${prefix}_${label}`.replaceAll("-", "_"),
+          username: `${prefix}_${grade.toLowerCase()}`.replaceAll("-", "_"),
           passphrase: randomBytes(24).toString("hex"),
           displayName: "课时练习验收",
           grade,
@@ -553,26 +553,48 @@ test(
       };
     }
 
-    const student8 = await account("g8", "G8");
-    const student9 = await account("g9", "G9");
-    for (const [index, name] of [
-      "g8-open-pythagoras",
-      "g8-open-linear-function",
-      "g9-open-quadratic",
-      "g9-open-probability",
-    ].entries()) {
-      await t.test(name, async () => {
-        const pkg = validateContentPackage(
-          JSON.parse(
-            await readFile(
-              new URL(
-                `../../../../content/courses/${name}.v1.json`,
-                import.meta.url,
-              ),
-              "utf8",
-            ),
+    const students = {
+      G7: await account("G7"),
+      G8: await account("G8"),
+      G9: await account("G9"),
+    };
+    const directory = new URL("../../../../content/courses/", import.meta.url);
+    const files = (await readdir(directory))
+      .filter((name) => /^g[789]-.+\.v1\.json$/.test(name))
+      .sort();
+    const packages = await Promise.all(
+      files.map(async (file) => ({
+        name: file.replace(".v1.json", ""),
+        source: validateContentPackage(
+          JSON.parse(await readFile(new URL(file, directory), "utf8")),
+        ),
+      })),
+    );
+    for (const grade of ["G7", "G8", "G9"] as const) {
+      const gradePackages = packages.filter(
+        ({ source }) => source.course.grade === grade,
+      );
+      assert.ok(gradePackages.length, `${grade} has no course packages`);
+      const lessons = gradePackages.reduce(
+        (n, { source }) =>
+          n +
+          source.course.chapters.reduce(
+            (count, chapter) => count + chapter.lessons.length,
+            0,
           ),
-        );
+        0,
+      );
+      const questions = gradePackages.reduce(
+        (n, { source }) => n + source.questions.length,
+        0,
+      );
+      t.diagnostic(
+        `${grade} 源码盘点：${gradePackages.length} 门课，${lessons} 课时，${questions} 道题`,
+      );
+    }
+    for (const [index, { name, source }] of packages.entries()) {
+      await t.test(name, async () => {
+        const pkg = structuredClone(source);
         pkg.id = `${prefix}-${index}`;
         pkg.course.slug = pkg.id;
         const courseId = contentId(pkg.id, "course");
@@ -581,6 +603,20 @@ test(
         const lessonList = pkg.course.chapters.flatMap(
           (chapter) => chapter.lessons,
         );
+        const linked = new Map(
+          lessonList.map(({ key }) => [
+            key,
+            pkg.questions.filter((question) =>
+              question.lessonKeys?.includes(key),
+            ),
+          ]),
+        );
+        for (const lesson of lessonList) {
+          assert.ok(
+            linked.get(lesson.key)?.length,
+            `${name}: ${lesson.title} 缺配套练习`,
+          );
+        }
         const questionIds = pkg.questions.map((q) => idFor("question", q.key));
         courses.push(courseId);
         questions.push(...questionIds);
@@ -599,8 +635,10 @@ test(
           data: { status: "PUBLISHED" },
         });
 
-        const student = pkg.course.grade === "G8" ? student8 : student9;
-        const other = pkg.course.grade === "G8" ? student9 : student8;
+        const grade = pkg.course.grade;
+        assert.ok(grade === "G7" || grade === "G8" || grade === "G9");
+        const student = students[grade];
+        const other = students[grade === "G8" ? "G9" : "G8"];
         const lessonPath = (key: string) =>
           `/api/learning/${courseId}/lessons/${idFor("lesson", key)}`;
         const firstWrongPath = `${lessonPath(lessonList[0].key)}/wrong-questions`;
@@ -628,18 +666,6 @@ test(
           .set(student)
           .expect(400);
 
-        // Keep a genuine error in a different lesson while checking the first.
-        const otherQuestion = pkg.questions.find(
-          (q) => q.key === lessonList[1].key + "-4",
-        )!;
-        const otherQuestionId = idFor("question", otherQuestion.key);
-        const otherList = await request(app)
-          .get(`${lessonPath(lessonList[1].key)}/questions`)
-          .set(student)
-          .expect(200);
-        const otherItem = otherList.body.data.items.find(
-          (q: { id: string }) => q.id === otherQuestionId,
-        );
         async function submit(id: string, updatedAt: string, selected: number) {
           const response = await request(app)
             .post(`/api/practice/questions/${id}/attempts`)
@@ -648,16 +674,35 @@ test(
             .expect(200);
           return response.body.data;
         }
-        assert.equal(
-          (
-            await submit(
-              otherQuestionId,
-              otherItem.updatedAt,
-              (otherQuestion.answer + 1) % 4,
-            )
-          ).correct,
-          false,
-        );
+        // Keep a second lesson's error pending where an unused, lesson-only question exists.
+        const secondLesson = lessonList[1];
+        const unrelated = secondLesson
+          ? linked
+              .get(secondLesson.key)
+              ?.slice(0, -1)
+              .find((q) => q.lessonKeys?.length === 1)
+          : undefined;
+        const unrelatedId = unrelated && idFor("question", unrelated.key);
+        if (secondLesson && unrelated && unrelatedId) {
+          const response = await request(app)
+            .get(`${lessonPath(secondLesson.key)}/questions`)
+            .set(student)
+            .expect(200);
+          const item = response.body.data.items.find(
+            (q: { id: string }) => q.id === unrelatedId,
+          );
+          assert.equal(
+            (
+              await submit(
+                unrelatedId,
+                item.updatedAt,
+                (unrelated.answer + 1) % 4,
+              )
+            ).correct,
+            false,
+          );
+        }
+        const solved = new Set<string>();
 
         for (const lesson of lessonList) {
           const path = lessonPath(lesson.key);
@@ -687,24 +732,23 @@ test(
             .set(student)
             .expect(200);
           const data = exercises.body.data;
+          const lessonQuestions = linked.get(lesson.key)!;
+          const expectedIds = lessonQuestions.map((question) =>
+            idFor("question", question.key),
+          );
           assert.equal(data.lesson.title, lesson.title);
           assert.equal(data.lesson.grade, pkg.course.grade);
           assert.deepEqual(
             data.items.map((q: { id: string }) => q.id).sort(),
-            pkg.questions
-              .filter((q) => q.lessonKeys?.includes(lesson.key))
-              .map((q) => idFor("question", q.key))
-              .sort(),
+            [...expectedIds].sort(),
           );
-          assert.equal(data.total, 4);
+          assert.equal(data.total, lessonQuestions.length);
           assert.ok(
             data.items.every(
               (q: object) => !("answer" in q) && !("explanation" in q),
             ),
           );
-          const question = pkg.questions.find(
-            (q) => q.key === lesson.key + "-3",
-          )!;
+          const question = lessonQuestions.at(-1)!;
           const id = idFor("question", question.key);
           const listed = data.items.find((q: { id: string }) => q.id === id);
           assert.equal(
@@ -714,6 +758,10 @@ test(
           );
 
           const reviewPath = `${path}/wrong-questions`;
+          const otherPending =
+            unrelatedId && expectedIds.includes(unrelatedId)
+              ? [unrelatedId]
+              : [];
           const wrong = await request(app)
             .get(reviewPath)
             .set(student)
@@ -723,7 +771,7 @@ test(
             wrong.body.data.items
               .map((row: { question: { id: string } }) => row.question.id)
               .sort(),
-            (lesson === lessonList[1] ? [id, otherQuestionId] : [id]).sort(),
+            [id, ...otherPending].sort(),
           );
           const retry = wrong.body.data.items.find(
             (row: { question: { id: string } }) => row.question.id === id,
@@ -745,31 +793,34 @@ test(
             .get(reviewPath)
             .set(student)
             .expect(200);
-          assert.equal(
-            pending.body.data.total,
-            lesson === lessonList[1] ? 1 : 0,
-          );
+          assert.equal(pending.body.data.total, otherPending.length);
+          solved.add(id);
           const resolved = await request(app)
             .get(reviewPath)
             .query({ state: "resolved" })
             .set(student)
             .expect(200);
-          assert.equal(resolved.body.data.total, 1);
-          assert.equal(resolved.body.data.items[0].question.id, id);
+          assert.deepEqual(
+            resolved.body.data.items
+              .map((row: { question: { id: string } }) => row.question.id)
+              .sort(),
+            expectedIds.filter((questionId) => solved.has(questionId)).sort(),
+          );
         }
+        await db.course.update({
+          where: { id: courseId },
+          data: { access: "MEMBER" },
+        });
+        await request(app).get(firstWrongPath).set(student).expect(403);
+        await db.course.update({
+          where: { id: courseId },
+          data: { access: "FREE" },
+        });
         await db.lesson.updateMany({
           where: { id: idFor("lesson", lessonList[0].key) },
           data: { publishedAt: null },
         });
         await request(app).get(firstWrongPath).set(student).expect(404);
-        await db.course.update({
-          where: { id: courseId },
-          data: { access: "MEMBER" },
-        });
-        await request(app)
-          .get(`${lessonPath(lessonList[1].key)}/wrong-questions`)
-          .set(student)
-          .expect(403);
       });
     }
   },
