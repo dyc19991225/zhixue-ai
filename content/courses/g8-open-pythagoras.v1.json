@@ -8,7 +8,7 @@
     "slug": "draft-g8-open-pythagoras-v1",
     "grade": "G8",
     "subject": "math",
-    "description": "八年级数学通用主题补充，2章4课时8道关联练习，含分步例题与易错提醒。勾股定理教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
+    "description": "八年级数学通用主题补充，2章4课时16道关联练习，含分步例题与易错提醒。勾股定理教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
     "access": "FREE",
     "chapters": [
       {
@@ -212,6 +212,174 @@
       "check": {
         "kind": "manual",
         "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "theorem-3",
+      "title": "在△ABC中，∠ABC=90°。下列哪一个等式成立？",
+      "knowledgePoint": "识别斜边与勾股关系",
+      "difficulty": "EASY",
+      "options": [
+        "AC²+AB²=BC²",
+        "AC²+BC²=AB²",
+        "AB²+BC²=AC²",
+        "AB+BC=AC"
+      ],
+      "answer": 2,
+      "explanation": "∠ABC的顶点是B，对边AC是斜边。两条直角边AB、BC的平方和等于AC的平方。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "theorem"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "theorem-4",
+      "title": "在一个直角三角形中，分别以两条直角边为边长作正方形，面积分别为16cm²和49cm²。以斜边为边长作的正方形面积为多少？",
+      "knowledgePoint": "识别斜边与勾股关系",
+      "difficulty": "MEDIUM",
+      "options": [
+        "65cm²",
+        "33cm²",
+        "121cm²",
+        "11cm²"
+      ],
+      "answer": 0,
+      "explanation": "正方形面积等于边长的平方。依勾股定理，斜边上的正方形面积为16+49=65cm²。11cm是两条直角边长之和，不能用来求斜边。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "theorem"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "missing-3",
+      "title": "一个直角三角形的两条直角边长为5cm和7cm，斜边长的准确值是多少？",
+      "knowledgePoint": "求斜边与未知直角边",
+      "difficulty": "EASY",
+      "options": [
+        "12cm",
+        "74cm",
+        "√24cm",
+        "√74cm"
+      ],
+      "answer": 3,
+      "explanation": "斜边长的平方为5²+7²=74cm²。长度取正值，所以斜边长为√74cm。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "missing"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "missing-4",
+      "title": "直角三角形的斜边长17cm，一条直角边长8cm。另一条直角边长多少？",
+      "knowledgePoint": "求斜边与未知直角边",
+      "difficulty": "MEDIUM",
+      "options": [
+        "9cm",
+        "15cm",
+        "√353cm",
+        "225cm"
+      ],
+      "answer": 1,
+      "explanation": "设未知直角边长为x厘米。x²=17²-8²=289-64=225，因此x=15。8²+15²=17²，符合原题。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "missing"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "converse-3",
+      "title": "三根长度分别为2cm、3cm和5cm的直木条，两端连接时能围成什么样的三角形？",
+      "knowledgePoint": "逆定理与勾股数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "不能围成三角形",
+        "能围成直角三角形",
+        "能围成锐角三角形",
+        "能围成钝角三角形"
+      ],
+      "answer": 0,
+      "explanation": "两条短边之和为2+3=5cm，等于最长边，三根木条只能排成直线。要先满足两边之和大于第三边，才能用勾股定理的逆定理判断。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "converse"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "converse-4",
+      "title": "三根木条长8cm、15cm、18cm。用它们首尾相接，能围成直角三角形吗？",
+      "knowledgePoint": "逆定理与勾股数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "能，因为8²+15²=18²",
+        "能，因为8+15>18",
+        "不能围成任何三角形，因为8²+15²≠18²",
+        "能围成三角形，但不能围成直角三角形"
+      ],
+      "answer": 3,
+      "explanation": "8+15=23>18，能围成三角形。但8²+15²=289，最长边的平方18²=324，二者不相等，因此不是直角三角形。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "converse"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "applications-3",
+      "title": "一段直坡道长1.5m，坡道两端的竖直高度差为0.9m。两端在水平地面上的投影相距多少？",
+      "knowledgePoint": "长方形对角线与梯子应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "0.6m",
+        "1.2m",
+        "1.8m",
+        "2.4m"
+      ],
+      "answer": 1,
+      "explanation": "坡道是斜边，竖直高度差和水平距离是两条直角边。水平距离等于√(1.5²-0.9²)=√1.44=1.2m。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "applications-4",
+      "title": "在一块平地上，小林从起点先向东走8m，再向北走15m到终点。若改为沿直线从起点走到终点，可以少走多少？",
+      "knowledgePoint": "长方形对角线与梯子应用",
+      "difficulty": "MEDIUM",
+      "options": [
+        "8m",
+        "17m",
+        "6m",
+        "23m"
+      ],
+      "answer": 2,
+      "explanation": "向东和向北的两段路互相垂直，直线距离为√(8²+15²)=17m。原来走了8+15=23m，因此少走23-17=6m。\n\n来源与许可\n维基百科《勾股定理》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=勾股定理&oldid=94653965\n作者历史：https://zh.wikipedia.org/w/index.php?title=勾股定理&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对直角、斜边与平方关系，长度取正值，逆定理先核对三角形条件；仍待教研审阅。"
       }
     }
   ]

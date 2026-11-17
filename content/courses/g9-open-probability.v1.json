@@ -8,7 +8,7 @@
     "slug": "draft-g9-open-probability-v1",
     "grade": "G9",
     "subject": "math",
-    "description": "九年级数学通用主题补充，2章4课时8题。概率初步含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
+    "description": "九年级数学通用主题补充，2章4课时16题。概率初步含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
     "access": "FREE",
     "chapters": [
       {
@@ -212,6 +212,174 @@
       "check": {
         "kind": "manual",
         "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "events-3",
+      "title": "掷一次各面分别标有1到6的公平骰子，以下哪个事件一定发生？",
+      "knowledgePoint": "随机事件与概率范围",
+      "difficulty": "EASY",
+      "options": [
+        "点数是6",
+        "点数是奇数",
+        "点数大于6",
+        "点数小于7"
+      ],
+      "answer": 3,
+      "explanation": "所有可能点数都在1到6之间，因此点数小于7是必然事件。掷出6或奇数只是可能事件，点数大于6则不可能。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "events"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "events-4",
+      "title": "在一项随机试验中，事件A的概率为0.25。对单次试验，哪种说法正确？",
+      "knowledgePoint": "随机事件与概率范围",
+      "difficulty": "EASY",
+      "options": [
+        "A一定发生",
+        "A可能发生，也可能不发生",
+        "A一定不发生",
+        "只要之前连续三次没发生A，这次一定发生A"
+      ],
+      "answer": 1,
+      "explanation": "0.25在0与1之间，表示A在这一试验条件下可能发生，也可能不发生。概率不是对下一次结果的保证。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "events"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "equally-likely-3",
+      "title": "一个转盘分成6格，分别标1到6，指针停在每一格的机会相同（停在分界线重转）。转一次，停在偶数格或数字大于4的格子的概率是多少？",
+      "knowledgePoint": "有限等可能模型",
+      "difficulty": "MEDIUM",
+      "options": [
+        "2/3",
+        "1/2",
+        "5/6",
+        "1/3"
+      ],
+      "answer": 0,
+      "explanation": "偶数格是2、4、6，大于4的格子是5、6。满足至少一个条件的是2、4、5、6共4格，6不能重复计数，所以概率是4/6=2/3。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "equally-likely"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "equally-likely-4",
+      "title": "一个转盘有10个等可能的格子，其中2格标A、3格标B、5格标C（停在分界线重转）。转一次，停在B格的概率是多少？",
+      "knowledgePoint": "有限等可能模型",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1/3",
+        "1/5",
+        "3/10",
+        "1/2"
+      ],
+      "answer": 2,
+      "explanation": "等可能的基本结果是10个格子，不是A、B、C三个标签。B占其中3格，所以概率为3/10。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "equally-likely"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "two-stage-3",
+      "title": "袋里有3个红球和1个蓝球，除颜色外相同。每次等可能地摸出一个球，记下颜色后放回并混匀，再摸一次。两次都摸到蓝球的概率是多少？",
+      "knowledgePoint": "列表与分步试验",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1/4",
+        "1/16",
+        "0",
+        "1/8"
+      ],
+      "answer": 1,
+      "explanation": "两次都从同样的4个球中等可能抽取，每次摸蓝的概率为1/4。放回、混匀后第二次概率不变，因此两次都蓝的概率是1/4×1/4=1/16。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "two-stage"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "two-stage-4",
+      "title": "袋里有2个红球和2个蓝球，除颜色外相同。每次从剩下的球中等可能地摸1个，连续摸2个且不放回。恰好一红一蓝的概率是多少？",
+      "knowledgePoint": "列表与分步试验",
+      "difficulty": "MEDIUM",
+      "options": [
+        "1/3",
+        "1/2",
+        "1/6",
+        "2/3"
+      ],
+      "answer": 3,
+      "explanation": "一红一蓝包含两种顺序。先红后蓝的概率是2/4×2/3=1/3，先蓝后红同理也是1/3。两种顺序不会同时出现，所以相加得到2/3。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "two-stage"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "frequency-3",
+      "title": "在一个模型中，小林每次投篮命中的概率为0.6，两次投篮结果相互独立。投两次至少命中一次的概率是多少？",
+      "knowledgePoint": "对立事件与频率估计",
+      "difficulty": "MEDIUM",
+      "options": [
+        "0.36",
+        "0.16",
+        "0.84",
+        "0.60"
+      ],
+      "answer": 2,
+      "explanation": "“至少命中一次”的对立事件是“两次都没命中”。每次未命中的概率为0.4，两次都未命中的概率为0.4×0.4=0.16。因此所求概率为1-0.16=0.84。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "frequency"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "frequency-4",
+      "title": "甲、乙用同一袋球做放回试验，每次摸球后都放回并混匀。甲摸150次，81次红球；乙摸50次，24次红球。合并记录后，红球的出现频率是多少？",
+      "knowledgePoint": "对立事件与频率估计",
+      "difficulty": "MEDIUM",
+      "options": [
+        "52.5%",
+        "51%",
+        "54%",
+        "48%"
+      ],
+      "answer": 0,
+      "explanation": "合计摸球150+50=200次，出现红球81+24=105次，频率为105/200=52.5%。两组试验次数不同，不能直接平均两组频率。这个频率可用于估计概率。\n\n来源与许可\n维基百科《概率》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=概率&oldid=94334044\n作者历史：https://zh.wikipedia.org/w/index.php?title=概率&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "frequency"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对基本结果是否等可能、放回条件、对立事件与频率分母；仍待教研审阅。"
       }
     }
   ]

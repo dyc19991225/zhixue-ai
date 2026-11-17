@@ -8,7 +8,7 @@
     "slug": "draft-g8-open-linear-function-v1",
     "grade": "G8",
     "subject": "math",
-    "description": "八年级数学通用主题补充，2章4课时8道关联练习，含分步例题与易错提醒。一次函数教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
+    "description": "八年级数学通用主题补充，2章4课时16道关联练习，含分步例题与易错提醒。一次函数教学顺序待教师核对；未指定出版社、地区和学期。CC BY-SA 4.0。",
     "access": "FREE",
     "chapters": [
       {
@@ -212,6 +212,174 @@
       "check": {
         "kind": "manual",
         "note": "按原题核对平方关系、直角条件或函数代入/参数；不将抽样计算当作完整教学审核。"
+      }
+    },
+    {
+      "key": "definition-3",
+      "title": "当m满足什么条件时，y=(m-2)x+3是关于x的一次函数？",
+      "knowledgePoint": "函数关系与一次函数",
+      "difficulty": "EASY",
+      "options": [
+        "m=2",
+        "m≠2",
+        "m≠0",
+        "m可以取任意实数"
+      ],
+      "answer": 1,
+      "explanation": "按本课定义，一次函数的x项系数不能为0，所以m-2≠0，即m≠2。m=2时式子化为y=3，是常值函数。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "definition-4",
+      "title": "若y=(m+1)x+m是关于x的正比例函数，m应取多少？",
+      "knowledgePoint": "函数关系与一次函数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "-1",
+        "1",
+        "2",
+        "0"
+      ],
+      "answer": 3,
+      "explanation": "正比例函数要求常数项m=0，且x项系数m+1≠0。m=0时系数为1，满足两个条件。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "definition"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "graph-3",
+      "title": "直线y=-3x+6分别与x轴、y轴相交。按这个顺序，两个交点是什么？",
+      "knowledgePoint": "描点与坐标轴交点",
+      "difficulty": "MEDIUM",
+      "options": [
+        "(2,0)和(0,6)",
+        "(-2,0)和(0,6)",
+        "(0,6)和(2,0)",
+        "(6,0)和(0,2)"
+      ],
+      "answer": 0,
+      "explanation": "与x轴相交时y=0，解得x=2。与y轴相交时x=0，代入得y=6。坐标按(x,y)书写。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "graph"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "graph-4",
+      "title": "下列哪个点在直线y=-2x+2上？",
+      "knowledgePoint": "描点与坐标轴交点",
+      "difficulty": "EASY",
+      "options": [
+        "(1,4)",
+        "(0,-2)",
+        "(-1,4)",
+        "(-2,2)"
+      ],
+      "answer": 2,
+      "explanation": "把各点的横坐标代入式子。当x=-1时，y=-2×(-1)+2=4，正好等于该点的纵坐标。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "graph"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "parameters-3",
+      "title": "一条直线经过(-2,7)和(2,-1)。它对应的一次函数是什么？",
+      "knowledgePoint": "变化趋势与待定系数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "y=2x+3",
+        "y=-2x-3",
+        "y=-4x+3",
+        "y=-2x+3"
+      ],
+      "answer": 3,
+      "explanation": "斜率为(-1-7)/(2-(-2))=-2。把(2,-1)代入y=-2x+b，得到b=3。用(-2,7)复核，等式也成立。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "parameters"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "parameters-4",
+      "title": "对于y₁=-3x+1和y₂=-x-9，当x都增加2时，两函数的y值分别怎样变化？",
+      "knowledgePoint": "变化趋势与待定系数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "y₁减少3，y₂减少1",
+        "y₁减少6，y₂减少2",
+        "y₁增加6，y₂增加2",
+        "y₁减少2，y₂减少6"
+      ],
+      "answer": 1,
+      "explanation": "变化量等于斜率乘以自变量的变化量。两者分别为-3×2=-6和-1×2=-2，常数项不影响变化量。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "parameters"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "models-3",
+      "title": "打印方案A先收12元，再按每页2元收费；方案B先收4元，再按每页3元收费。若页数为非负整数，至少打印多少页，A才比B便宜？",
+      "knowledgePoint": "费用模型与方案比较",
+      "difficulty": "MEDIUM",
+      "options": [
+        "7页",
+        "8页",
+        "9页",
+        "10页"
+      ],
+      "answer": 2,
+      "explanation": "设打印x页。A比B便宜须满足12+2x<4+3x，解得x>8。8页时两种方案同价，因此最少9页。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "models-4",
+      "title": "制作一批徽章需付5元固定费用，每个另付2元。预算最多24元，最多能制作多少个？",
+      "knowledgePoint": "费用模型与方案比较",
+      "difficulty": "MEDIUM",
+      "options": [
+        "9个",
+        "10个",
+        "11个",
+        "12个"
+      ],
+      "answer": 0,
+      "explanation": "设制作x个。总费用5+2x≤24，得到x≤9.5。x是非负整数，取9。做9个花23元，做10个要25元。\n\n来源与许可\n维基百科《線性函數》贡献者。固定版本：https://zh.wikipedia.org/w/index.php?title=線性函數&oldid=94596761\n作者历史：https://zh.wikipedia.org/w/index.php?title=線性函數&action=history\n基础概念整理及本课新增例题、练习和解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本化、补充条件及例题，不复制外部图像。不代表原作者认可；复用须署名、标明修改并相同方式共享。",
+      "lessonKeys": [
+        "models"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对非零斜率与自变量取值条件，代入坐标或比较费用；仍待教研审阅。"
       }
     }
   ]

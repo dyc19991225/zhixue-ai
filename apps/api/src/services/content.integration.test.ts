@@ -285,3 +285,136 @@ test(
     );
   },
 );
+
+test(
+  "G8/G9 supplements add two draft questions to each existing lesson",
+  { skip: !process.env.DATABASE_URL },
+  async (t) => {
+    const courses = [
+      "g8-open-pythagoras",
+      "g8-open-linear-function",
+      "g9-open-quadratic",
+      "g9-open-probability",
+    ];
+    const db = getDb();
+    t.after(disconnectDb);
+
+    for (const name of courses) {
+      await t.test(name, async (lessonTest) => {
+        const pkg = validateContentPackage(
+          JSON.parse(
+            await readFile(
+              new URL(
+                `../../../../content/courses/${name}.v1.json`,
+                import.meta.url,
+              ),
+              "utf8",
+            ),
+          ),
+        );
+        const suffix = randomBytes(6).toString("hex");
+        pkg.id = "qa-supplement-" + suffix;
+        pkg.course.slug = pkg.id;
+        const courseId = contentId(pkg.id, "course");
+        const questionId = (key: string) =>
+          contentId(pkg.id, "question:" + key);
+        const lessons = pkg.course.chapters.flatMap(
+          (chapter) => chapter.lessons,
+        );
+        const original = pkg.questions.filter((q) => /-[12]$/.test(q.key));
+        const newQuestions = pkg.questions.filter((q) => /-[34]$/.test(q.key));
+        const originalIds = original.map((q) => questionId(q.key));
+        const addedIds = newQuestions.map((q) => questionId(q.key));
+        const allIds = pkg.questions.map((q) => questionId(q.key));
+
+        lessonTest.after(async () => {
+          await db.question.deleteMany({ where: { id: { in: allIds } } });
+          await db.course.deleteMany({ where: { id: courseId } });
+        });
+
+        assert.equal(lessons.length, 4);
+        assert.equal(pkg.questions.length, 16);
+        assert.equal(originalIds.length, 8);
+        assert.equal(addedIds.length, 8);
+        const fixture = await importContentPackage({
+          ...pkg,
+          questions: original,
+        });
+        assert.equal(fixture.createdQuestions, 8);
+
+        // Simulate a published, edited course and its original questions.
+        const publishedAt = new Date();
+        const existingCourse = await db.course.update({
+          where: { id: courseId },
+          data: { status: "PUBLISHED", title: "人工修订课名" },
+        });
+        await db.lesson.updateMany({
+          where: { chapter: { courseId } },
+          data: { publishedAt },
+        });
+        await db.question.updateMany({
+          where: { id: { in: originalIds } },
+          data: { status: "PUBLISHED", explanation: "人工修订解析" },
+        });
+        const existingQuestions = await db.question.findMany({
+          where: { id: { in: originalIds } },
+          orderBy: { id: "asc" },
+        });
+
+        const result = await importContentPackage(pkg);
+        assert.equal(result.createdCourse, false);
+        assert.equal(result.createdQuestions, 8);
+        assert.equal(result.skippedQuestions, 8);
+        assert.equal((await importContentPackage(pkg)).createdQuestions, 0);
+        assert.deepEqual(
+          await db.course.findUniqueOrThrow({ where: { id: courseId } }),
+          existingCourse,
+        );
+        assert.deepEqual(
+          await db.question.findMany({
+            where: { id: { in: originalIds } },
+            orderBy: { id: "asc" },
+          }),
+          existingQuestions,
+        );
+
+        const savedLessons = await db.lesson.findMany({
+          where: { chapter: { courseId } },
+          include: { questionLinks: { include: { question: true } } },
+        });
+        assert.equal(savedLessons.length, lessons.length);
+        for (const lesson of lessons) {
+          const saved = savedLessons.find(
+            (l) => l.id === contentId(pkg.id, "lesson:" + lesson.key),
+          );
+          assert.ok(saved, lesson.key);
+          assert.equal(saved.title, lesson.title);
+          assert.equal(saved.content, lesson.content);
+          assert.deepEqual(saved.publishedAt, publishedAt);
+          const drafts = saved.questionLinks
+            .map((link) => link.question)
+            .filter((question) => question.status === "DRAFT");
+          assert.equal(saved.questionLinks.length, 4, lesson.key);
+          assert.deepEqual(
+            drafts.map((question) => question.id).sort(),
+            [
+              questionId(lesson.key + "-3"),
+              questionId(lesson.key + "-4"),
+            ].sort(),
+            lesson.key,
+          );
+          assert.ok(
+            drafts.every(
+              (q) =>
+                q.restrictToLessons &&
+                q.grade === pkg.course.grade &&
+                q.subject === pkg.course.subject,
+            ),
+            lesson.key,
+          );
+        }
+        lessonTest.diagnostic("4 课时，每课 2 道原题 + 2 道新增草稿");
+      });
+    }
+  },
+);

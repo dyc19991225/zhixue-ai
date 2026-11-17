@@ -8,7 +8,7 @@
     "slug": "draft-g9-open-quadratic-v1",
     "grade": "G9",
     "subject": "math",
-    "description": "九年级数学通用主题补充，2章4课时8题。一元二次方程含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
+    "description": "九年级数学通用主题补充，2章4课时16题。一元二次方程含分步例题、易错提醒和解析，教学顺序需教师确认；未指定出版社、地区、学期。CC BY-SA 4.0。",
     "access": "FREE",
     "chapters": [
       {
@@ -212,6 +212,174 @@
       "check": {
         "kind": "manual",
         "note": "按原题核对全体根、实数/实际范围、等可能计数及放回条件；仍待教师审核教学质量，不套用一元一次方程校验。"
+      }
+    },
+    {
+      "key": "standard-3",
+      "title": "把x(x-4)=2-3x化为左边二次项系数为1的一般形式ax²+bx+c=0，则(a,b,c)是什么？",
+      "knowledgePoint": "一般形式与系数",
+      "difficulty": "EASY",
+      "options": [
+        "(1,-1,-2)",
+        "(1,-7,-2)",
+        "(1,-1,2)",
+        "(1,-4,-2)"
+      ],
+      "answer": 0,
+      "explanation": "先展开左边得到x²-4x=2-3x，再把右边整体移到左边，得x²-4x-2+3x=0，即x²-x-2=0。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "standard"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "standard-4",
+      "title": "方程(m-3)x²+x-2=0是关于x的一元二次方程时，参数m满足什么条件？",
+      "knowledgePoint": "一般形式与系数",
+      "difficulty": "MEDIUM",
+      "options": [
+        "m=3",
+        "m>3",
+        "m≠3",
+        "m为任意实数"
+      ],
+      "answer": 2,
+      "explanation": "最高次项系数m-3必须非零，所以m≠3。m=3时二次项消失，得到一元一次方程x-2=0。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "standard"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "factor-3",
+      "title": "方程(2x-1)²=9的全部实数解是什么？",
+      "knowledgePoint": "直接开平方法与因式分解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "{2}",
+        "{-2,2}",
+        "{-1,1}",
+        "{-1,2}"
+      ],
+      "answer": 3,
+      "explanation": "由平方等于9得2x-1=3或2x-1=-3，分别解得x=2和x=-1。两个值代入原式，左边都等于9。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "factor"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "factor-4",
+      "title": "方程x(x+3)=2(x+3)的全部实数解是什么？",
+      "knowledgePoint": "直接开平方法与因式分解",
+      "difficulty": "MEDIUM",
+      "options": [
+        "{2}",
+        "{-3,2}",
+        "{-2,3}",
+        "{-3}"
+      ],
+      "answer": 1,
+      "explanation": "移项后提取公因式，得到(x-2)(x+3)=0，所以x=2或x=-3。若直接除以x+3，就会漏掉x=-3。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "factor"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "formula-3",
+      "title": "对x²+6x+5=0配方，化成(x+3)²等于多少？",
+      "knowledgePoint": "配方、求根公式与判别式",
+      "difficulty": "EASY",
+      "options": [
+        "-5",
+        "-4",
+        "4",
+        "9"
+      ],
+      "answer": 2,
+      "explanation": "先移项得x²+6x=-5，再在等式两边加(6/2)²=9，左边是(x+3)²，右边是-5+9=4。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "formula"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "formula-4",
+      "title": "方程x²-4x+m=0有两个不相等的实数根时，m满足什么条件？",
+      "knowledgePoint": "配方、求根公式与判别式",
+      "difficulty": "MEDIUM",
+      "options": [
+        "m<4",
+        "m≤4",
+        "m>4",
+        "m=4"
+      ],
+      "answer": 0,
+      "explanation": "判别式Δ=(-4)²-4×1×m=16-4m。两个不相等的实数根要求Δ>0，解得m<4。m=4时是两个相等的实数根。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "formula"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "applications-3",
+      "title": "原花坛长6m、宽4m。在外侧四周铺等宽步道，铺完后外轮廓仍为长方形，总面积（含花坛）是48m²。步道宽多少？",
+      "knowledgePoint": "面积与增长率建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "0.5m",
+        "1m",
+        "2m",
+        "3m"
+      ],
+      "answer": 1,
+      "explanation": "设步道宽x米，x>0。两边各增加x，外轮廓为(6+2x)米乘(4+2x)米。令乘积等于48，化简得x²+5x-6=0，解得1或-6。按x>0取1m。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
+      }
+    },
+    {
+      "key": "applications-4",
+      "title": "某社团有250人，连续两年以同一个正增长率增长，两年后有360人。第一年结束时有多少人？",
+      "knowledgePoint": "面积与增长率建模",
+      "difficulty": "MEDIUM",
+      "options": [
+        "275人",
+        "288人",
+        "305人",
+        "300人"
+      ],
+      "answer": 3,
+      "explanation": "设每年增长率为r，r>0，则250(1+r)²=360。由于1+r>0，取正平方根得1+r=1.2。第一年人数为250×1.2=300，第二年为300×1.2=360。\n\n来源与许可\n维基百科《一元二次方程》贡献者，固定版本：https://zh.wikipedia.org/w/index.php?title=一元二次方程&oldid=95293607\n作者历史：https://zh.wikipedia.org/w/index.php?title=一元二次方程&action=history\n基础概念整理与新增例题、练习及解析按CC BY-SA 4.0共享：https://creativecommons.org/licenses/by-sa/4.0/\n修改：简体重编、公式纯文本、补充题设及例题；未复制图片。不代表原作者背书，复用须署名、标明修改并以相同许可共享。",
+      "lessonKeys": [
+        "applications"
+      ],
+      "check": {
+        "kind": "manual",
+        "note": "核对最高次项系数、全体实根与题设限制；仍待教研审阅。"
       }
     }
   ]
