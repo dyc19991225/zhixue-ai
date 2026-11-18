@@ -1,145 +1,145 @@
-import Link from "@/components/link";
+import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
-import { Button } from "antd";
-import { Arrow, BookMark } from "./icons";
+import { roleLabels } from "@zhixue/shared";
+import Link from "@/components/link";
 import { useAuth } from "@/auth/auth-provider";
+import { Arrow, BookMark } from "./icons";
+import { studyLinks, workspaceLinks, workspaces } from "./workspace-navigation";
 
-const links = [
-  { href: "/", label: "首页", note: "发现知学" },
-  { href: "/study", label: "同步学习", note: "课程、练习与错题复习" },
-  { href: "/practice", label: "练习中心", note: "学科练习与错题复习" },
-  { href: "/ai-teacher", label: "AI 老师", note: "第二阶段筹备中" },
-  { href: "/membership", label: "会员计划", note: "了解服务规划" },
-];
+function Brand({ onClick }: { onClick?: () => void }) {
+  return (
+    <Link
+      href="/"
+      className="shell-brand"
+      aria-label="知学 AI 首页"
+      onClick={onClick}
+    >
+      <span className="shell-brand-mark">
+        <BookMark />
+      </span>
+      <span>
+        知学 <b>AI</b>
+      </span>
+    </Link>
+  );
+}
 
 export function SiteHeader() {
   const { user } = useAuth();
-  const pathname = useLocation().pathname;
-  const [menuPath, setMenuPath] = useState<string | null>(null);
-  const open = menuPath === pathname;
-  const isActive = (href: string) =>
-    href === "/"
-      ? pathname === "/"
-      : pathname === href || pathname.startsWith(href + "/");
+  const location = useLocation();
+  const [menuKey, setMenuKey] = useState<string>();
+  const toggle = useRef<HTMLButtonElement>(null);
+  const open = menuKey === location.key;
+  const close = () => setMenuKey(undefined);
+  const dashboard = user ? "/dashboard" : "/login";
+  const group = user ? workspaces[user.role] : "工作区";
+  const work = user
+    ? [{ href: dashboard, label: group }, ...workspaceLinks(user.role)]
+    : [];
+  const viewer = new URLSearchParams(location.search);
+  const { pathname } = location;
+
+  useEffect(() => {
+    if (!open) return;
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuKey(undefined);
+        toggle.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", escape);
+    return () => document.removeEventListener("keydown", escape);
+  }, [open]);
+
+  function active(href: string, exact = true) {
+    const [path, query] = href.split("?");
+    if (query) return pathname === path && viewer.get("tab") === "review";
+    if (path === "/study")
+      return ["/study", "/courses", "/course", "/learn"].some(
+        (route) => pathname === route || pathname.startsWith(route + "/"),
+      );
+    if (path === "/dashboard")
+      return pathname === path && (!exact || viewer.get("tab") !== "review");
+    if (path === "/exams")
+      return pathname === path || pathname.startsWith(path + "/");
+    return pathname === path;
+  }
+
+  function item(link: { href: string; label: string }, exact = true) {
+    return (
+      <Link
+        key={link.href}
+        href={link.href}
+        onClick={close}
+        aria-current={active(link.href, exact) ? "page" : undefined}
+      >
+        {link.label}
+      </Link>
+    );
+  }
+
   return (
-    <header className="site-header">
-      <div className="wrap header-inner">
-        <Link
-          href="/"
-          className="brand"
-          aria-label="知学 AI 首页"
-          onClick={() => setMenuPath(null)}
-        >
-          <span className="brand-icon">
-            <BookMark />
-            <span className="brand-spark" aria-hidden="true" />
-          </span>
-          <span className="brand-wordmark">
+    <>
+      <aside className="shell-sidebar" aria-label="站点导航">
+        <Brand />
+        <nav className="shell-rail-links" aria-label="学习导航">
+          <p>学习</p>
+          {studyLinks.map((link) => item(link))}
+        </nav>
+        {work.length > 0 && (
+          <nav className="shell-rail-links" aria-label={group}>
+            <p>{group}</p>
+            {work.map((link) => item(link))}
+          </nav>
+        )}
+        <div className="shell-account">
+          <Link href={dashboard}>
+            <span className="shell-avatar" aria-hidden="true">
+              {(user && Array.from(user.displayName)[0]) || "知"}
+            </span>
             <span>
-              知学 <b>AI</b>
+              <strong>{user?.displayName ?? "登录 / 注册"}</strong>
+              <small>{user ? roleLabels[user.role] : "保存学习进度"}</small>
             </span>
-            <small>让学习更有方向</small>
-          </span>
-        </Link>
-        <nav className="desktop-nav" aria-label="主导航">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              aria-current={isActive(l.href) ? "page" : undefined}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="header-actions">
-          <Link className="login-link" href={user ? "/dashboard" : "/login"}>
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-            >
-              <circle
-                cx="12"
-                cy="8"
-                r="3.5"
-                stroke="currentColor"
-                strokeWidth="1.7"
-              />
-              <path
-                d="M5 21v-2a7 7 0 0 1 14 0v2"
-                stroke="currentColor"
-                strokeWidth="1.7"
-                strokeLinecap="round"
-              />
-            </svg>
-            <span className="login-label-desktop">
-              {user ? "个人中心" : "登录 / 注册"}
-            </span>
-            <span className="login-label-mobile">{user ? "我的" : "登录"}</span>
-            <span className="login-arrow">
-              <Arrow />
-            </span>
+            <Arrow />
           </Link>
-          <Button
-            className="menu-button"
-            type="text"
-            aria-label={open ? "收起导航菜单" : "展开导航菜单"}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setMenuPath(open ? null : pathname)}
-          >
-            <svg
-              width="21"
-              height="21"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-            >
-              {open ? (
-                <path
-                  d="m6 6 12 12M18 6 6 18"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              ) : (
-                <path
-                  d="M4 7h16M4 12h16M4 17h10"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              )}
-            </svg>
-          </Button>
         </div>
-      </div>
-      {open && (
-        <nav
-          id="mobile-nav"
-          className="mobile-nav wrap"
-          aria-label="移动端主导航"
+      </aside>
+      <header className="shell-mobile-header">
+        <Brand onClick={close} />
+        <button
+          ref={toggle}
+          className="shell-menu-button"
+          type="button"
+          aria-expanded={open}
+          aria-controls="shell-mobile-menu"
+          onClick={() => setMenuKey(open ? undefined : location.key)}
         >
-          {links.map((l) => (
-            <Link
-              href={l.href}
-              key={l.href}
-              onClick={() => setMenuPath(null)}
-              aria-current={isActive(l.href) ? "page" : undefined}
-            >
-              <span>
-                <strong>{l.label}</strong>
-                <small>{l.note}</small>
-              </span>
-              <Arrow />
-            </Link>
-          ))}
-        </nav>
-      )}
-    </header>
+          {open ? "收起菜单" : "更多"}
+        </button>
+        <div
+          id="shell-mobile-menu"
+          className="shell-mobile-menu"
+          hidden={!open}
+        >
+          <nav aria-label="更多学习入口">
+            {[...studyLinks, { href: "/membership", label: "学习权益" }].map(
+              (link) => item(link),
+            )}
+          </nav>
+          {work.length > 0 && (
+            <nav aria-label={group}>{work.map((link) => item(link))}</nav>
+          )}
+        </div>
+      </header>
+      <nav className="shell-bottom-nav" aria-label="移动端主导航">
+        {[
+          { href: "/", label: "首页" },
+          { href: "/study", label: "学习" },
+          { href: "/practice", label: "练习" },
+          { href: dashboard, label: user ? "我的" : "登录" },
+        ].map((link) => item(link, false))}
+      </nav>
+    </>
   );
 }

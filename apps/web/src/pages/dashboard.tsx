@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import {
   Alert,
   App,
@@ -23,6 +23,16 @@ import { StudyTaskPanel } from "@/features/courses/study-tasks";
 import { TeacherTaskPanel } from "@/features/courses/teacher-tasks";
 import ParentStudents from "@/pages/parent/students";
 import { CourseReviewQueuePanel } from "@/components/course-review-queue";
+import { Arrow } from "@/components/icons";
+import { workspaceLinks, workspaces } from "@/components/workspace-navigation";
+
+const mainAction = {
+  STUDENT: { href: "/study", label: "继续学习" },
+  TEACHER: { href: "/teacher/courses", label: "我的教学课程" },
+  PARENT: { href: "/parent/students", label: "孩子的学习概览" },
+  ADMIN: { href: "/admin/courses", label: "课程管理" },
+};
+
 export default function Dashboard() {
   const { user } = useAuth();
   const [query, setQuery] = useSearchParams();
@@ -85,51 +95,39 @@ export default function Dashboard() {
   }
   return (
     <section className="wrap account-page">
-      <div className="account-heading">
+      <header className="workspace-welcome">
         <div>
-          <p className="eyebrow">我的学习空间</p>
-          <h1>你好，{user?.displayName}</h1>
-          <p className="muted">
-            账号：{user?.username} · {user && roleLabels[user.role]}
+          <h1>{user ? workspaces[user.role] : "个人工作区"}</h1>
+          <p>
+            你好，{user?.displayName}{" "}
+            <span>· {user && roleLabels[user.role]}</span>
           </p>
         </div>
-        <Space wrap>
-          {user?.role === "STUDENT" && (
-            <Button type="primary" href="/study">
-              同步学习
-            </Button>
-          )}
-          <Button href="/analytics">
-            {user?.role === "TEACHER" || user?.role === "ADMIN"
-              ? "班级学情"
-              : "学习报告"}
-          </Button>
-          {user?.role !== "PARENT" && <Button href="/exams">班级考试</Button>}
-          {user?.role !== "PARENT" && (
-            <Button href="/homework">班级作业</Button>
-          )}
-          {user?.role === "TEACHER" && (
-            <Button type="primary" href="/teacher/courses">
-              我的教学课程
-            </Button>
-          )}
-          {user?.role === "PARENT" ? (
-            <Button type="primary" href="/parent/students">
-              孩子的学习概览
-            </Button>
-          ) : (
-            <Button href="/classes">班级空间</Button>
-          )}
-          <Button href="/practice?mode=wrong">我的错题</Button>
-          {user?.role === "ADMIN" && <Button href="/admin">用户管理</Button>}
-          {user?.role === "ADMIN" && (
-            <Button type="primary" href="/admin/courses">
-              课程管理
-            </Button>
+        <div className="workspace-welcome-actions">
+          {user && (
+            <Link className="button primary" to={mainAction[user.role].href}>
+              {mainAction[user.role].label}
+            </Link>
           )}
           <Button onClick={() => void run(signOut)}>退出登录</Button>
-        </Space>
-      </div>
+        </div>
+      </header>
+      {user && (
+        <nav className="workspace-shortcuts" aria-label="工作区常用入口">
+          {workspaceLinks(user.role)
+            .filter((link) => link.href !== mainAction[user.role].href)
+            .map((link) => (
+              <Link key={link.href} to={link.href}>
+                {link.label}
+                <Arrow />
+              </Link>
+            ))}
+          <Link to="/practice?mode=wrong">
+            我的错题
+            <Arrow />
+          </Link>
+        </nav>
+      )}
       {error && (
         <Alert
           type="error"

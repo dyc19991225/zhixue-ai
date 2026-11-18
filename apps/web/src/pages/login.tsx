@@ -90,19 +90,14 @@ export default function Login() {
   return (
     <section className="wrap auth-layout">
       <div className="auth-intro">
-        <p className="eyebrow">知学 AI · 个人学习空间</p>
-        <h1>
-          从这里，
-          <br />
-          开始你的学习记录。
-        </h1>
-        <p>
-          保存你的年级与个人设置，
-          <br />
-          为接下来的课程学习做好准备。
-        </p>
-        <img src="/images/reading.jpg" alt="翻开的书页" />
-        <small>本地测试版本，请使用测试资料。课程内容仍在准备。</small>
+        <h1>继续你的学习</h1>
+        <p>登录后保存课时进度、作答记录与错题。</p>
+        <img
+          src="/images/course-workbench.webp"
+          alt=""
+          width={960}
+          height={640}
+        />
       </div>
       <div className="auth-form-card">
         <h2>

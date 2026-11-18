@@ -43,11 +43,11 @@
 .practice-wrong-nav a:hover,
 .practice-mode-nav a[aria-current="page"],
 .practice-wrong-nav a[aria-current="page"] {
-  color: #174eaf;
+  color: #205b47;
 }
 .practice-mode-nav a[aria-current="page"],
 .practice-wrong-nav a[aria-current="page"] {
-  box-shadow: inset 0 -3px #175cde;
+  box-shadow: inset 0 -3px #205b47;
 }
 .practice-controls {
   display: flex;
@@ -58,7 +58,7 @@
   margin: 18px 0 10px;
   border: 1px solid var(--entry-line);
   border-radius: 13px;
-  background: #f5f8fc;
+  background: #f3f6ef;
 }
 .practice-control {
   flex: 1 1 128px;
@@ -148,10 +148,10 @@
   margin: 0 0 17px;
   padding: clamp(16px, 3vw, 32px);
   min-width: 0;
-  border-color: #dce5f2;
+  border-color: #d7e0d3;
 }
 :is(.practice-workspace, .lesson-practice) .question-card h2 {
-  color: #15294b;
+  color: #1c3028;
   margin: 12px 0 17px;
 }
 :is(.practice-workspace, .lesson-practice) .question-options {
@@ -162,20 +162,20 @@
   .ant-radio-wrapper {
   padding: 11px 14px;
   min-height: 48px;
-  border: 1px solid #dce5f2;
+  border: 1px solid #d7e0d3;
   background: #fff;
 }
 :is(.practice-workspace, .lesson-practice)
   .question-options
   .ant-radio-wrapper-checked {
-  border-color: #175cde;
+  border-color: #205b47;
   outline: none;
-  background: #eaf1ff;
+  background: #e5eee2;
 }
 :is(.practice-workspace, .lesson-practice)
   .question-options
   .ant-radio-wrapper:not(.ant-radio-wrapper-disabled):hover {
-  border-color: #175cde;
+  border-color: #205b47;
 }
 :is(.practice-workspace, .lesson-practice)
   .question-options

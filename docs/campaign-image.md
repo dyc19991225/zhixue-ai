@@ -23,3 +23,11 @@ Photorealistic natural editorial still life as a supporting image for a Chinese 
 ### 最终生成提示词
 
 Photorealistic editorial still life for the exercise and mistake notebook pages of a Chinese middle-school learning app. Single horizontal 3:2 photograph. An open ivory squared exercise notebook with neatly drawn abstract geometry, a small coral circle around a worked step and two slim pale-blue note tabs, a yellow pencil and simple soft eraser, with a closed cobalt-blue notebook behind them. Slightly diagonal top-down camera, objects occupy the center of the frame and are clearly visible when cropped to a narrow landscape strip. Warm cream desk, quiet window shadows, deep ink blue with a restrained rust-red accent, tactile paper, calm and focused, like an honest study session. No people, no readable words or fake typography, no numbers, no logos, no watermarks, no UI. Real photographic materials rather than 3D render.
+
+## 青墨自习室首页主视觉
+
+项目文件 `apps/web/public/images/study-studio.webp`（1200 × 800）。由内置 ImageGen 生成并压缩为 WebP，用于新版首页。照片为虚构学习场景。
+
+### 最终生成提示词
+
+A horizontal 3:2 editorial photograph for 'Zhixue AI', a Chinese secondary-school study workspace. Photorealistic, human and calm. An East Asian teenage student, approximately 15, in a muted forest-green knit cardigan at a library desk, thoughtfully writing a solution into an open cream squared notebook, viewed in side profile at a slight diagonal. A second classmate softly out of focus at a neighboring desk, yellow pencil, a small stack of sage and ivory books, and mellow morning window light. The principal person, their hand and notebook all fit comfortably within the central 75% for adaptive crops. Dark pine-green, warm paper, toasted ochre, soft daylight, honest student life, no school logos, no visible readable text, no watermark, no UI, no screen. This is one natural photographic scene, not a web design mockup.

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Alert,
   App,
@@ -87,21 +88,20 @@ export default function Admin() {
             查看注册账号并管理使用状态，状态变更会留下操作记录。
           </p>
         </div>
-        <Space wrap>
-          <Button href="/admin/feedback">试用反馈</Button>
-          <Button href="/admin/content-readiness">内容准备度</Button>
-          <Button href="/admin/lesson-readiness">课时配套检查</Button>
-          <Button href="/admin/relations">家长绑定</Button>
-          <Button href="/classes">班级管理</Button>
-          <Button href="/admin/questions">题库管理</Button>
-          <Button href="/membership">权益管理</Button>
-          <Button type="primary" href="/admin/courses">
-            课程管理
-          </Button>
-          <Button href="/dashboard">个人中心</Button>
-          <Button onClick={() => void load()}>刷新列表</Button>
-        </Space>
+        <Button loading={loading} onClick={() => void load()}>
+          刷新列表
+        </Button>
       </div>
+      <nav className="workspace-shortcuts admin-tools" aria-label="管理工具">
+        <Link to="/admin/courses">课程管理</Link>
+        <Link to="/admin/questions">题库管理</Link>
+        <Link to="/admin/content-readiness">内容准备度</Link>
+        <Link to="/admin/lesson-readiness">课时配套检查</Link>
+        <Link to="/admin/feedback">试用反馈</Link>
+        <Link to="/admin/relations">家长绑定</Link>
+        <Link to="/classes">班级管理</Link>
+        <Link to="/membership">权益管理</Link>
+      </nav>
       {error && <Alert type="error" showIcon title={error} />}
       <Card>
         <Table

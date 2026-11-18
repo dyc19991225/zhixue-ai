@@ -9,15 +9,15 @@ export default function Home() {
     <div className="learning-entry">
       <LearningEntryHero
         variant="home"
-        image="/images/learning-together.webp"
+        image="/images/study-studio.webp"
         headline={
           <>
             学懂一课，
             <br />
-            再前进一步。
+            练会一道题。
           </>
         }
-        description="按年级选课，做配套练习，把易错的题再练一遍。"
+        description="从一节课开始，做配套练习，再回到错题本复练。"
       >
         <Link href="#subjects" className="button primary">
           探索学科课程 <Arrow />
@@ -26,6 +26,21 @@ export default function Home() {
           进入同步学习
         </Link>
       </LearningEntryHero>
+      <nav
+        id="platform"
+        className="wrap home-study-links"
+        aria-label="快速开始"
+      >
+        <Link href="/dashboard">
+          学习中心 <Arrow />
+        </Link>
+        <Link href="/practice?mode=wrong">
+          我的错题本 <Arrow />
+        </Link>
+        <Link href="/photo-question">
+          拍照识题 <Arrow />
+        </Link>
+      </nav>
 
       <section
         className="wrap entry-catalog"
@@ -42,43 +57,6 @@ export default function Home() {
           </Link>
         </div>
         <CourseExplorer compact />
-      </section>
-
-      <section
-        className="wrap entry-shortcuts"
-        id="platform"
-        aria-labelledby="home-shortcuts-heading"
-      >
-        <h2 id="home-shortcuts-heading">从上次学到的地方继续</h2>
-        <ul>
-          <li>
-            <Link href="/dashboard">
-              <span>
-                <strong>学习中心</strong>
-                <small>继续课时，查看本人的学习进度。</small>
-              </span>
-              <Arrow />
-            </Link>
-          </li>
-          <li>
-            <Link href="/practice">
-              <span>
-                <strong>练习中心</strong>
-                <small>选题作答，回看解析和错题。</small>
-              </span>
-              <Arrow />
-            </Link>
-          </li>
-          <li>
-            <Link href="/photo-question">
-              <span>
-                <strong>拍照识题</strong>
-                <small>把照片里的题目识别成文字。</small>
-              </span>
-              <Arrow />
-            </Link>
-          </li>
-        </ul>
       </section>
     </div>
   );

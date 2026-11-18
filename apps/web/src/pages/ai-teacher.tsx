@@ -134,9 +134,7 @@ function AiTeacherSession() {
     <section className="wrap account-page ai-page">
       <div className="account-heading">
         <div>
-          <h1>
-            {photoMode ? "拍清题目，先把题干读准。" : "先说说，你卡在哪里？"}
-          </h1>
+          <h1>{photoMode ? "拍照识题" : "AI 老师"}</h1>
           <p className="intro">
             {photoMode
               ? "照片在本机识别，校对后再决定是否提问。"
