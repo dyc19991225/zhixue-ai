@@ -27,10 +27,12 @@ export function QuestionCard({
   question,
   wrongCount,
   reviewAction,
+  onAttempt,
 }: {
   question: QuestionView;
   wrongCount?: number;
   reviewAction?: (attempt: AttemptView) => ReactNode;
+  onAttempt?: (attempt: AttemptView) => void;
 }) {
   const { user } = useAuth();
   const [selected, setSelected] = useState<number>(),
@@ -42,17 +44,17 @@ export function QuestionCard({
     setBusy(true);
     setError("");
     try {
-      setResult(
-        await api<AttemptView>(
-          `/api/practice/questions/${question.id}/attempts`,
-          "POST",
-          {
-            selected,
-            requestId: requestId.current,
-            updatedAt: question.updatedAt,
-          },
-        ),
+      const attempt = await api<AttemptView>(
+        `/api/practice/questions/${question.id}/attempts`,
+        "POST",
+        {
+          selected,
+          requestId: requestId.current,
+          updatedAt: question.updatedAt,
+        },
       );
+      setResult(attempt);
+      onAttempt?.(attempt);
     } catch (e) {
       setError((e as Error).message);
     } finally {

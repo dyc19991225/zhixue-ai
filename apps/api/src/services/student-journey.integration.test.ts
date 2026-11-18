@@ -10,6 +10,7 @@ import type {
   ClassAnalytics,
   ExamAttemptView,
   LearningAnalytics,
+  LearningReviewNext,
   LearningReviewQueue,
   Role,
 } from "@zhixue/shared";
@@ -85,6 +86,10 @@ test(
       outsider = await account("PARENT");
     await request(app)
       .get("/api/learning-review-queue")
+      .set(parent.headers)
+      .expect(403);
+    await request(app)
+      .get("/api/learning-review-queue/next")
       .set(parent.headers)
       .expect(403);
     const source = validateContentPackage(
@@ -590,6 +595,41 @@ test(
       total: 0,
       items: [],
     });
+    const nextPath = queuePath + "/next";
+    await request(app).get(nextPath).expect(401);
+    await request(app)
+      .get(nextPath)
+      .set(students.G7)
+      .query({ courseId: "missing-lesson-id" })
+      .expect(400);
+    async function reviewNext(
+      headers: typeof students.G7,
+      scope:
+        { courseId: string; lessonId: string } | Record<string, never> = {},
+    ): Promise<LearningReviewNext> {
+      const response = await request(app)
+        .get(nextPath)
+        .set(headers)
+        .query(scope)
+        .expect(200);
+      assert.equal(response.headers["cache-control"], "no-store");
+      return response.body.data;
+    }
+    assert.deepEqual(await reviewNext(students.G7), {
+      currentPending: null,
+      next: null,
+    });
+    function firstLesson(course?: LearningReviewQueue["items"][number]) {
+      if (!course) return null;
+      const lesson = course.lessons[0];
+      return {
+        courseId: course.courseId,
+        lessonId: lesson.lessonId,
+        courseTitle: course.title,
+        lessonTitle: lesson.title,
+        wrongCount: lesson.wrongCount,
+      };
+    }
     const directory = new URL("../../../../content/courses/", import.meta.url);
     const files = (await readdir(directory))
       .filter((name) => /^g[789]-.+\.v1\.json$/.test(name))
@@ -805,6 +845,11 @@ test(
               .sort(),
             [id, ...otherPending].sort(),
           );
+          const scope = { courseId, lessonId: idFor("lesson", lesson.key) };
+          assert.deepEqual(await reviewNext(student, scope), {
+            currentPending: wrong.body.data.total,
+            next: null,
+          });
           const summary = (await queue(student)).items.find(
             (item) => item.courseId === courseId,
           );
@@ -865,6 +910,17 @@ test(
             )?.wrongCount ?? 0,
             pending.body.data.total,
           );
+          const direction = await reviewNext(student, scope);
+          assert.equal(direction.currentPending, pending.body.data.total);
+          if (pending.body.data.total) {
+            assert.equal(direction.next, null);
+          } else {
+            const remaining = await queue(student);
+            assert.deepEqual(
+              direction.next,
+              firstLesson(updated ?? remaining.items[0]),
+            );
+          }
           solved.add(id);
           const resolved = await request(app)
             .get(reviewPath)
@@ -1014,5 +1070,36 @@ test(
     const emptyPage = await queue(students.G7, { page: 10000, pageSize: 1 });
     assert.equal(emptyPage.total, fullQueue.total);
     assert.deepEqual(emptyPage.items, []);
+    assert.deepEqual(await reviewNext(students.G7), {
+      currentPending: null,
+      next: firstLesson(fullQueue.items[0]),
+    });
+    const earlierCourse = fullQueue.items.at(-1)!;
+    const finishedLesson = await db.lesson.findFirstOrThrow({
+      where: {
+        chapter: { courseId: earlierCourse.courseId },
+        publishedAt: { not: null },
+        id: { notIn: earlierCourse.lessons.map((lesson) => lesson.lessonId) },
+      },
+      select: { id: true },
+    });
+    assert.deepEqual(
+      await reviewNext(students.G7, {
+        courseId: earlierCourse.courseId,
+        lessonId: finishedLesson.id,
+      }),
+      { currentPending: 0, next: firstLesson(earlierCourse) },
+    );
+    await db.wrongQuestion.updateMany({
+      where: { userId: { in: users }, questionId: { in: questions } },
+      data: { resolvedAt: new Date() },
+    });
+    assert.deepEqual(
+      await reviewNext(students.G7, {
+        courseId: earlierCourse.courseId,
+        lessonId: finishedLesson.id,
+      }),
+      { currentPending: 0, next: null },
+    );
   },
 );

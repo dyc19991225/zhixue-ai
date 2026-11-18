@@ -94,3 +94,14 @@ export type LearningReviewQueue = {
     lessons: { lessonId: string; title: string; wrongCount: number }[];
   }[];
 };
+
+export type LearningReviewNext = {
+  currentPending: number | null;
+  next: {
+    courseId: string;
+    lessonId: string;
+    courseTitle: string;
+    lessonTitle: string;
+    wrongCount: number;
+  } | null;
+};

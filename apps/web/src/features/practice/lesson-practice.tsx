@@ -1,10 +1,16 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Alert, Button, Empty, Pagination, Space, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
-import type { PageData, QuestionView, WrongQuestionView } from "@zhixue/shared";
+import type {
+  AttemptView,
+  PageData,
+  QuestionView,
+  WrongQuestionView,
+} from "@zhixue/shared";
 import { useAuth } from "@/auth/auth-provider";
 import { api } from "@/lib/api";
 import { QuestionCard } from "./question-card";
+import { LessonReviewProgress } from "./review-advance";
 import { learnLessonPath, lessonPracticePath } from "./lesson-practice-path";
 
 type Props = {
@@ -41,6 +47,13 @@ export function LessonPractice({
   const [error, setError] = useState("");
   const [revision, retry] = useState(0);
   const review = mode === "wrong";
+  const sequential = review && state === "active" && user?.role === "STUDENT";
+  const [answers, setAnswers] = useState<{
+    revision: number;
+    lastId: string;
+    solved: Set<string>;
+  }>();
+
   const practiceHref = lessonPracticePath(courseId, lessonId);
   const wrongHref = lessonPracticePath(courseId, lessonId, { mode: "wrong" });
   const resolvedHref = lessonPracticePath(courseId, lessonId, {
@@ -72,6 +85,42 @@ export function LessonPractice({
     setError("");
     retry((value) => value + 1);
   }
+
+  function noteAttempt(attempt: AttemptView) {
+    setAnswers((previous) => {
+      const solved = new Set(previous?.solved);
+      if (attempt.correct) solved.add(attempt.questionId);
+      else solved.delete(attempt.questionId);
+      return {
+        lastId: attempt.questionId,
+        solved,
+        revision: (previous?.revision ?? 0) + 1,
+      };
+    });
+  }
+
+  function refreshActiveLesson() {
+    if (page > 1) {
+      void navigate(wrongHref);
+      return;
+    }
+    setData(undefined);
+    setAnswers(undefined);
+    reload();
+  }
+
+  const progress =
+    sequential && data && (answers || data.total === 0) ? (
+      <LessonReviewProgress
+        key={answers?.revision ?? 0}
+        scope={{ courseId, lessonId }}
+        pageDone={data.items.every(
+          (item) => "question" in item && answers?.solved.has(item.question.id),
+        )}
+        refreshLesson={refreshActiveLesson}
+        checkedAfterAttempt={!!answers}
+      />
+    ) : null;
 
   return (
     <section className="wrap practice-page lesson-practice">
@@ -169,55 +218,74 @@ export function LessonPractice({
               </Space>
             </nav>
           )}
+          {!answers && progress}
           {data.items.length ? (
             <>
-              <p className="muted">共 {data.total} 道题</p>
+              {(!sequential || !answers) && (
+                <p className="muted">共 {data.total} 道题</p>
+              )}
               {data.items.map((item) => {
                 const wrong = "question" in item ? item : undefined;
                 const question = "question" in item ? item.question : item;
                 return (
-                  <QuestionCard
+                  <Fragment
                     key={wrong?.id ?? `${question.id}-${question.updatedAt}`}
-                    question={question}
-                    wrongCount={wrong?.wrongCount}
-                    reviewAction={(attempt) => {
-                      if (review && attempt.correct && state === "active") {
+                  >
+                    <QuestionCard
+                      question={question}
+                      wrongCount={wrong?.wrongCount}
+                      onAttempt={sequential ? noteAttempt : undefined}
+                      reviewAction={(attempt) => {
+                        if (review && attempt.correct && state === "active") {
+                          return (
+                            <Link className="text-link" to={resolvedHref}>
+                              查看本课已答对
+                            </Link>
+                          );
+                        }
+                        if (attempt.correct || (review && state === "active"))
+                          return null;
                         return (
-                          <Link className="text-link" to={resolvedHref}>
-                            查看本课已答对
+                          <Link className="text-link" to={wrongHref}>
+                            复练本课错题
                           </Link>
                         );
-                      }
-                      if (attempt.correct || (review && state === "active"))
-                        return null;
-                      return (
-                        <Link className="text-link" to={wrongHref}>
-                          复练本课错题
-                        </Link>
-                      );
-                    }}
-                  />
+                      }}
+                    />
+                    {answers?.lastId === question.id && progress}
+                  </Fragment>
                 );
               })}
             </>
           ) : (
-            <Empty
-              description={
-                data.total > 0
-                  ? "这一页没有题目。"
-                  : !review
-                    ? "本课暂未发布配套练习。"
-                    : state === "active"
-                      ? "本课没有待复练的错题。"
-                      : "本课还没有通过复练答对的错题。"
-              }
-            >
-              {review && (
-                <Link className="text-link" to={practiceHref}>
-                  继续做本课练习
-                </Link>
-              )}
-            </Empty>
+            !progress && (
+              <Empty
+                description={
+                  data.total > 0
+                    ? "这一页没有题目。"
+                    : !review
+                      ? "本课暂未发布配套练习。"
+                      : state === "active"
+                        ? "本课没有待复练的错题。"
+                        : "本课还没有通过复练答对的错题。"
+                }
+              >
+                {review && page > 1 && data.total > 0 ? (
+                  <Link
+                    className="text-link"
+                    to={state === "active" ? wrongHref : resolvedHref}
+                  >
+                    返回本课第一页
+                  </Link>
+                ) : (
+                  review && (
+                    <Link className="text-link" to={practiceHref}>
+                      继续做本课练习
+                    </Link>
+                  )
+                )}
+              </Empty>
+            )
           )}
           {(data.total > data.pageSize || page > 1) && (
             <Pagination

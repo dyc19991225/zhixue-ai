@@ -1,8 +1,9 @@
-import { Alert, Button, Card, Empty, Pagination, Spin, Tag } from "antd";
+import { Alert, Button, Card, Empty, Pagination, Space, Spin, Tag } from "antd";
 import { Link } from "react-router-dom";
 import type { LearningReviewQueue } from "@zhixue/shared";
 import { gradeOptions, subjectOptions } from "@zhixue/shared";
 import { lessonPracticePath } from "@/features/practice/lesson-practice-path";
+import { ReviewAdvanceButton } from "@/features/practice/review-advance";
 import { useApiData } from "@/hooks/use-api-data";
 
 export function LearningReviewPanel({
@@ -20,9 +21,15 @@ export function LearningReviewPanel({
     <section aria-labelledby="learning-review-title" aria-busy={loading}>
       <div className="study-task-heading">
         <h2 id="learning-review-title">待复练</h2>
-        <Button onClick={reload} loading={loading}>
-          刷新待复练
-        </Button>
+        <Space wrap>
+          <ReviewAdvanceButton
+            disabled={loading || !data?.total}
+            onUnavailable={reload}
+          />
+          <Button onClick={reload} loading={loading}>
+            刷新待复练
+          </Button>
+        </Space>
       </div>
       {loading ? (
         <Spin description="正在读取待复练错题">

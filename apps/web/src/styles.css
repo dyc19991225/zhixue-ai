@@ -1498,6 +1498,23 @@ button.ant-btn.menu-button {
 .lesson-practice-header h1 {
   margin: 8px 0 16px;
 }
+.lesson-review-progress {
+  margin: 0 0 20px;
+  padding: 16px 20px;
+  border: 1px solid var(--border, #e6eaf0);
+  border-radius: 12px;
+}
+.lesson-review-progress p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+.lesson-review-progress p[role="status"] {
+  font-weight: 700;
+}
+.learning-review-error {
+  color: #b42318;
+  overflow-wrap: anywhere;
+}
 .lesson-review-filter {
   margin-bottom: 18px;
 }

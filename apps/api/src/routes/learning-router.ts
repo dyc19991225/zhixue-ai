@@ -35,6 +35,8 @@ import {
   publishedCatalogSchema,
 } from "../services/published-catalog";
 import {
+  learningReviewNext,
+  learningReviewNextSchema,
   learningReviewQueue,
   learningReviewQueueSchema,
 } from "../services/learning-review-queue";
@@ -64,6 +66,21 @@ learningRouter.get("/learning-library", requireAuth, async (req, res) => {
     ),
   );
 });
+learningRouter.get(
+  "/learning-review-queue/next",
+  requireAuth,
+  rbac(["STUDENT"]),
+  async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    ok(
+      res,
+      await learningReviewNext(
+        authenticated(req).user.id,
+        parseInput(learningReviewNextSchema, req.query),
+      ),
+    );
+  },
+);
 async function lessonPracticeScope(
   userId: string,
   courseId: string,
