@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Alert,
-  Button,
-  Empty,
-  Input,
-  Pagination,
-  Select,
-  Space,
-  Spin,
-  Tabs,
-} from "antd";
+import { Alert, Button, Empty, Input, Pagination, Select, Spin } from "antd";
 import { Link, useSearchParams } from "react-router-dom";
 import type {
   AttemptView,
@@ -22,11 +12,16 @@ import {
   gradeOptions,
   subjectOptions,
 } from "@zhixue/shared";
-import { api } from "@/lib/api";
+import { useApiData } from "@/hooks/use-api-data";
+import { Arrow } from "@/components/icons";
+import Image from "@/components/image";
 import { useAuth } from "@/auth/auth-provider";
 import { AttemptResult, QuestionCard } from "@/features/practice/question-card";
 import { QuestionDiagram } from "@/features/practice/question-diagram";
 import { LessonPractice } from "@/features/practice/lesson-practice";
+import "./learning-entry.css";
+import "./practice-workspace.css";
+
 export default function Practice() {
   const [query] = useSearchParams();
   const { user, loading } = useAuth();
@@ -82,12 +77,39 @@ export default function Practice() {
   );
 }
 
+type Mode = "questions" | "wrong" | "history";
+
+const pages = [
+  {
+    key: "questions",
+    label: "挑选练习",
+    title: "练习中心",
+    description: "按年级和学科找题，答完再看解析。",
+  },
+  {
+    key: "wrong",
+    label: "我的错题本",
+    title: "我的错题本",
+    description: "把错题再做一遍，答对后移到「已答对」。",
+  },
+  {
+    key: "history",
+    label: "作答记录",
+    title: "作答记录",
+    description: "回看每次作答的选项、结果和解析。",
+  },
+] as const;
+
 function PracticeCenter() {
-  const [query, setQuery] = useSearchParams(),
-    { user } = useAuth();
-  const mode = ["wrong", "history"].includes(query.get("mode") ?? "")
-    ? query.get("mode")!
-    : "questions";
+  const [query, setQuery] = useSearchParams();
+  const { user, loading: authLoading } = useAuth();
+  const mode: Mode =
+    query.get("mode") === "wrong"
+      ? "wrong"
+      : query.get("mode") === "history"
+        ? "history"
+        : "questions";
+  const current = pages.find((tab) => tab.key === mode)!;
   const grade =
     gradeOptions.find((item) => item.value === query.get("grade"))?.value ??
     user?.grade ??
@@ -95,279 +117,369 @@ function PracticeCenter() {
   const subject = subjectOptions.find(
     (item) => item.value === query.get("subject"),
   )?.value;
+  const difficulty = difficultyOptions.find(
+    (item) => item.value === query.get("difficulty"),
+  )?.value;
+  const state = query.get("state") === "resolved" ? "resolved" : "active";
   const search = (query.get("q") ?? "").trim();
+  const requestedPage = Number(query.get("page"));
+  const page =
+    Number.isInteger(requestedPage) &&
+    requestedPage >= 1 &&
+    requestedPage <= 10000
+      ? requestedPage
+      : 1;
   const [searchDraft, setSearchDraft] = useState(search);
-  useEffect(() => setSearchDraft(search), [search]);
-  function changeScope(key: string, value?: string) {
+  const [searchError, setSearchError] = useState("");
+  const [refresh, setRefresh] = useState(0);
+  const [authPending, loginRequired] = [
+    mode !== "questions" && authLoading,
+    mode !== "questions" && !user,
+  ];
+  const scope = new URLSearchParams({ grade, ...(subject ? { subject } : {}) });
+
+  useEffect(() => {
+    setSearchDraft(search);
+    setSearchError("");
+  }, [search, mode]);
+
+  function setFilter(key: string, value?: string) {
     setQuery((previous) => {
       const next = new URLSearchParams(previous);
       if (value) next.set(key, value);
       else next.delete(key);
+      if (key !== "page") next.delete("page");
       return next;
     });
-    setPage(1);
   }
-  const [difficulty, setDifficulty] = useState<string>(),
-    [state, setState] = useState("active"),
-    [page, setPage] = useState(1),
-    [refresh, setRefresh] = useState(0);
-  const [questions, setQuestions] = useState<QuestionView[]>([]),
-    [wrongs, setWrongs] = useState<WrongQuestionView[]>([]),
-    [history, setHistory] = useState<AttemptView[]>([]),
-    [total, setTotal] = useState(0),
-    [loading, setLoading] = useState(true),
-    [error, setError] = useState("");
-  useEffect(() => {
-    setPage(1);
-  }, [mode, grade, subject, search]);
-  useEffect(() => {
-    let active = true;
-    setLoading(true);
-    setError("");
-    if (mode !== "questions" && !user) {
-      setLoading(false);
+
+  function tabHref(tab: Mode, resolved = false) {
+    const params = new URLSearchParams(scope);
+    if (tab !== "questions") params.set("mode", tab);
+    if (tab === "wrong" && resolved) params.set("state", "resolved");
+    return `/practice?${params}`;
+  }
+
+  function searchQuestions(value: string) {
+    const keyword = value.trim();
+    if (keyword.length === 1) {
+      setSearchError("请输入至少两个字或字符。");
       return;
     }
-    const params = new URLSearchParams({ page: String(page) });
-    if (mode === "questions" && search) params.set("q", search);
-    if (mode !== "history") {
-      params.set("grade", grade);
-      if (subject) params.set("subject", subject);
-    }
-    if (mode === "questions" && difficulty)
-      params.set("difficulty", difficulty);
-    if (mode === "wrong") params.set("state", state);
-    const path =
-      mode === "questions"
-        ? "questions"
-        : mode === "wrong"
-          ? "wrong-questions"
-          : "attempts";
-    api<PageData<QuestionView | WrongQuestionView | AttemptView>>(
-      `/api/practice/${path}?${params}`,
-    )
-      .then((data) => {
-        if (!active) return;
-        setTotal(data.total);
-        if (mode === "questions") setQuestions(data.items as QuestionView[]);
-        else if (mode === "wrong") setWrongs(data.items as WrongQuestionView[]);
-        else setHistory(data.items as AttemptView[]);
-      })
-      .catch((e) => {
-        if (active) setError(e.message);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-    return () => {
-      active = false;
-    };
-  }, [mode, user, grade, subject, difficulty, state, page, refresh, search]);
-  const count =
+    setSearchError("");
+    setFilter("q", keyword || undefined);
+  }
+
+  const params = new URLSearchParams({ page: String(page) });
+  if (mode !== "history") {
+    params.set("grade", grade);
+    if (subject) params.set("subject", subject);
+  }
+  if (mode === "questions") {
+    if (search) params.set("q", search);
+    if (difficulty) params.set("difficulty", difficulty);
+  }
+  if (mode === "wrong") params.set("state", state);
+  const resource =
     mode === "questions"
-      ? questions.length
+      ? "questions"
       : mode === "wrong"
-        ? wrongs.length
-        : history.length;
+        ? "wrong-questions"
+        : "attempts";
+  const requestPath = `/api/practice/${resource}?${params}`;
+  const { data, loading, error } = useApiData<
+    PageData<QuestionView | WrongQuestionView | AttemptView>
+  >(loginRequired || authPending ? null : requestPath, refresh);
+  const login = `/login?next=${encodeURIComponent("/practice?" + query.toString())}`;
+  const refreshList = () => setRefresh((value) => value + 1);
+  const resultsKey = JSON.stringify([requestPath, user?.id, refresh]);
+
   return (
-    <section className="wrap practice-page">
-      <div className="practice-banner">
-        <div>
-          <p>练习中心</p>
-          <h1>
-            把每一次卡住，
-            <br />
-            变成下一次会做。
-          </h1>
-          <p>选一道题认真想一想，答完再看解析。</p>
-          <Space wrap>
-            <Link
-              className="button primary"
-              to={`/study?${new URLSearchParams({ grade, ...(subject ? { subject } : {}) })}`}
-            >
-              回到同步学习
+    <div className="learning-entry practice-workspace">
+      <section
+        className="wrap entry-hero entry-hero--practice"
+        aria-labelledby="practice-title"
+      >
+        <div className="entry-hero-copy">
+          <h1 id="practice-title">{current.title}</h1>
+          <p>{current.description}</p>
+          <div className="entry-hero-actions">
+            {mode === "wrong" && user?.role === "STUDENT" && (
+              <Link className="button primary" to="/dashboard?tab=review">
+                按课时复练 <Arrow />
+              </Link>
+            )}
+            <Link className="learning-entry-link" to={`/study?${scope}`}>
+              ← 回到同步学习
             </Link>
             {user?.role === "ADMIN" && (
-              <Link className="text-link" to="/admin/questions">
+              <Link className="learning-entry-link" to="/admin/questions">
                 管理题库
               </Link>
             )}
-          </Space>
+          </div>
         </div>
-        <img src="/images/math.jpg" alt="黑板上的数学推导" />
-      </div>
-      <Tabs
-        activeKey={mode}
-        onChange={(value) => {
-          setQuery({
-            grade,
-            ...(subject ? { subject } : {}),
-            ...(value === "questions" ? {} : { mode: value }),
-          });
-          setPage(1);
-        }}
-        items={[
-          { key: "questions", label: "挑选练习" },
-          { key: "wrong", label: "我的错题本" },
-          { key: "history", label: "作答记录" },
-        ]}
-      />
-      <div className="practice-toolbar">
-        {mode === "questions" && (
-          <label className="practice-search">
-            按题干查找
-            <Input.Search
-              maxLength={120}
-              value={searchDraft}
-              onChange={(event) => setSearchDraft(event.target.value)}
-              allowClear
-              enterButton="查找"
-              placeholder="输入连续关键词，至少2个字"
-              onSearch={(value) => {
-                if (!value.trim() || value.trim().length >= 2)
-                  changeScope("q", value.trim() || undefined);
-              }}
-            />
-          </label>
+        <div className="entry-hero-photo">
+          <Image
+            src="/images/practice-notebook.webp"
+            width={960}
+            height={640}
+            alt=""
+            priority
+          />
+        </div>
+      </section>
+
+      <section className="wrap practice-body" aria-label={current.label}>
+        <nav className="practice-mode-nav" aria-label="练习栏目">
+          {pages.map((tab) => (
+            <Link
+              key={tab.key}
+              to={tabHref(tab.key)}
+              aria-current={mode === tab.key ? "page" : undefined}
+            >
+              {tab.label}
+            </Link>
+          ))}
+        </nav>
+
+        {mode !== "history" && !loginRequired && !authPending && (
+          <div className="practice-controls" role="group" aria-label="筛选题目">
+            {mode === "questions" && (
+              <div className="practice-control practice-search">
+                <span id="practice-search-label">按题干查找</span>
+                <Input.Search
+                  aria-labelledby="practice-search-label"
+                  aria-describedby={
+                    searchError ? "practice-search-error" : undefined
+                  }
+                  status={searchError ? "error" : undefined}
+                  maxLength={120}
+                  value={searchDraft}
+                  onChange={(event) => {
+                    setSearchDraft(event.target.value);
+                    setSearchError("");
+                  }}
+                  allowClear
+                  enterButton="查找"
+                  placeholder="输入连续关键词，至少 2 个字符"
+                  onSearch={searchQuestions}
+                />
+                {searchError && (
+                  <span
+                    className="practice-search-error"
+                    id="practice-search-error"
+                    role="alert"
+                  >
+                    {searchError}
+                  </span>
+                )}
+              </div>
+            )}
+            <>
+              <div className="practice-control">
+                <span>年级</span>
+                <Select
+                  aria-label="选择年级"
+                  value={grade}
+                  options={gradeOptions}
+                  onChange={(value) => setFilter("grade", value)}
+                />
+              </div>
+              <div className="practice-control">
+                <span>学科</span>
+                <Select
+                  aria-label="选择学科"
+                  placeholder="全部学科"
+                  allowClear
+                  value={subject}
+                  options={subjectOptions}
+                  onChange={(value) => setFilter("subject", value)}
+                />
+              </div>
+            </>
+            {mode === "questions" && (
+              <div className="practice-control">
+                <span>难度</span>
+                <Select
+                  aria-label="选择难度"
+                  placeholder="全部难度"
+                  value={difficulty}
+                  options={difficultyOptions}
+                  allowClear
+                  onChange={(value) => setFilter("difficulty", value)}
+                />
+              </div>
+            )}
+            {mode === "questions" && (
+              <Button className="practice-refresh" onClick={refreshList}>
+                刷新列表
+              </Button>
+            )}
+          </div>
         )}
-        <Space wrap>
-          {mode !== "history" && (
-            <>
-              <Select
-                aria-label="选择年级"
-                value={grade}
-                options={gradeOptions}
-                onChange={(v) => {
-                  changeScope("grade", v);
-                  setPage(1);
-                }}
-              />
-              <Select
-                aria-label="选择学科"
-                placeholder="全部学科"
-                allowClear
-                value={subject}
-                options={subjectOptions}
-                onChange={(v) => {
-                  changeScope("subject", v);
-                  setPage(1);
-                }}
-              />
-            </>
-          )}
-          {mode === "questions" && (
-            <Select
-              aria-label="选择难度"
-              placeholder="全部难度"
-              value={difficulty}
-              options={difficultyOptions}
-              allowClear
-              onChange={(v) => {
-                setDifficulty(v);
-                setPage(1);
-              }}
-            />
-          )}
-          {mode === "wrong" && (
-            <Select
-              aria-label="错题状态"
-              value={state}
-              options={[
-                { value: "active", label: "待复习" },
-                { value: "resolved", label: "已答对" },
-              ]}
-              onChange={(v) => {
-                setState(v);
-                setPage(1);
-              }}
-            />
-          )}
-        </Space>
-        <Button onClick={() => setRefresh((v) => v + 1)}>刷新列表</Button>
-      </div>
-      {mode !== "questions" && !user ? (
-        <Empty description={"登录后查看自己的错题和作答记录"}>
-          <Link
-            className="button primary"
-            to={`/login?next=${encodeURIComponent("/practice?" + query.toString())}`}
+
+        {mode === "wrong" && !loginRequired && !authPending && (
+          <div className="practice-wrong-bar">
+            <nav className="practice-wrong-nav" aria-label="错题状态">
+              <Link
+                to={tabHref("wrong")}
+                aria-current={state === "active" ? "page" : undefined}
+              >
+                待复练
+              </Link>
+              <Link
+                to={tabHref("wrong", true)}
+                aria-current={state === "resolved" ? "page" : undefined}
+              >
+                已答对
+              </Link>
+            </nav>
+            <Button onClick={refreshList}>刷新列表</Button>
+          </div>
+        )}
+        {mode === "history" && !loginRequired && !authPending && (
+          <div className="practice-history-tools">
+            <Button onClick={refreshList}>刷新列表</Button>
+          </div>
+        )}
+
+        {authPending ? (
+          <div className="practice-pending" role="status">
+            <Spin /> 正在确认登录状态…
+          </div>
+        ) : loginRequired ? (
+          <Empty
+            className="practice-empty"
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="登录后查看自己的错题和作答记录。"
           >
-            去登录
-          </Link>
-        </Empty>
-      ) : loading ? (
-        <div className="account-loading">
-          <Spin />
-        </div>
-      ) : error ? (
-        <Alert
-          type="error"
-          showIcon
-          title={error}
-          action={
-            <Button onClick={() => setRefresh((v) => v + 1)}>重试</Button>
-          }
-        />
-      ) : (
-        <>
-          {!count ? (
-            <Empty
-              description={
-                mode === "questions"
-                  ? "这个范围还没有发布练习，换个年级或学科看看。"
-                  : mode === "wrong"
-                    ? "这个范围没有错题，答错的题会自动出现在这里。"
-                    : "还没有作答记录，从一道练习开始吧。"
-              }
-            />
-          ) : (
+            <Link className="button primary" to={login}>
+              去登录
+            </Link>
+          </Empty>
+        ) : loading ? (
+          <div className="practice-pending" role="status">
+            <Spin /> 正在加载…
+          </div>
+        ) : error ? (
+          <Alert
+            type="error"
+            showIcon
+            title={error}
+            action={<Button onClick={refreshList}>重试</Button>}
+          />
+        ) : (
+          data && (
             <>
-              <p className="muted">
-                共 {total} {mode === "history" ? "次作答" : "道题"}
-                {mode === "wrong"
-                  ? " · 重新答对后进入“已答对”，再次答错会回到“待复习”。"
-                  : ""}
+              <p className="practice-result-count" aria-live="polite">
+                共 <strong>{data.total}</strong>{" "}
+                {mode === "history" ? "次作答" : "道题"}
               </p>
-              {mode === "questions"
-                ? questions.map((q) => (
-                    <QuestionCard
-                      key={`${q.id}-${q.updatedAt}-${refresh}`}
-                      question={q}
-                    />
-                  ))
-                : mode === "wrong"
-                  ? wrongs.map((w) => (
-                      <QuestionCard
-                        key={`${w.id}-${refresh}`}
-                        question={w.question}
-                        wrongCount={w.wrongCount}
-                      />
-                    ))
-                  : history.map((a) => (
-                      <article key={a.id} className="question-card">
-                        <p className="muted">
-                          {new Date(a.createdAt).toLocaleString("zh-CN")}
-                        </p>
-                        <h2 className="question-text">{a.snapshot.title}</h2>
-                        <QuestionDiagram diagram={a.snapshot.diagram} />
-                        <ol className="history-options" type="A">
-                          {a.snapshot.options.map((o, i) => (
-                            <li key={i}>{o}</li>
-                          ))}
-                        </ol>
-                        <AttemptResult attempt={a} />
-                      </article>
-                    ))}
-              <Pagination
-                current={page}
-                pageSize={12}
-                total={total}
-                showSizeChanger={false}
-                onChange={setPage}
-              />
+              {data.items.length ? (
+                <div key={resultsKey} className="practice-results">
+                  {mode === "questions"
+                    ? (data.items as QuestionView[]).map((question) => (
+                        <QuestionCard
+                          key={`${question.id}-${question.updatedAt}`}
+                          question={question}
+                          reviewAction={() => (
+                            <Link className="text-link" to={tabHref("wrong")}>
+                              查看我的错题
+                            </Link>
+                          )}
+                        />
+                      ))
+                    : mode === "wrong"
+                      ? (data.items as WrongQuestionView[]).map((wrong) => (
+                          <QuestionCard
+                            key={wrong.id}
+                            question={wrong.question}
+                            wrongCount={wrong.wrongCount}
+                            reviewAction={(attempt) => (
+                              <Link
+                                className="text-link"
+                                to={tabHref("wrong", attempt.correct)}
+                                aria-label={
+                                  attempt.correct
+                                    ? "查看已答对的错题"
+                                    : "查看待复练的错题"
+                                }
+                              >
+                                {attempt.correct ? "查看已答对" : "查看待复练"}
+                              </Link>
+                            )}
+                          />
+                        ))
+                      : (data.items as AttemptView[]).map((attempt) => (
+                          <article key={attempt.id} className="question-card">
+                            <p className="question-meta">
+                              <time dateTime={attempt.createdAt}>
+                                {new Date(attempt.createdAt).toLocaleString(
+                                  "zh-CN",
+                                )}
+                              </time>
+                            </p>
+                            <h2 className="question-text">
+                              {attempt.snapshot.title}
+                            </h2>
+                            <QuestionDiagram
+                              diagram={attempt.snapshot.diagram}
+                            />
+                            <ol className="history-options" type="A">
+                              {attempt.snapshot.options.map((option, index) => (
+                                <li key={index}>{option}</li>
+                              ))}
+                            </ol>
+                            <AttemptResult attempt={attempt} />
+                          </article>
+                        ))}
+                </div>
+              ) : (
+                <Empty
+                  className="practice-empty"
+                  image={Empty.PRESENTED_IMAGE_SIMPLE}
+                  description={
+                    data.total > 0
+                      ? "这一页没有题目。"
+                      : mode === "questions"
+                        ? "这个范围还没有发布练习，换个年级或学科看看。"
+                        : mode === "wrong"
+                          ? state === "active"
+                            ? "所选范围暂无待复练错题。"
+                            : "所选范围暂无已答对的错题。"
+                          : "还没有作答记录，从一道练习开始吧。"
+                  }
+                >
+                  {data.total > 0 ? (
+                    <Button onClick={() => setFilter("page")}>
+                      回到第一页
+                    </Button>
+                  ) : (
+                    mode !== "questions" && (
+                      <Link className="text-link" to={tabHref("questions")}>
+                        去挑选练习
+                      </Link>
+                    )
+                  )}
+                </Empty>
+              )}
+              {data.total > data.pageSize && data.items.length > 0 && (
+                <Pagination
+                  aria-label="练习分页"
+                  current={page}
+                  pageSize={data.pageSize}
+                  total={data.total}
+                  showSizeChanger={false}
+                  onChange={(value) =>
+                    setFilter("page", value > 1 ? String(value) : undefined)
+                  }
+                />
+              )}
             </>
-          )}
-        </>
-      )}
-    </section>
+          )
+        )}
+      </section>
+    </div>
   );
 }

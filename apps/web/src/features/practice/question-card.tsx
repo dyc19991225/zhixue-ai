@@ -1,6 +1,6 @@
 import { useRef, useState, type ReactNode } from "react";
 import { Alert, Button, Radio, Space, Tag } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { AttemptView, QuestionView } from "@zhixue/shared";
 import { difficultyOptions, subjectOptions } from "@zhixue/shared";
 import { useAuth } from "@/auth/auth-provider";
@@ -37,6 +37,7 @@ export function QuestionCard({
   roundId?: string;
 }) {
   const { user } = useAuth();
+  const location = useLocation();
   const [selected, setSelected] = useState<number>(),
     [result, setResult] = useState<AttemptView>(),
     [error, setError] = useState(""),
@@ -141,7 +142,7 @@ export function QuestionCard({
           ) : (
             <Link
               className="button primary"
-              to={`/login?next=${encodeURIComponent("/practice")}`}
+              to={`/login?next=${encodeURIComponent(location.pathname + location.search)}`}
             >
               登录后作答
             </Link>
