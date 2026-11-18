@@ -1,11 +1,9 @@
-# 宣传主视觉
+# 首页学习主视觉
 
-生成方式：内置 imagegen。素材为虚构学生宣传形象，不作为真实学员、教师或成绩案例。
+首页使用 `apps/web/public/images/learning-together.webp`（1200 × 800）。由内置 ImageGen 生成，素材为虚构学习场景，原图压缩为 WebP。同步学习页沿用 `apps/web/public/images/study-review-desk.webp`。
 
-项目使用文件：`public/images/campaign-student.webp`。由生成原图压缩为 WebP，未改动人物或场景。
+首页标题为「学懂一课，再前进一步。」
 
-首屏宣传文案：让每一份努力，更有方向。
+## 首页图最终生成提示词
 
-## 最终生成提示词
-
-Use case: ads-marketing. Create a polished commercial campaign photograph for a Chinese middle-school and high-school online learning platform. Wide landscape 3:2 composition. A single fictional Chinese teenage girl aged 16-17, wearing a clean white short-sleeved school shirt with a subtle blue collar, sitting at a bright modern study desk, looking toward camera with a warm confident natural smile, one hand resting on an open notebook, a few neatly stacked textbooks and a small orange desk lamp. Authentic youthful face, realistic hands, natural skin texture, candid premium education advertising photography, optimistic and inviting rather than remedial or anxious. Composition: student and desk occupy the RIGHT HALF and lower-right of the canvas; the LEFT HALF and upper-left remain uncluttered rich cobalt-blue negative space for separately implemented website headline. Background is a contemporary cobalt/sky-blue studio learning environment with one large soft sky-blue circular shape and a restrained orange curved architectural accent behind the student. Photographic scene with deliberate art direction, clear subject silhouette, vivid but refined colors, soft daylight on face, crisp professional camera detail. Show upper body, hands and notebook completely; leave generous margins around head. No writing, no letters, no logos, no badges, no watermark, no embedded website UI, no achievement metrics, no trophies, no graduation hat, no floating 3D icons, no robot, no artificial glowing effects. This is the actual hero artwork, not a screenshot or page mockup.
+Photorealistic natural editorial lifestyle photograph for the homepage of a Chinese middle-school study platform, a warm, capable, quiet atmosphere. Landscape composition approximately 3:2. Two East Asian middle school classmates aged 13–15 in casual ivory and deep cobalt blue sweaters, seated together by a tall afternoon classroom window, one working neatly in an open squared exercise notebook with a yellow pencil while the other follows the solution and points casually at the page. A navy workbook, squared paper and a small mustard tab anchor the lower foreground. Natural expressions, ordinary contemporary Chinese school look; neither looks at the camera. Camera a little above desk level, waist-up, both faces plus notebook securely inside the middle 70% of the frame to work with responsive crops. Quiet warm cream / wood / inky blue palette. Modern editorial documentary photography, inviting bookish detail, believable anatomy and hands, crisp natural window light, subtle grain. No readable text, watermarks, logos, badges, advertising UI or mockup. This is solely the photograph used to the right of a real HTML headline.
