@@ -6,23 +6,31 @@ import { difficultyOptions, subjectOptions } from "@zhixue/shared";
 import { useAuth } from "@/auth/auth-provider";
 import { api } from "@/lib/api";
 import { QuestionDiagram } from "./question-diagram";
+import { QuestionScratchpad } from "./scratchpad";
+
 export const optionLetter = (index: number) => String.fromCharCode(65 + index);
+
 export function AttemptResult({ attempt }: { attempt: AttemptView }) {
   return (
     <div
       className={`answer-result ${attempt.correct ? "answer-correct" : "answer-wrong"}`}
       aria-live="polite"
     >
-      <h3>{attempt.correct ? "答对了，继续保持" : "这道题再想一想"}</h3>
-      <p>
-        你的选择：{optionLetter(attempt.selected)} / 正确答案：
-        {optionLetter(attempt.snapshot.answer)}
+      <h3>
+        {attempt.correct
+          ? "🎉 答对了！思路很清晰，继续保持"
+          : "💡 这道题再想一想，看看关键步骤"}
+      </h3>
+      <p className="answer-choice-summary">
+        你的选择：<strong>{optionLetter(attempt.selected)}</strong> · 正确答案：
+        <strong>{optionLetter(attempt.snapshot.answer)}</strong>
       </p>
       <h4>答案解析</h4>
       <p className="question-text">{attempt.snapshot.explanation}</p>
     </div>
   );
 }
+
 export function QuestionCard({
   question,
   wrongCount,
@@ -38,11 +46,13 @@ export function QuestionCard({
 }) {
   const { user } = useAuth();
   const location = useLocation();
-  const [selected, setSelected] = useState<number>(),
-    [result, setResult] = useState<AttemptView>(),
-    [error, setError] = useState(""),
-    [busy, setBusy] = useState(false);
+  const [selected, setSelected] = useState<number>();
+  const [result, setResult] = useState<AttemptView>();
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [showScratch, setShowScratch] = useState(false);
   const requestId = useRef(crypto.randomUUID());
+
   async function submit() {
     setBusy(true);
     setError("");
@@ -65,23 +75,47 @@ export function QuestionCard({
       setBusy(false);
     }
   }
+
+  const diffLabel = difficultyOptions.find(
+    (d) => d.value === question.difficulty,
+  )?.label;
+  const diffColor =
+    question.difficulty === "EASY"
+      ? "green"
+      : question.difficulty === "HARD"
+        ? "volcano"
+        : "geekblue";
+
   return (
     <article className="question-card">
-      <div className="question-meta">
-        <Tag color="blue">
-          {subjectOptions.find((s) => s.value === question.subject)?.label}
-        </Tag>
-        <Tag>
-          {
-            difficultyOptions.find((d) => d.value === question.difficulty)
-              ?.label
-          }
-        </Tag>
-        {question.knowledgePoint && <span>{question.knowledgePoint}</span>}
-        {wrongCount && <span>累计答错 {wrongCount} 次</span>}
+      <div className="question-card-top">
+        <div className="question-meta">
+          <Tag color="blue">
+            {subjectOptions.find((s) => s.value === question.subject)?.label}
+          </Tag>
+          <Tag color={diffColor}>{diffLabel}</Tag>
+          {question.knowledgePoint && (
+            <span className="kp-chip">📌 {question.knowledgePoint}</span>
+          )}
+          {wrongCount && (
+            <span className="wrong-chip">曾答错 {wrongCount} 次</span>
+          )}
+        </div>
+        <button
+          type="button"
+          className={`scratchpad-toggle-btn ${showScratch ? "is-open" : ""}`}
+          aria-expanded={showScratch}
+          onClick={() => setShowScratch((value) => !value)}
+        >
+          {showScratch ? "收起草稿纸" : "✏️ 草稿演算纸"}
+        </button>
       </div>
+
       <h2 className="question-text">{question.title}</h2>
       <QuestionDiagram diagram={question.diagram} />
+
+      {showScratch && <QuestionScratchpad />}
+
       <Radio.Group
         value={selected}
         disabled={busy || !!result}
@@ -92,19 +126,31 @@ export function QuestionCard({
         aria-label="选择答案"
         className="question-options"
       >
-        {question.options.map((text, index) => (
-          <Radio key={index} value={index}>
-            <strong>{optionLetter(index)}</strong>
-            <span>{text}</span>
-          </Radio>
-        ))}
+        {question.options.map((text, index) => {
+          const isCorrectOpt = result && result.snapshot.answer === index;
+          const isWrongPicked =
+            result && !result.correct && result.selected === index;
+          const stateClass = isCorrectOpt
+            ? "opt-is-correct"
+            : isWrongPicked
+              ? "opt-is-wrong"
+              : "";
+          return (
+            <Radio key={index} value={index} className={stateClass}>
+              <strong className="option-badge">{optionLetter(index)}</strong>
+              <span>{text}</span>
+            </Radio>
+          );
+        })}
       </Radio.Group>
+
       {error && <Alert type="error" title={error} />}
+
       {result ? (
         <>
           <AttemptResult attempt={result} />
           {wrongCount && result.correct && (
-            <p className="muted">这道题已进入“已答对”。</p>
+            <p className="muted">✨ 太棒了！这道题已移入「已答对」列表。</p>
           )}
           <Space wrap>
             {!(roundId && result.correct) && (
@@ -115,16 +161,19 @@ export function QuestionCard({
                   requestId.current = crypto.randomUUID();
                 }}
               >
-                重新练习
+                再做一遍
               </Button>
             )}
             {reviewAction ? (
               reviewAction(result)
             ) : (
               <Link className="text-link" to="/practice?mode=wrong">
-                查看我的错题
+                查看我的错题本
               </Link>
             )}
+            <Link className="text-link" to="/ai-teacher">
+              ✨ 还有疑问？问问 AI 老师
+            </Link>
           </Space>
         </>
       ) : (
@@ -137,7 +186,7 @@ export function QuestionCard({
               disabled={selected === undefined}
               onClick={() => void submit()}
             >
-              确认答案
+              确认提交答案
             </Button>
           ) : (
             <Link
@@ -147,7 +196,7 @@ export function QuestionCard({
               登录后作答
             </Link>
           )}
-          <span className="muted">提交后查看答案解析</span>
+          <span className="muted">先独立选择，提交后立即查看详细解析</span>
         </div>
       )}
     </article>

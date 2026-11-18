@@ -93,14 +93,26 @@ export default function Dashboard() {
       setError(cause instanceof Error ? cause.message : "操作未完成。");
     }
   }
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? "早上好" : hour < 18 ? "下午好" : "晚上好";
+  const gradeText = user?.grade
+    ? gradeOptions.find((g) => g.value === user.grade)?.label
+    : undefined;
+
   return (
     <section className="wrap account-page">
       <header className="workspace-welcome">
         <div>
+          <span className="welcome-kicker">
+            {student ? "✨ 今日点滴积累，终成闪耀进步" : "工作台概览"}
+          </span>
           <h1>{user ? workspaces[user.role] : "个人工作区"}</h1>
           <p>
-            你好，{user?.displayName}{" "}
-            <span>· {user && roleLabels[user.role]}</span>
+            {greeting}，<strong>{user?.displayName}</strong>{" "}
+            <span>
+              · {gradeText ? `${gradeText} · ` : ""}
+              {user && roleLabels[user.role]}
+            </span>
           </p>
         </div>
         <div className="workspace-welcome-actions">

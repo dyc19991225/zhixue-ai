@@ -3,12 +3,14 @@ import Image from "@/components/image";
 
 export function LearningEntryHero({
   variant,
+  badge,
   image,
   headline,
   description,
   children,
 }: {
   variant: "home" | "study";
+  badge?: string;
   image: string;
   headline: ReactNode;
   description: string;
@@ -20,6 +22,7 @@ export function LearningEntryHero({
       aria-labelledby="learning-entry-title"
     >
       <div className="entry-hero-copy">
+        {badge && <span className="entry-hero-badge">{badge}</span>}
         <h1 id="learning-entry-title">{headline}</h1>
         <p>{description}</p>
         <div className="entry-hero-actions">{children}</div>

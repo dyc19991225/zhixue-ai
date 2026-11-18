@@ -70,14 +70,16 @@
   border: 1px solid var(--entry-line);
   border-radius: 16px;
   overflow: hidden;
+  background: var(--paper);
+  box-shadow: var(--card-shadow);
 }
 .reader-chapter-heading {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 7px 14px;
-  padding: 13px 19px;
-  background: #f0f4ee;
+  padding: 14px 20px;
+  background: var(--surface-blue);
 }
 .reader-chapter-heading h3 {
   margin: 0;
@@ -175,7 +177,7 @@
 .reader-lesson-footer {
   padding: 18px clamp(18px, 3.8vw, 40px);
   border-top: 1px solid var(--entry-line);
-  background: #f0f4ee;
+  background: var(--surface-soft);
   border-radius: 0 0 17px 17px;
 }
 .reader-lesson-footer .lesson-actions {

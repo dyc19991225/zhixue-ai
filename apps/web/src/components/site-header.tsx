@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { roleLabels } from "@zhixue/shared";
+import { gradeOptions, roleLabels } from "@zhixue/shared";
 import Link from "@/components/link";
 import { useAuth } from "@/auth/auth-provider";
-import { Arrow, BookMark } from "./icons";
+import { Arrow, BookMark, NavGlyph } from "./icons";
 import { studyLinks, workspaceLinks, workspaces } from "./workspace-navigation";
 
 function Brand({ onClick }: { onClick?: () => void }) {
@@ -17,8 +17,11 @@ function Brand({ onClick }: { onClick?: () => void }) {
       <span className="shell-brand-mark">
         <BookMark />
       </span>
-      <span>
-        知学 <b>AI</b>
+      <span className="shell-brand-text">
+        <span>
+          知学 <b>AI</b>
+        </span>
+        <small>中学同步学习伙伴</small>
       </span>
     </Link>
   );
@@ -65,7 +68,11 @@ export function SiteHeader() {
     return pathname === path;
   }
 
-  function item(link: { href: string; label: string }, exact = true) {
+  function item(
+    link: { href: string; label: string },
+    exact = true,
+    withIcon = true,
+  ) {
     return (
       <Link
         key={link.href}
@@ -73,17 +80,22 @@ export function SiteHeader() {
         onClick={close}
         aria-current={active(link.href, exact) ? "page" : undefined}
       >
-        {link.label}
+        {withIcon && <NavGlyph kind={link.href} />}
+        <span>{link.label}</span>
       </Link>
     );
   }
+
+  const gradeLabel = user?.grade
+    ? gradeOptions.find((g) => g.value === user.grade)?.label
+    : undefined;
 
   return (
     <>
       <aside className="shell-sidebar" aria-label="站点导航">
         <Brand />
         <nav className="shell-rail-links" aria-label="学习导航">
-          <p>学习</p>
+          <p>日常学习</p>
           {studyLinks.map((link) => item(link))}
         </nav>
         {work.length > 0 && (
@@ -95,11 +107,15 @@ export function SiteHeader() {
         <div className="shell-account">
           <Link href={dashboard}>
             <span className="shell-avatar" aria-hidden="true">
-              {(user && Array.from(user.displayName)[0]) || "知"}
+              {(user && Array.from(user.displayName)[0]) || "学"}
             </span>
             <span>
               <strong>{user?.displayName ?? "登录 / 注册"}</strong>
-              <small>{user ? roleLabels[user.role] : "保存学习进度"}</small>
+              <small>
+                {user
+                  ? `${gradeLabel ? `${gradeLabel} · ` : ""}${roleLabels[user.role]}`
+                  : "同步记录错题与进度"}
+              </small>
             </span>
             <Arrow />
           </Link>
@@ -115,7 +131,7 @@ export function SiteHeader() {
           aria-controls="shell-mobile-menu"
           onClick={() => setMenuKey(open ? undefined : location.key)}
         >
-          {open ? "收起菜单" : "更多"}
+          {open ? "收起菜单" : "导航菜单"}
         </button>
         <div
           id="shell-mobile-menu"
@@ -138,7 +154,7 @@ export function SiteHeader() {
           { href: "/study", label: "学习" },
           { href: "/practice", label: "练习" },
           { href: dashboard, label: user ? "我的" : "登录" },
-        ].map((link) => item(link, false))}
+        ].map((link) => item(link, false, true))}
       </nav>
     </>
   );

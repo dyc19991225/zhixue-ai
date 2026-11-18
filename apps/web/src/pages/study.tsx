@@ -23,18 +23,18 @@ export default function Study() {
 
   const steps = [
     {
-      title: "选课学习",
-      description: "按年级和学科找课，跟着章节学。",
+      title: "1. 选课精学",
+      description: "按年级和学科挑课，跟着章节讲义吃透概念。",
       href: "#sync-courses",
     },
     {
-      title: "做题巩固",
-      description: "先独立作答，再看答案解析。",
+      title: "2. 随堂闯关",
+      description: "独立思考并动手演算，提交后对照详尽解析。",
       href: `/practice?${scope}`,
     },
     {
-      title: "错题复练",
-      description: "把没做对的题重新练一遍。",
+      title: "3. 错题清零",
+      description: "针对薄弱错题再次挑战，答对即移入已掌握。",
       href: `/practice?${scope}&mode=wrong`,
     },
   ];
@@ -43,18 +43,19 @@ export default function Study() {
     <div className="learning-entry">
       <LearningEntryHero
         variant="study"
+        badge="📖 课前预习 · 课后巩固 · 错题复练闭环"
         image="/images/study-review-desk.webp"
-        headline="同步学习"
-        description="从一节课开始。看讲解、做配套练习，再把没答对的题练一遍。"
+        headline="同步学习空间"
+        description="按三步高效学习法：先看懂一节课的核心规律，再做配套好题巩固，最后把易错点彻底扫清。"
       >
         <Link className="button primary" href="#sync-courses">
-          选择课程 <Arrow />
+          挑选同步课程 <Arrow />
         </Link>
         <Link
           className="learning-entry-link"
           href={user ? "/dashboard" : "/login?next=%2Fdashboard"}
         >
-          {user ? "继续我的学习" : "登录保存进度"}
+          {user ? "进入我的学习书桌 →" : "登录保存学习进度 →"}
         </Link>
       </LearningEntryHero>
 
@@ -84,20 +85,21 @@ export default function Study() {
       >
         <div className="entry-section-heading">
           <div>
+            <span className="section-pill">同步课程库</span>
             <h2 id="sync-courses-title">找正在学的课程</h2>
             <p aria-live="polite">
-              {grade.label} · {subject?.label ?? "全部学科"}
+              当前范围：{grade.label} · {subject?.label ?? "全部学科"}
             </p>
           </div>
           <div className="entry-section-links">
             <Link className="text-link" href="/photo-question">
-              拍照识题
+              📸 拍照识题
             </Link>
             <Link
               className="text-link"
               href={user ? "/analytics" : "/login?next=%2Fanalytics"}
             >
-              学习报告
+              📊 学习报告
             </Link>
           </div>
         </div>

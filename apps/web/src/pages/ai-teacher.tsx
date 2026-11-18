@@ -208,6 +208,29 @@ function AiTeacherSession() {
             }
           />
         )}
+        <div className="ai-prompt-chips" aria-label="提问灵感模板">
+          <span className="ai-chips-label">💡 提问小帮手：</span>
+          {[
+            "我算到一半卡住了，请帮我看看下一步该怎么想：",
+            "这道题主要考查哪个知识点？突破口在哪里？",
+            "请用通俗好懂的生活例子帮我理解这个概念：",
+            "帮我总结一下这类题型的常见易错点和检查方法：",
+          ].map((starter) => (
+            <button
+              key={starter}
+              type="button"
+              className="ai-chip-btn"
+              disabled={busy || photoBusy}
+              onClick={() =>
+                setQuestion((prev) =>
+                  prev.trim() ? `${starter}\n${prev}` : starter,
+                )
+              }
+            >
+              {starter.replace("：", "")}
+            </button>
+          ))}
+        </div>
         <Input.TextArea
           aria-label="学习问题"
           rows={5}

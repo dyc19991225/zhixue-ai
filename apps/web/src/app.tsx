@@ -3,7 +3,7 @@ import { Spin } from "antd";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
-import Link from "@/components/link";
+import { StudentStudyBar } from "./components/student-study-bar";
 import Home from "./pages/home";
 import Courses from "./pages/courses";
 import Subject from "./pages/subject";
@@ -97,10 +97,7 @@ export default function App() {
       </a>
       <SiteHeader />
       <div className="shell-main-column">
-        <div className="shell-context wrap">
-          <span aria-current="page">{pageName}</span>
-          <Link href="/trial">试学与反馈</Link>
-        </div>
+        <StudentStudyBar pageName={pageName} />
         <main id="main" tabIndex={-1}>
           <Suspense
             fallback={

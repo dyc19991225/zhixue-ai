@@ -94,13 +94,23 @@ export function PublishedCourseList({
         <>
           <div className="learning-grid">
             {(compact ? items.slice(0, 3) : items).map((course) => (
-              <Link key={course.id} to={`/course/${course.id}`}>
-                <Card hoverable title={course.title}>
-                  <Tag color="green">已发布</Tag>
-                  <Tag color="blue">
-                    {course.access === "FREE" ? "免费学习" : "需要会员权益"}
-                  </Tag>
-                  <p>{course.description}</p>
+              <Link
+                key={course.id}
+                to={`/course/${course.id}`}
+                className="student-course-card-link"
+              >
+                <Card
+                  hoverable
+                  className="student-course-card"
+                  title={course.title}
+                >
+                  <div className="student-course-tags">
+                    <Tag color="processing">同步精讲</Tag>
+                    <Tag color={course.access === "FREE" ? "success" : "gold"}>
+                      {course.access === "FREE" ? "免费开放" : "会员专享"}
+                    </Tag>
+                  </div>
+                  <p className="student-course-desc">{course.description}</p>
                   {(course.region || course.textbookEdition || course.term) && (
                     <dl className="course-metadata">
                       {course.region && (
@@ -123,7 +133,9 @@ export function PublishedCourseList({
                       )}
                     </dl>
                   )}
-                  <span className="text-link">查看课程与课时 →</span>
+                  <span className="text-link course-enter-pill">
+                    进入课程学习 →
+                  </span>
                 </Card>
               </Link>
             ))}
