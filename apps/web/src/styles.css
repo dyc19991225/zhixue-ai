@@ -1498,123 +1498,6 @@ button.ant-btn.menu-button {
 .lesson-practice-header h1 {
   margin: 8px 0 16px;
 }
-/* The blue notebook stripe is reserved for measurable review progress. */
-.review-round-meter {
-  margin: 0 0 24px;
-  padding: clamp(16px, 3vw, 26px);
-  border: 1px solid #ccddfb;
-  border-left: 4px solid var(--brand-blue);
-  border-radius: 4px 16px 16px 4px;
-  background: #f5f8ff;
-}
-.review-round-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-}
-.review-round-heading h2,
-.review-round-sync h2 {
-  font-size: clamp(18px, 2.4vw, 22px);
-  margin: 0;
-}
-.review-round-heading > span,
-.review-round-stats dt,
-.review-round-note {
-  color: var(--muted);
-  font-size: 14px;
-}
-.review-round-stats {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 14px 0 15px;
-}
-.review-round-stats > div + div {
-  padding-left: 18px;
-  border-left: 1px solid #ccddfb;
-}
-.review-round-stats dd {
-  margin: 2px 0 0;
-  color: var(--brand-blue);
-  font-size: clamp(24px, 4vw, 34px);
-  font-weight: 750;
-  font-variant-numeric: tabular-nums;
-  line-height: 1.1;
-}
-.review-round-stats > div + div dd {
-  color: var(--ink, #162b4d);
-}
-.review-round-stats dd span {
-  margin-left: 4px;
-  font-size: 13px;
-  font-weight: 600;
-}
-.review-round-track {
-  display: flex;
-  height: 10px;
-  overflow: hidden;
-  background: #dce6f7;
-  border-radius: 99px;
-}
-.review-round-track span {
-  transition: width 180ms ease;
-}
-.review-round-fill {
-  background: var(--brand-blue);
-}
-.review-round-skip {
-  background: #788aa8;
-}
-.review-round-note {
-  margin: 10px 0 0;
-}
-.review-round-sync {
-  min-height: 122px;
-}
-.review-round-summary {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
-  margin-bottom: 22px;
-  padding: clamp(17px, 3vw, 28px);
-  border: 1px solid #acd6c5;
-  border-radius: 16px;
-  background: #f1faf5;
-}
-.review-round-check {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #d6f0e1;
-  color: #16634b;
-  font-size: 22px;
-  font-weight: 750;
-}
-.review-round-summary h2 {
-  margin: 0;
-  font-size: clamp(18px, 2.4vw, 24px);
-}
-.review-round-summary p {
-  margin: 8px 0 12px;
-}
-.review-round-summary strong {
-  color: #16634b;
-  font-variant-numeric: tabular-nums;
-}
-.review-round-summary .button {
-  min-height: 44px;
-  margin-top: 4px;
-  padding: 8px 16px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .review-round-track span {
-    transition: none;
-  }
-}
-
 .lesson-review-progress {
   margin: 0 0 20px;
   padding: 16px 20px;
@@ -2068,61 +1951,284 @@ button.ant-btn.menu-button {
 }
 
 
+/* Review workspace: cream stationery, ink, and cobalt for actions. */
+.review-desk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 38%);
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid #e8e0d2;
+  border-radius: 20px;
+  background: #faf6ec;
+  color: #15294b;
+}
+.review-desk-copy {
+  min-width: 0;
+  padding: clamp(22px, 4vw, 40px);
+}
+.review-desk h2 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+}
+.review-desk-copy > p {
+  margin: 10px 0 20px;
+  color: #4d5d71;
+}
+.review-desk-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 260px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: 52% 53%;
+  background: #e9decb;
+}
+.review-workspace .review-desk {
+  margin: 10px 0 30px;
+}
+.review-course-list-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin-bottom: 12px;
+}
+.review-course-list-heading h3 {
+  margin: 0;
+  font-size: 21px;
+}
+.review-course-list-heading > span,
+.review-course-heading p,
+.learning-review-count-note {
+  color: #4d5d71;
+  font-size: 14px;
+}
 .learning-review-loading {
   min-height: 100px;
 }
 .learning-review-courses {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
-.learning-review-courses .ant-card-body {
-  padding-block: 12px;
+.review-course {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dce6f3;
+  border-radius: 14px;
+  background: #fff;
 }
-.learning-review-meta {
-  margin: 0;
-}
-.learning-review-course-heading {
+.review-course-heading {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  gap: 6px 14px;
-  padding-block: 8px;
-  white-space: normal;
+  gap: 8px 16px;
+  padding: 12px clamp(14px, 3vw, 24px);
+  background: #f4f7fc;
+  border-bottom: 1px solid #e2eaf6;
 }
-.learning-review-course-heading h3 {
-  min-width: 0;
-  margin: 0;
+.review-course-heading h4 {
+  margin: 2px 0 0;
+  font-size: clamp(16px, 2.2vw, 20px);
+  line-height: 1.5;
   overflow-wrap: anywhere;
 }
+.review-course-heading p {
+  margin: 0;
+}
+.review-course-count {
+  color: #174eaf;
+  font-size: 14px;
+}
+.review-course-count strong {
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+}
 .learning-review-lessons {
-  margin: 4px 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 .learning-review-lessons li + li {
-  border-top: 1px solid var(--border, #e6eaf0);
+  border-top: 1px solid #e2eaf6;
 }
 .learning-review-link {
   display: flex;
-  min-height: 44px;
+  min-height: 48px;
   align-items: center;
   justify-content: space-between;
   gap: 8px 16px;
-  padding: 8px 0;
+  padding: 10px clamp(14px, 3vw, 24px);
   color: inherit;
   overflow-wrap: anywhere;
 }
 .learning-review-link:hover,
 .learning-review-link:focus-visible {
-  color: var(--brand-blue);
+  color: #174eaf;
+  background: #f7faff;
+}
+.learning-review-link:focus-visible {
+  outline-offset: -4px;
 }
 .learning-review-action {
+  display: flex;
   flex-shrink: 0;
-  color: var(--brand-blue);
+  gap: 4px 12px;
+  color: #174eaf;
   font-weight: 650;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
 }
 .learning-review-count-note {
-  margin: 12px 0 0;
+  margin: 0;
+  padding: 0 clamp(14px, 3vw, 24px) 12px;
+}
+.review-round-meter {
+  padding: clamp(16px, 3vw, 26px);
+  margin: 0 0 18px;
+  border: 1px solid #dae4f6;
+  border-radius: 16px;
+  background: #f4f7fc;
+  color: #15294b;
+}
+.review-round-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.review-round-heading h2 {
+  font-size: 20px;
+  margin: 0;
+}
+.review-round-heading > span,
+.review-round-stats dt,
+.review-round-note {
+  color: #4d5d71;
+  font-size: 14px;
+}
+.review-round-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px clamp(18px, 4vw, 44px);
+  margin: 10px 0 14px;
+}
+.review-round-stats > div + div {
+  padding-left: clamp(16px, 3vw, 32px);
+  border-left: 1px solid #ccd7e9;
+}
+.review-round-stats dd {
+  margin: 3px 0 0;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.08;
+  color: #15294b;
+}
+.review-round-stats > div:first-child dd {
+  color: #174eaf;
+}
+.review-round-stats dd span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.review-round-track {
+  display: flex;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #dce6f7;
+}
+.review-round-track > span {
+  flex-basis: 0;
+  transition: flex-grow 180ms ease;
+}
+.review-round-fill {
+  background: #175cde;
+}
+.review-round-skip {
+  background: #7485a4;
+}
+.review-round-note {
+  margin: 9px 0 0;
+}
+.review-round-summary {
+  margin: 0 0 24px;
+}
+.review-round-summary h2 {
+  font-size: clamp(25px, 3.5vw, 38px);
+}
+.review-round-summary .button {
+  margin-top: 4px;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+.review-round-summary .review-desk-image {
+  object-position: 68% 78%;
+}
+.lesson-practice-review .lesson-practice-header {
+  margin-bottom: 18px;
+}
+.lesson-practice-review .lesson-practice-header h1 {
+  font-size: clamp(26px, 3.4vw, 42px);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  margin-bottom: 10px;
+}
+.review-inline-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 18px;
+  margin-bottom: 8px;
+}
+.review-inline-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #4d5d71;
+  font-size: 14px;
+  font-weight: 650;
+}
+.review-inline-nav a:hover,
+.review-inline-nav a[aria-current="page"] {
+  color: #174eaf;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.lesson-practice-review .lesson-review-filter {
+  margin-bottom: 10px;
+  border-bottom: 1px solid #dce6f3;
+}
+.lesson-practice-review .lesson-review-filter a[aria-current="page"] {
+  text-decoration-thickness: 2px;
+}
+@media (max-width: 640px) {
+  .review-desk {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .review-desk-image {
+    aspect-ratio: 3 / 1;
+    max-height: 138px;
+    object-position: 50% 50%;
+  }
+  .review-round-summary .review-desk-image {
+    max-height: 100px;
+  }
+  .learning-review-action {
+    gap: 3px 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-round-track > span {
+    transition: none;
+  }
 }
 
 /* A clear, connected learning path within the existing blue visual system. */

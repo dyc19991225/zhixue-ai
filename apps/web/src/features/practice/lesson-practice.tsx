@@ -147,7 +147,9 @@ export function LessonPractice({
     ) : null;
 
   return (
-    <section className="wrap practice-page lesson-practice">
+    <section
+      className={`wrap practice-page lesson-practice${review ? " lesson-practice-review" : ""}`}
+    >
       <Space wrap>
         <Link className="text-link" to={learnLessonPath(courseId, lessonId)}>
           ← 返回课时学习
@@ -165,17 +167,20 @@ export function LessonPractice({
           </p>
         )}
         <h1>{review ? "本课错题复练" : "本课配套练习"}</h1>
-        <nav aria-label="本课练习步骤">
+        <nav
+          aria-label="本课练习步骤"
+          className={review ? "review-inline-nav" : undefined}
+        >
           <Space wrap>
             <Link
-              className={review ? "text-link" : "button primary"}
+              className={review ? undefined : "button primary"}
               to={practiceHref}
               aria-current={review ? undefined : "page"}
             >
               本课练习
             </Link>
             <Link
-              className={review ? "button primary" : "text-link"}
+              className={review ? undefined : "text-link"}
               to={wrongHref}
               aria-current={review ? "page" : undefined}
             >
@@ -183,7 +188,7 @@ export function LessonPractice({
             </Link>
             {data && (
               <Link
-                className="text-link"
+                className={review ? undefined : "text-link"}
                 to={`/practice?${new URLSearchParams({ grade: data.lesson.grade, subject: data.lesson.subject })}`}
               >
                 全部练习
@@ -234,21 +239,18 @@ export function LessonPractice({
       ) : (
         <>
           {review && (
-            <nav className="lesson-review-filter" aria-label="本课错题状态">
+            <nav
+              className="lesson-review-filter review-inline-nav"
+              aria-label="本课错题状态"
+            >
               <Space wrap>
                 <Link
-                  className={
-                    state === "active" ? "button primary" : "text-link"
-                  }
                   aria-current={state === "active" ? "page" : undefined}
                   to={wrongHref}
                 >
                   待复练
                 </Link>
                 <Link
-                  className={
-                    state === "resolved" ? "button primary" : "text-link"
-                  }
                   aria-current={state === "resolved" ? "page" : undefined}
                   to={resolvedHref}
                 >
