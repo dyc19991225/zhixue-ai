@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { App as AntApp, ConfigProvider } from "antd";
+import { App as AntApp, ConfigProvider, theme } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import App from "./app";
 import { AuthProvider } from "./auth/auth-provider";
@@ -13,30 +13,49 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ConfigProvider
       locale={zhCN}
       theme={{
+        algorithm: theme.darkAlgorithm,
         token: {
-          colorPrimary: "#3366ff",
-          colorInfo: "#3366ff",
-          colorSuccess: "#10b981",
-          colorWarning: "#f59e0b",
-          colorError: "#ef4444",
-          colorText: "#17233b",
-          colorTextSecondary: "#52607a",
-          colorBorder: "#dbe3f2",
-          colorBorderSecondary: "#e6ecf7",
-          colorBgLayout: "#f4f7fd",
-          borderRadius: 12,
-          controlHeight: 44,
+          colorPrimary: "#34d399",
+          colorInfo: "#34d399",
+          colorSuccess: "#34d399",
+          colorWarning: "#fbbf24",
+          colorError: "#fb7185",
+          colorText: "#f4f4f5",
+          colorTextSecondary: "#a1a1aa",
+          colorBgBase: "#09090b",
+          colorBgLayout: "#09090b",
+          colorBgContainer: "#16181b",
+          colorBgElevated: "#202428",
+          colorBorder: "#27272a",
+          colorBorderSecondary: "#1f2328",
+          borderRadius: 14,
+          controlHeight: 42,
           fontFamily:
-            '"PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif',
+            '"Plus Jakarta Sans", "Inter", "PingFang SC", "HarmonyOS Sans SC", "Source Han Sans SC", "Microsoft YaHei UI", sans-serif',
         },
         components: {
-          Input: { activeShadow: "0 0 0 3px #3366ff24" },
+          Input: {
+            activeBorderColor: "#34d399",
+            hoverBorderColor: "#3f3f46",
+            activeShadow: "0 0 0 3px rgba(52, 211, 153, 0.16)",
+          },
           Button: {
             defaultShadow: "none",
-            primaryShadow: "0 4px 14px #3366ff30",
+            primaryShadow: "none",
+            primaryColor: "#064e3b",
           },
-          Card: { borderRadiusLG: 16 },
-          Table: { headerBg: "#eff4fc", headerColor: "#17233b" },
+          Card: {
+            borderRadiusLG: 18,
+            headerBg: "transparent",
+          },
+          Table: {
+            headerBg: "#14171a",
+            headerColor: "#e4e4e7",
+            borderColor: "#27272a",
+          },
+          Select: {
+            optionSelectedBg: "rgba(52, 211, 153, 0.16)",
+          },
         },
       }}
     >

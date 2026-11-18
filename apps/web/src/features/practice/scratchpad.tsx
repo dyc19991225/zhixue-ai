@@ -1,16 +1,16 @@
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 
 const PEN_COLORS = [
-  { label: "深空黑", value: "#1e293b" },
-  { label: "演算蓝", value: "#2563eb" },
-  { label: "批注红", value: "#e11d48" },
+  { label: "翡翠绿粉笔", value: "#34d399" },
+  { label: "纯白粉笔", value: "#f4f4f5" },
+  { label: "琥珀批注", value: "#fbbf24" },
 ] as const;
 
 export function QuestionScratchpad() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const drawing = useRef(false);
   const lastPt = useRef<{ x: number; y: number } | null>(null);
-  const [penColor, setPenColor] = useState<string>(PEN_COLORS[1].value);
+  const [penColor, setPenColor] = useState<string>(PEN_COLORS[0].value);
   const [eraser, setEraser] = useState(false);
 
   useEffect(() => {
@@ -83,10 +83,10 @@ export function QuestionScratchpad() {
   }
 
   return (
-    <div className="student-scratchpad" aria-label="随题演算草稿纸">
+    <div className="student-scratchpad" aria-label="随题演算草稿板">
       <div className="scratchpad-toolbar">
         <span className="scratchpad-title">
-          ✏️ 随题演算草稿纸（仅本页临时手写）
+          ✏️ 暗夜演算草稿板（仅本页临时手写）
         </span>
         <div className="scratchpad-actions">
           {PEN_COLORS.map((item) => (

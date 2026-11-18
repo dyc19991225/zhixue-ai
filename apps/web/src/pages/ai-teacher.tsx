@@ -17,7 +17,9 @@ export default function AiTeacher() {
   return <AiTeacherSession key={user?.id ?? "guest"} />;
 }
 function AiTeacherSession() {
-  const photoMode = useLocation().pathname === "/photo-question";
+  const location = useLocation();
+  const photoMode = location.pathname === "/photo-question";
+  const initialTopic = new URLSearchParams(location.search).get("topic");
   const { user } = useAuth();
   const [imageAttachment, setImageAttachment] = useState<string>();
   const [imagesEnabled, setImagesEnabled] = useState(false);
@@ -29,7 +31,11 @@ function AiTeacherSession() {
   const answerPanel = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false),
     [ready, setReady] = useState(false),
-    [question, setQuestion] = useState(""),
+    [question, setQuestion] = useState(() =>
+      initialTopic
+        ? `我在学习「${initialTopic}」时遇到了卡点，我的想法是：`
+        : "",
+    ),
     [items, setItems] = useState<Turn[]>([]),
     [busy, setBusy] = useState(false),
     [error, setError] = useState("");

@@ -3,7 +3,7 @@ import { gradeOptions, subjectOptions } from "@zhixue/shared";
 import Link from "@/components/link";
 import { Arrow } from "@/components/icons";
 import { CourseExplorer } from "@/features/courses/course-explorer";
-import { LearningEntryHero } from "@/features/courses/learning-entry-hero";
+import { MidmapKnowledgeBoard } from "@/features/courses/midmap-knowledge-board";
 import { parseGrade } from "@/features/courses/catalog";
 import { useAuth } from "@/auth/auth-provider";
 import "./learning-entry.css";
@@ -23,41 +23,53 @@ export default function Study() {
 
   const steps = [
     {
-      title: "1. 选课精学",
-      description: "按年级和学科挑课，跟着章节讲义吃透概念。",
+      title: "选课梳理脉络",
+      description: "在看板中定位章节节点，精读讲义。",
       href: "#sync-courses",
     },
     {
-      title: "2. 随堂闯关",
-      description: "独立思考并动手演算，提交后对照详尽解析。",
+      title: "Run · 随堂练习",
+      description: "独立完成配套好题，核对详尽解析。",
       href: `/practice?${scope}`,
     },
     {
-      title: "3. 错题清零",
-      description: "针对薄弱错题再次挑战，答对即移入已掌握。",
+      title: "Diff · 错题清零",
+      description: "针对答错节点复练，答对即审阅通过。",
       href: `/practice?${scope}&mode=wrong`,
     },
   ];
 
   return (
     <div className="learning-entry">
-      <LearningEntryHero
-        variant="study"
-        badge="📖 课前预习 · 课后巩固 · 错题复练闭环"
-        image="/images/study-review-desk.webp"
-        headline="同步学习空间"
-        description="按三步高效学习法：先看懂一节课的核心规律，再做配套好题巩固，最后把易错点彻底扫清。"
+      <section
+        className="wrap mm-study-header"
+        aria-labelledby="study-board-title"
       >
-        <Link className="button primary" href="#sync-courses">
-          挑选同步课程 <Arrow />
-        </Link>
-        <Link
-          className="learning-entry-link"
-          href={user ? "/dashboard" : "/login?next=%2Fdashboard"}
-        >
-          {user ? "进入我的学习书桌 →" : "登录保存学习进度 →"}
-        </Link>
-      </LearningEntryHero>
+        <div className="mm-section-header">
+          <h1 id="study-board-title">
+            同步学习 <span className="headline-accent">知识看板</span>
+          </h1>
+          <p>
+            选择你的年级与学科节点，从一节课的核心脉络出发，串联配套练习与错题复练。
+          </p>
+          <div className="mm-hero-actions">
+            <Link className="mm-primary-cta" href="#sync-courses">
+              浏览课程列表 <Arrow />
+            </Link>
+            <Link
+              className="mm-secondary-cta"
+              href={user ? "/dashboard" : "/login?next=%2Fdashboard"}
+            >
+              {user ? "我的学习中心" : "登录同步进度"}
+            </Link>
+          </div>
+        </div>
+
+        <MidmapKnowledgeBoard
+          initialGrade={parseGrade(grade.label)}
+          showDrawerDefault={true}
+        />
+      </section>
 
       <nav className="wrap entry-learning-path" aria-label="学习路径">
         <ol>
@@ -85,21 +97,23 @@ export default function Study() {
       >
         <div className="entry-section-heading">
           <div>
-            <span className="section-pill">同步课程库</span>
-            <h2 id="sync-courses-title">找正在学的课程</h2>
+            <span className="section-pill">已发布目录</span>
+            <h2 id="sync-courses-title">
+              按条件检索 <span className="headline-accent">同步课程</span>
+            </h2>
             <p aria-live="polite">
-              当前范围：{grade.label} · {subject?.label ?? "全部学科"}
+              当前筛选：{grade.label} · {subject?.label ?? "全部学科"}
             </p>
           </div>
           <div className="entry-section-links">
             <Link className="text-link" href="/photo-question">
-              📸 拍照识题
+              拍照识题
             </Link>
             <Link
               className="text-link"
               href={user ? "/analytics" : "/login?next=%2Fanalytics"}
             >
-              📊 学习报告
+              学习报告
             </Link>
           </div>
         </div>
