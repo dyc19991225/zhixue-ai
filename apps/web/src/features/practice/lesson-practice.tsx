@@ -3,14 +3,17 @@ import { Alert, Button, Empty, Pagination, Space, Spin } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import type {
   AttemptView,
+  LearningReviewNext,
   PageData,
   QuestionView,
   WrongQuestionView,
 } from "@zhixue/shared";
 import { useAuth } from "@/auth/auth-provider";
+import { useApiData } from "@/hooks/use-api-data";
 import { api } from "@/lib/api";
 import { QuestionCard } from "./question-card";
-import { LessonReviewProgress } from "./review-advance";
+import { LessonReviewProgress, reviewNextPath } from "./review-advance";
+import { ReviewRoundMeter } from "./review-round";
 import { learnLessonPath, lessonPracticePath } from "./lesson-practice-path";
 
 type Props = {
@@ -19,6 +22,7 @@ type Props = {
   mode: "questions" | "wrong";
   state: "active" | "resolved";
   page: number;
+  roundId?: string;
   canLoad: boolean;
   authLoading: boolean;
 };
@@ -38,6 +42,7 @@ export function LessonPractice({
   mode,
   state,
   page,
+  roundId,
   canLoad,
   authLoading,
 }: Props) {
@@ -48,19 +53,23 @@ export function LessonPractice({
   const [revision, retry] = useState(0);
   const review = mode === "wrong";
   const sequential = review && state === "active" && user?.role === "STUDENT";
+  const [attemptRevision, setAttemptRevision] = useState(0);
   const [answers, setAnswers] = useState<{
-    revision: number;
     lastId: string;
     solved: Set<string>;
   }>();
 
   const practiceHref = lessonPracticePath(courseId, lessonId);
-  const wrongHref = lessonPracticePath(courseId, lessonId, { mode: "wrong" });
+  const wrongHref = lessonPracticePath(courseId, lessonId, {
+    mode: "wrong",
+    roundId,
+  });
   const resolvedHref = lessonPracticePath(courseId, lessonId, {
     mode: "wrong",
     state: "resolved",
+    roundId,
   });
-  const path = `/api/learning/${encodeURIComponent(courseId)}/lessons/${encodeURIComponent(lessonId)}/${review ? "wrong-questions" : "questions"}?${new URLSearchParams({ page: String(page), ...(review ? { state } : {}) })}`;
+  const path = `/api/learning/${encodeURIComponent(courseId)}/lessons/${encodeURIComponent(lessonId)}/${review ? "wrong-questions" : "questions"}?${new URLSearchParams({ page: String(page), ...(review ? { state, ...(roundId ? { roundId } : {}) } : {}) })}`;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "instant" });
@@ -87,6 +96,7 @@ export function LessonPractice({
   }
 
   function noteAttempt(attempt: AttemptView) {
+    setAttemptRevision((value) => value + 1);
     setAnswers((previous) => {
       const solved = new Set(previous?.solved);
       if (attempt.correct) solved.add(attempt.questionId);
@@ -94,7 +104,6 @@ export function LessonPractice({
       return {
         lastId: attempt.questionId,
         solved,
-        revision: (previous?.revision ?? 0) + 1,
       };
     });
   }
@@ -109,14 +118,29 @@ export function LessonPractice({
     reload();
   }
 
+  const scope = { courseId, lessonId };
+  const direction = useApiData<LearningReviewNext>(
+    sequential &&
+      !authLoading &&
+      (roundId || (data && (answers || data.total === 0)))
+      ? reviewNextPath(scope, roundId)
+      : null,
+    revision + attemptRevision,
+  );
+  const roundDone = direction.data?.round?.remaining === 0;
   const progress =
-    sequential && data && (answers || data.total === 0) ? (
+    sequential &&
+    ((data && (answers || data.total === 0 || roundDone)) ||
+      (error && direction.data)) ? (
       <LessonReviewProgress
-        key={answers?.revision ?? 0}
-        scope={{ courseId, lessonId }}
-        pageDone={data.items.every(
-          (item) => "question" in item && answers?.solved.has(item.question.id),
-        )}
+        scope={scope}
+        direction={direction}
+        pageDone={
+          !!data?.items.every(
+            (item) =>
+              "question" in item && answers?.solved.has(item.question.id),
+          )
+        }
         refreshLesson={refreshActiveLesson}
         checkedAfterAttempt={!!answers}
       />
@@ -168,6 +192,18 @@ export function LessonPractice({
           </Space>
         </nav>
       </header>
+      {roundId &&
+        sequential &&
+        (direction.error && !progress && !error ? (
+          <Alert
+            type="error"
+            showIcon
+            title={direction.error}
+            action={<Button onClick={direction.reload}>重新同步</Button>}
+          />
+        ) : (
+          !direction.error && <ReviewRoundMeter round={direction.data?.round} />
+        ))}
       {authLoading ? (
         <div className="account-loading">
           <Spin />
@@ -176,18 +212,21 @@ export function LessonPractice({
         <Empty description="登录并加入课程后，即可练习和复习本课错题。">
           <Link
             className="button primary"
-            to={`/login?next=${encodeURIComponent(lessonPracticePath(courseId, lessonId, { mode, state, page }))}`}
+            to={`/login?next=${encodeURIComponent(lessonPracticePath(courseId, lessonId, { mode, state, page, roundId }))}`}
           >
             去登录
           </Link>
         </Empty>
       ) : error ? (
-        <Alert
-          type="error"
-          showIcon
-          title={error}
-          action={<Button onClick={reload}>重试</Button>}
-        />
+        <>
+          <Alert
+            type="error"
+            showIcon
+            title={error}
+            action={<Button onClick={reload}>重试</Button>}
+          />
+          {progress}
+        </>
       ) : !data ? (
         <div className="account-loading">
           <Spin />
@@ -219,7 +258,7 @@ export function LessonPractice({
             </nav>
           )}
           {!answers && progress}
-          {data.items.length ? (
+          {data.items.length && (!roundDone || answers) ? (
             <>
               {(!sequential || !answers) && (
                 <p className="muted">共 {data.total} 道题</p>
@@ -235,6 +274,7 @@ export function LessonPractice({
                       question={question}
                       wrongCount={wrong?.wrongCount}
                       onAttempt={sequential ? noteAttempt : undefined}
+                      roundId={sequential ? roundId : undefined}
                       reviewAction={(attempt) => {
                         if (review && attempt.correct && state === "active") {
                           return (
@@ -299,6 +339,7 @@ export function LessonPractice({
                     mode,
                     state,
                     page: nextPage,
+                    roundId,
                   }),
                 );
               }}

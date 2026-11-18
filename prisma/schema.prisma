@@ -56,6 +56,7 @@ model User {
   sessions         AuthSession[]
   attempts         QuestionAttempt[]
   wrongQuestions   WrongQuestion[]
+  reviewRounds     LearningReviewRound[]
   teachingCourses Course[] @relation("CourseTeacher")
   teachingClasses SchoolClass[]
   classMemberships ClassStudent[]
@@ -413,6 +414,7 @@ model Question {
   updatedAt      DateTime     @updatedAt
   attempts       QuestionAttempt[]
   wrongQuestions WrongQuestion[]
+  reviewRoundItems LearningReviewRoundItem[]
 
   @@index([status, grade, subject])
 }
@@ -432,6 +434,7 @@ model QuestionAttempt {
   userId     String
   questionId String
   requestId  String
+  reviewRoundId String?
   selected   Int
   correct    Boolean
   snapshot   Json
@@ -441,6 +444,30 @@ model QuestionAttempt {
 
   @@unique([userId, requestId])
   @@index([userId, createdAt])
+}
+
+model LearningReviewRound {
+  id         String   @id
+  userId     String
+  total      Int
+  correct    Int      @default(0)
+  createdAt  DateTime @default(now())
+  finishedAt DateTime?
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items      LearningReviewRoundItem[]
+
+  @@index([userId])
+}
+
+model LearningReviewRoundItem {
+  roundId    String
+  questionId String
+  correctAt  DateTime?
+  round      LearningReviewRound @relation(fields: [roundId], references: [id], onDelete: Cascade)
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@id([roundId, questionId])
+  @@index([questionId])
 }
 
 model WrongQuestion {

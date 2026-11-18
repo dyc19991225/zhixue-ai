@@ -1498,6 +1498,123 @@ button.ant-btn.menu-button {
 .lesson-practice-header h1 {
   margin: 8px 0 16px;
 }
+/* The blue notebook stripe is reserved for measurable review progress. */
+.review-round-meter {
+  margin: 0 0 24px;
+  padding: clamp(16px, 3vw, 26px);
+  border: 1px solid #ccddfb;
+  border-left: 4px solid var(--brand-blue);
+  border-radius: 4px 16px 16px 4px;
+  background: #f5f8ff;
+}
+.review-round-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+.review-round-heading h2,
+.review-round-sync h2 {
+  font-size: clamp(18px, 2.4vw, 22px);
+  margin: 0;
+}
+.review-round-heading > span,
+.review-round-stats dt,
+.review-round-note {
+  color: var(--muted);
+  font-size: 14px;
+}
+.review-round-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 14px 0 15px;
+}
+.review-round-stats > div + div {
+  padding-left: 18px;
+  border-left: 1px solid #ccddfb;
+}
+.review-round-stats dd {
+  margin: 2px 0 0;
+  color: var(--brand-blue);
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+.review-round-stats > div + div dd {
+  color: var(--ink, #162b4d);
+}
+.review-round-stats dd span {
+  margin-left: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.review-round-track {
+  display: flex;
+  height: 10px;
+  overflow: hidden;
+  background: #dce6f7;
+  border-radius: 99px;
+}
+.review-round-track span {
+  transition: width 180ms ease;
+}
+.review-round-fill {
+  background: var(--brand-blue);
+}
+.review-round-skip {
+  background: #788aa8;
+}
+.review-round-note {
+  margin: 10px 0 0;
+}
+.review-round-sync {
+  min-height: 122px;
+}
+.review-round-summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-bottom: 22px;
+  padding: clamp(17px, 3vw, 28px);
+  border: 1px solid #acd6c5;
+  border-radius: 16px;
+  background: #f1faf5;
+}
+.review-round-check {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #d6f0e1;
+  color: #16634b;
+  font-size: 22px;
+  font-weight: 750;
+}
+.review-round-summary h2 {
+  margin: 0;
+  font-size: clamp(18px, 2.4vw, 24px);
+}
+.review-round-summary p {
+  margin: 8px 0 12px;
+}
+.review-round-summary strong {
+  color: #16634b;
+  font-variant-numeric: tabular-nums;
+}
+.review-round-summary .button {
+  min-height: 44px;
+  margin-top: 4px;
+  padding: 8px 16px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .review-round-track span {
+    transition: none;
+  }
+}
+
 .lesson-review-progress {
   margin: 0 0 20px;
   padding: 16px 20px;

@@ -39,6 +39,9 @@ import {
   learningReviewNextSchema,
   learningReviewQueue,
   learningReviewQueueSchema,
+  ownedReviewRound,
+  startLearningReviewRound,
+  startLearningReviewRoundSchema,
 } from "../services/learning-review-queue";
 export const learningRouter = Router();
 learningRouter.get(
@@ -78,6 +81,20 @@ learningRouter.get(
         authenticated(req).user.id,
         parseInput(learningReviewNextSchema, req.query),
       ),
+    );
+  },
+);
+learningRouter.post(
+  "/learning-review-rounds",
+  requireSameOrigin,
+  requireAuth,
+  rbac(["STUDENT"]),
+  async (req, res) => {
+    res.set("Cache-Control", "no-store");
+    const { roundId } = parseInput(startLearningReviewRoundSchema, req.body);
+    ok(
+      res,
+      await startLearningReviewRound(authenticated(req).user.id, roundId),
     );
   },
 );
@@ -133,8 +150,10 @@ learningRouter.get(
   "/learning/:id/lessons/:lessonId/wrong-questions",
   requireAuth,
   async (req, res) => {
-    const { page, state } = parseInput(
-      wrongQuerySchema.pick({ page: true, state: true }),
+    const { page, state, roundId } = parseInput(
+      wrongQuerySchema
+        .pick({ page: true, state: true })
+        .extend({ roundId: z.uuid().optional() }),
       req.query,
     );
     const userId = authenticated(req).user.id;
@@ -143,11 +162,31 @@ learningRouter.get(
       String(req.params.id),
       String(req.params.lessonId),
     );
+    const round = roundId
+      ? await ownedReviewRound(getDb(), userId, roundId)
+      : undefined;
     const result = await wrongPage(
       userId,
       {
-        resolvedAt: state === "active" ? null : { not: null },
-        question: scope.where,
+        ...(state === "active" || !round
+          ? { resolvedAt: state === "active" ? null : { not: null } }
+          : {}),
+        question: {
+          ...scope.where,
+          ...(round
+            ? {
+                reviewRoundItems: {
+                  some: {
+                    roundId: round.id,
+                    correctAt: state === "active" ? null : { not: null },
+                  },
+                },
+                ...(round.finishedAt && state === "active"
+                  ? { id: { in: [] } }
+                  : {}),
+              }
+            : {}),
+        },
       },
       page,
     );

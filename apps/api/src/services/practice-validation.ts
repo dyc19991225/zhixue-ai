@@ -74,6 +74,7 @@ export const attemptSchema = z
   .object({
     selected: z.number().int().min(0).max(3),
     requestId: z.uuid(),
+    roundId: z.uuid().optional(),
     updatedAt: z.iso.datetime(),
   })
   .strict();

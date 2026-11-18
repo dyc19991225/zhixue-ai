@@ -3,29 +3,32 @@ import { Alert, Button, Space } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import type { LearningReviewNext } from "@zhixue/shared";
 import { useApiData } from "@/hooks/use-api-data";
+import { ReviewRoundSummary } from "./review-round";
 import { api } from "@/lib/api";
 import { lessonPracticePath } from "./lesson-practice-path";
 
 type LessonScope = { courseId: string; lessonId: string };
 
-function nextPath(scope?: LessonScope) {
-  return (
-    "/api/learning-review-queue/next" +
-    (scope ? `?${new URLSearchParams(scope)}` : "")
-  );
+export function reviewNextPath(scope?: LessonScope, roundId?: string) {
+  const params = new URLSearchParams(scope);
+  if (roundId) params.set("roundId", roundId);
+  return "/api/learning-review-queue/next" + (params.size ? `?${params}` : "");
 }
 
 export function ReviewAdvanceButton({
   scope,
+  roundId,
   disabled,
   onUnavailable,
 }: {
   scope?: LessonScope;
+  roundId?: string;
   disabled?: boolean;
   onUnavailable: () => void;
 }) {
   const navigate = useNavigate();
   const active = useRef(false);
+  const startId = useRef<string>(undefined);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   useEffect(() => {
@@ -39,13 +42,22 @@ export function ReviewAdvanceButton({
     setBusy(true);
     setError("");
     try {
-      const { next } = await api<LearningReviewNext>(nextPath(scope));
+      const result = scope
+        ? await api<LearningReviewNext>(reviewNextPath(scope, roundId))
+        : await api<LearningReviewNext>("/api/learning-review-rounds", "POST", {
+            roundId: (startId.current ??= crypto.randomUUID()),
+          });
+      const { next } = result;
       if (!active.current) return;
       if (next) {
         void navigate(
-          lessonPracticePath(next.courseId, next.lessonId, { mode: "wrong" }),
+          lessonPracticePath(next.courseId, next.lessonId, {
+            mode: "wrong",
+            roundId: result.round?.id ?? roundId,
+          }),
         );
       } else {
+        startId.current = undefined;
         onUnavailable();
       }
     } catch (cause) {
@@ -76,18 +88,18 @@ export function ReviewAdvanceButton({
 
 export function LessonReviewProgress({
   scope,
+  direction,
   refreshLesson,
   pageDone,
   checkedAfterAttempt,
 }: {
   scope: LessonScope;
+  direction: ReturnType<typeof useApiData<LearningReviewNext>>;
   refreshLesson: () => void;
   pageDone: boolean;
   checkedAfterAttempt: boolean;
 }) {
-  const { data, loading, error, reload } = useApiData<LearningReviewNext>(
-    nextPath(scope),
-  );
+  const { data, loading, error, reload } = direction;
   if (loading)
     return (
       <p className="muted" role="status">
@@ -104,6 +116,8 @@ export function LessonReviewProgress({
       />
     );
   if (!data) return null;
+  if (data.round?.remaining === 0)
+    return <ReviewRoundSummary round={data.round} />;
 
   return (
     <section className="lesson-review-progress" aria-label="本课复练进度">
@@ -120,7 +134,11 @@ export function LessonReviewProgress({
             <p className="muted">
               下一课：{data.next.courseTitle} · {data.next.lessonTitle}
             </p>
-            <ReviewAdvanceButton scope={scope} onUnavailable={reload} />
+            <ReviewAdvanceButton
+              scope={scope}
+              roundId={data.round?.id}
+              onUnavailable={reload}
+            />
           </>
         ) : (
           <Space wrap>

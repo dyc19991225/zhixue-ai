@@ -595,6 +595,10 @@ test(
       total: 0,
       items: [],
     });
+    const roundSamples = new Map<
+      "G7" | "G8" | "G9",
+      { courseId: string; items: { lessonId: string; questionId: string }[] }
+    >();
     const nextPath = queuePath + "/next";
     await request(app).get(nextPath).expect(401);
     await request(app)
@@ -709,6 +713,15 @@ test(
 
         const grade = pkg.course.grade;
         assert.ok(grade === "G7" || grade === "G8" || grade === "G9");
+        if (!roundSamples.has(grade) && lessonList.length >= 4) {
+          roundSamples.set(grade, {
+            courseId,
+            items: lessonList.slice(1, 4).map((lesson) => ({
+              lessonId: idFor("lesson", lesson.key),
+              questionId: idFor("question", linked.get(lesson.key)![0].key),
+            })),
+          });
+        }
         const student = students[grade];
         const other = students[grade === "G8" ? "G9" : "G8"];
         const lessonPath = (key: string) =>
@@ -972,6 +985,12 @@ test(
               [secondId, 2],
             ],
           );
+          const sharedRound = await request(app)
+            .post("/api/learning-review-rounds")
+            .set(student)
+            .send({ roundId: randomUUID() })
+            .expect(200);
+          assert.equal(sharedRound.body.data.round.total, 2);
           await db.question.update({
             where: { id: sharedQuestion.id },
             data: { status: "ARCHIVED" },
@@ -1101,5 +1120,165 @@ test(
       }),
       { currentPending: 0, next: null },
     );
+    for (const grade of ["G7", "G8", "G9"] as const) {
+      await t.test(
+        `${grade} round stays accurate across lessons, reloads and outside answers`,
+        async () => {
+          const student = students[grade];
+          const other = students[grade === "G8" ? "G9" : "G8"];
+          const sample = roundSamples.get(grade);
+          assert.ok(sample, grade);
+          const { courseId, items } = sample;
+          const [first, second, extra] = await Promise.all(
+            items.map(({ lessonId, questionId }) =>
+              db.question
+                .findUniqueOrThrow({ where: { id: questionId } })
+                .then(({ id, updatedAt, answer }) => ({
+                  id,
+                  lessonId,
+                  updatedAt: updatedAt.toISOString(),
+                  answer,
+                })),
+            ),
+          );
+          async function answer(
+            question: typeof first,
+            selected: number,
+            roundId?: string,
+            requestId = randomUUID(),
+            status = 200,
+          ) {
+            return request(app)
+              .post(`/api/practice/questions/${question.id}/attempts`)
+              .set(student)
+              .send({
+                selected,
+                requestId,
+                updatedAt: question.updatedAt,
+                ...(roundId ? { roundId } : {}),
+              })
+              .expect(status);
+          }
+          const roundId = randomUUID();
+          const roundPath = "/api/learning-review-rounds";
+          const read = () =>
+            request(app)
+              .get(nextPath)
+              .query({ roundId })
+              .set(student)
+              .expect(200);
+          const start = () =>
+            request(app)
+              .post(roundPath)
+              .set(student)
+              .send({ roundId })
+              .expect(200);
+          const view = (
+            correct: number,
+            remaining: number,
+            skipped: number,
+          ) => ({ id: roundId, total: 2, correct, remaining, skipped });
+          const wrong = (question: typeof first) => (question.answer + 1) % 4;
+          await answer(first, wrong(first));
+          await answer(second, wrong(second));
+
+          const opened = await start();
+          assert.deepEqual(opened.body.data.round, view(0, 2, 0));
+          assert.equal(opened.body.data.next.lessonId, first.lessonId);
+          assert.deepEqual((await start()).body.data, opened.body.data);
+          await request(app)
+            .get(nextPath)
+            .query({ roundId })
+            .set(other)
+            .expect(404);
+          await request(app)
+            .post(roundPath)
+            .set(other)
+            .send({ roundId })
+            .expect(404);
+          const scoped = `/api/learning/${courseId}/lessons/${first.lessonId}/wrong-questions`;
+          await request(app)
+            .get(scoped)
+            .query({ roundId })
+            .set(other)
+            .expect(404);
+
+          await answer(extra, wrong(extra)); // Wrong after this round started.
+          await answer(extra, extra.answer, roundId, randomUUID(), 409);
+          assert.deepEqual((await read()).body.data.round, view(0, 2, 0));
+          const extraScope = `/api/learning/${courseId}/lessons/${extra.lessonId}/wrong-questions`;
+          assert.equal(
+            (
+              await request(app)
+                .get(extraScope)
+                .query({ roundId })
+                .set(student)
+                .expect(200)
+            ).body.data.total,
+            0,
+          );
+          await answer(first, wrong(first), roundId);
+          assert.deepEqual((await read()).body.data.round, view(0, 2, 0));
+
+          const correctionId = randomUUID();
+          const passed = await answer(
+            first,
+            first.answer,
+            roundId,
+            correctionId,
+          );
+          assert.equal(passed.body.data.correct, true);
+          assert.equal(
+            (await answer(first, first.answer, roundId, correctionId)).body.data
+              .id,
+            passed.body.data.id,
+          );
+          await answer(first, first.answer, undefined, correctionId, 409);
+          const next = await read();
+          assert.deepEqual(next.body.data.round, view(1, 1, 0));
+          assert.equal(next.body.data.next.lessonId, second.lessonId);
+          assert.equal(
+            (
+              await request(app)
+                .get(scoped)
+                .query({ roundId, state: "resolved" })
+                .set(student)
+                .expect(200)
+            ).body.data.total,
+            1,
+          );
+          await answer(first, wrong(first), roundId, randomUUID(), 409);
+
+          await answer(second, second.answer, roundId);
+          const finished = await read();
+          assert.deepEqual(finished.body.data.round, view(2, 0, 0));
+          assert.equal(finished.body.data.next, null);
+          assert.deepEqual((await start()).body.data, finished.body.data);
+
+          const outsideRoundId = randomUUID();
+          const outside = await request(app)
+            .post(roundPath)
+            .set(student)
+            .send({ roundId: outsideRoundId })
+            .expect(200);
+          assert.equal(outside.body.data.round.total, 1);
+          assert.equal(outside.body.data.next.lessonId, extra.lessonId);
+          await answer(extra, extra.answer);
+          const skipped = await request(app)
+            .get(nextPath)
+            .query({ roundId: outsideRoundId })
+            .set(student)
+            .expect(200);
+          assert.deepEqual(skipped.body.data.round, {
+            id: outsideRoundId,
+            total: 1,
+            correct: 0,
+            remaining: 0,
+            skipped: 1,
+          });
+          assert.equal(skipped.body.data.next, null);
+        },
+      );
+    }
   },
 );

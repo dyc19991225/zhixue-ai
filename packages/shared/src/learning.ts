@@ -95,7 +95,16 @@ export type LearningReviewQueue = {
   }[];
 };
 
+export type LearningReviewRoundView = {
+  id: string;
+  total: number;
+  correct: number;
+  remaining: number;
+  skipped: number;
+};
+
 export type LearningReviewNext = {
+  round?: LearningReviewRoundView;
   currentPending: number | null;
   next: {
     courseId: string;

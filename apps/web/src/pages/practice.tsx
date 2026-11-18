@@ -50,6 +50,8 @@ export default function Practice() {
     );
   const mode = query.get("mode") === "wrong" ? "wrong" : "questions";
   const state = query.get("state") === "resolved" ? "resolved" : "active";
+  const roundId =
+    mode === "wrong" ? (query.get("roundId") ?? undefined) : undefined;
   const requestedPage = Number(query.get("page"));
   const page =
     Number.isInteger(requestedPage) &&
@@ -59,12 +61,21 @@ export default function Practice() {
       : 1;
   return (
     <LessonPractice
-      key={JSON.stringify([user?.id, courseId, lessonId, mode, state, page])}
+      key={JSON.stringify([
+        user?.id,
+        courseId,
+        lessonId,
+        mode,
+        state,
+        page,
+        roundId,
+      ])}
       courseId={courseId}
       lessonId={lessonId}
       mode={mode}
       state={state}
       page={page}
+      roundId={roundId}
       canLoad={!!user}
       authLoading={loading}
     />

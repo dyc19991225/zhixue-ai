@@ -2,6 +2,7 @@ import { z } from "zod";
 import type { LearningReviewNext, LearningReviewQueue } from "@zhixue/shared";
 import { Prisma } from "../generated/prisma/client";
 import { getDb } from "../lib/db";
+import { HttpError } from "../lib/http";
 import { activeMembershipWhere } from "./entitlement-service";
 import { courseListSchema } from "./course-list.dto";
 
@@ -14,6 +15,7 @@ type Query = z.infer<typeof learningReviewQueueSchema>;
 async function pendingReviewLinks(
   tx: Prisma.TransactionClient,
   userId: string,
+  roundId?: string,
 ) {
   const membership = await tx.membership.findFirst({
     where: activeMembershipWhere(userId),
@@ -32,6 +34,7 @@ async function pendingReviewLinks(
       WHERE w."userId" = ${userId} AND w."resolvedAt" IS NULL
         AND q.status = 'PUBLISHED' AND l."publishedAt" IS NOT NULL
         AND c.status = 'PUBLISHED' AND (c.access = 'FREE' OR ${!!membership})
+        ${roundId ? Prisma.sql`AND EXISTS (SELECT 1 FROM "LearningReviewRoundItem" ri WHERE ri."roundId" = ${roundId} AND ri."questionId" = q.id AND ri."correctAt" IS NULL)` : Prisma.empty}
     )
   `;
 }
@@ -97,6 +100,7 @@ export const learningReviewNextSchema = z
   .strictObject({
     courseId: z.string().min(1).max(100).optional(),
     lessonId: z.string().min(1).max(100).optional(),
+    roundId: z.uuid().optional(),
   })
   .refine(
     ({ courseId, lessonId }) => Boolean(courseId) === Boolean(lessonId),
@@ -105,13 +109,32 @@ export const learningReviewNextSchema = z
 
 export function learningReviewNext(
   userId: string,
-  { courseId, lessonId }: z.infer<typeof learningReviewNextSchema>,
+  { courseId, lessonId, roundId }: z.infer<typeof learningReviewNextSchema>,
 ): Promise<LearningReviewNext> {
   return getDb().$transaction(
     async (tx) => {
-      const links = await pendingReviewLinks(tx, userId);
+      const round = roundId
+        ? await ownedReviewRound(tx, userId, roundId)
+        : undefined;
+      if (round?.finishedAt)
+        return {
+          currentPending: courseId ? 0 : null,
+          next: null,
+          round: {
+            id: round.id,
+            total: round.total,
+            correct: round.correct,
+            remaining: 0,
+            skipped: round.total - round.correct,
+          },
+        };
+      const links = await pendingReviewLinks(tx, userId, roundId);
       const [result] = await tx.$queryRaw<
-        { remaining: bigint; next: LearningReviewNext["next"] }[]
+        {
+          remaining: bigint;
+          roundRemaining: bigint;
+          next: LearningReviewNext["next"];
+        }[]
       >(Prisma.sql`
         ${links},
         current_lesson AS (
@@ -125,7 +148,7 @@ export function learningReviewNext(
           WHERE (SELECT remaining FROM current_lesson) = 0
           GROUP BY "courseId", "lessonId"
         )
-        SELECT remaining, (
+        SELECT remaining, (SELECT COUNT(DISTINCT "questionId") FROM pending) AS "roundRemaining", (
           SELECT jsonb_build_object(
             'courseId', c.id, 'lessonId', l.id, 'courseTitle', c.title,
             'lessonTitle', l.title, 'wrongCount', candidate."wrongCount"
@@ -143,8 +166,120 @@ export function learningReviewNext(
       return {
         currentPending: courseId ? Number(result.remaining) : null,
         next: result.next,
+        ...(round
+          ? {
+              round: {
+                id: round.id,
+                total: round.total,
+                correct: round.correct,
+                remaining: Number(result.roundRemaining),
+                skipped:
+                  round.total - round.correct - Number(result.roundRemaining),
+              },
+            }
+          : {}),
       };
     },
     { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
   );
+}
+
+export const startLearningReviewRoundSchema = z.strictObject({
+  roundId: z.uuid(),
+});
+
+export async function ownedReviewRound(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  roundId: string,
+) {
+  const round = await tx.learningReviewRound.findFirst({
+    where: { id: roundId, userId, user: { role: "STUDENT", status: "ACTIVE" } },
+  });
+  if (!round) throw new HttpError(404, "复练记录不存在。");
+  return round;
+}
+
+export async function startLearningReviewRound(
+  userId: string,
+  roundId: string,
+): Promise<LearningReviewNext> {
+  const db = getDb();
+  try {
+    await db.$transaction(
+      async (tx) => {
+        const existing = await tx.learningReviewRound.findUnique({
+          where: { id: roundId },
+        });
+        if (existing) {
+          await ownedReviewRound(tx, userId, roundId);
+          return;
+        }
+        const links = await pendingReviewLinks(tx, userId);
+        const questions = await tx.$queryRaw<{ questionId: string }[]>(
+          Prisma.sql`${links} SELECT DISTINCT "questionId" FROM pending`,
+        );
+        await tx.learningReviewRound.create({
+          data: {
+            id: roundId,
+            userId,
+            total: questions.length,
+            finishedAt: questions.length ? null : new Date(),
+            ...(questions.length
+              ? { items: { createMany: { data: questions } } }
+              : {}),
+          },
+        });
+      },
+      { isolationLevel: Prisma.TransactionIsolationLevel.RepeatableRead },
+    );
+  } catch (cause) {
+    if (
+      !(cause instanceof Prisma.PrismaClientKnownRequestError) ||
+      cause.code !== "P2002"
+    )
+      throw cause;
+    await ownedReviewRound(db, userId, roundId);
+  }
+  return learningReviewNext(userId, { roundId });
+}
+
+export async function requirePendingRoundQuestion(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  roundId: string,
+  questionId: string,
+) {
+  // Serialize corrections and completion within a round, independently of question order.
+  await tx.$queryRaw`SELECT id FROM "LearningReviewRound" WHERE id = ${roundId} AND "userId" = ${userId} FOR UPDATE`;
+  const round = await ownedReviewRound(tx, userId, roundId);
+  const links = await pendingReviewLinks(tx, userId, roundId);
+  const [status] = await tx.$queryRaw<{ available: boolean }[]>(
+    Prisma.sql`${links} SELECT EXISTS (SELECT 1 FROM pending WHERE "questionId" = ${questionId}) AS available`,
+  );
+  if (round.finishedAt || !status.available)
+    throw new HttpError(409, "这道题已不在本轮待复练中，请刷新列表。");
+}
+
+export async function markRoundQuestionCorrect(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  roundId: string,
+  questionId: string,
+) {
+  await tx.learningReviewRoundItem.update({
+    where: { roundId_questionId: { roundId, questionId } },
+    data: { correctAt: new Date() },
+  });
+  const links = await pendingReviewLinks(tx, userId, roundId);
+  const [status] = await tx.$queryRaw<{ hasPending: boolean }[]>(
+    Prisma.sql`${links} SELECT EXISTS (SELECT 1 FROM pending) AS "hasPending"`,
+  );
+  await tx.learningReviewRound.update({
+    where: { id: roundId },
+    data: {
+      correct: { increment: 1 },
+      ...(!status.hasPending ? { finishedAt: new Date() } : {}),
+    },
+  });
 }

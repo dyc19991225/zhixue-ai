@@ -28,11 +28,13 @@ export function QuestionCard({
   wrongCount,
   reviewAction,
   onAttempt,
+  roundId,
 }: {
   question: QuestionView;
   wrongCount?: number;
   reviewAction?: (attempt: AttemptView) => ReactNode;
   onAttempt?: (attempt: AttemptView) => void;
+  roundId?: string;
 }) {
   const { user } = useAuth();
   const [selected, setSelected] = useState<number>(),
@@ -51,6 +53,7 @@ export function QuestionCard({
           selected,
           requestId: requestId.current,
           updatedAt: question.updatedAt,
+          ...(roundId ? { roundId } : {}),
         },
       );
       setResult(attempt);
@@ -103,15 +106,17 @@ export function QuestionCard({
             <p className="muted">这道题已进入“已答对”。</p>
           )}
           <Space wrap>
-            <Button
-              onClick={() => {
-                setResult(undefined);
-                setSelected(undefined);
-                requestId.current = crypto.randomUUID();
-              }}
-            >
-              重新练习
-            </Button>
+            {!(roundId && result.correct) && (
+              <Button
+                onClick={() => {
+                  setResult(undefined);
+                  setSelected(undefined);
+                  requestId.current = crypto.randomUUID();
+                }}
+              >
+                重新练习
+              </Button>
+            )}
             {reviewAction ? (
               reviewAction(result)
             ) : (

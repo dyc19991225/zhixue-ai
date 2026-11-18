@@ -2,6 +2,10 @@ import { getDb } from "../lib/db";
 import { HttpError } from "../lib/http";
 import { parseInput } from "../auth/validation";
 import { Prisma } from "../generated/prisma/client";
+import {
+  markRoundQuestionCorrect,
+  requirePendingRoundQuestion,
+} from "./learning-review-queue";
 import { questionVisibility } from "./question-access";
 import {
   attemptSchema,
@@ -77,13 +81,24 @@ export async function submitAnswer(
   questionId: string,
   input: unknown,
 ) {
-  const { selected, requestId, updatedAt } = parseInput(attemptSchema, input);
+  const { selected, requestId, updatedAt, roundId } = parseInput(
+    attemptSchema,
+    input,
+  );
   const db = getDb();
   const visibility = await questionVisibility(userId);
-  function replay<T extends { questionId: string; selected: number }>(
-    attempt: T,
-  ) {
-    if (attempt.questionId !== questionId || attempt.selected !== selected)
+  function replay<
+    T extends {
+      questionId: string;
+      selected: number;
+      reviewRoundId: string | null;
+    },
+  >(attempt: T) {
+    if (
+      attempt.questionId !== questionId ||
+      attempt.selected !== selected ||
+      attempt.reviewRoundId !== (roundId ?? null)
+    )
       throw new HttpError(409, "本次提交标识已被使用，请重新作答。");
     return attempt;
   }
@@ -95,6 +110,8 @@ export async function submitAnswer(
         where: { userId_requestId: { userId, requestId } },
       });
       if (prior) return replay(prior);
+      if (roundId)
+        await requirePendingRoundQuestion(tx, userId, roundId, questionId);
       const question = await tx.question.findFirst({
         where: { id: questionId, ...visibility },
       });
@@ -108,6 +125,7 @@ export async function submitAnswer(
           userId,
           questionId,
           requestId,
+          reviewRoundId: roundId,
           selected,
           correct,
           snapshot: {
@@ -134,6 +152,8 @@ export async function submitAnswer(
             resolvedAt: null,
           },
         });
+      if (correct && roundId)
+        await markRoundQuestionCorrect(tx, userId, roundId, questionId);
       return attempt;
     });
   } catch (error) {
